@@ -1,0 +1,8 @@
+.present-question.js-present-question
+  = render "front/svg/microscope"
+  .present-question__title Задайте ваш вопрос
+  textarea.present-question__input.js-present-question-input maxlength="147" placeholder="Например, Как помыть себе спину?"
+  .present-question__button._button-dark-blue.js-open-pop-up-ques
+    | Задать вопрос
+    ._button-dark-blue-icon
+      = svg name: 'combined-shape-copy-9', klass: "_button-dark-blue-icon-svg"

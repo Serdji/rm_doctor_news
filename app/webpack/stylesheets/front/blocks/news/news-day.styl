@@ -1,0 +1,83 @@
+.news-day
+  width 375px
+  display flex
+  flex-direction column
+  float left
+  margin-right 15px
+  @media(max-width: max-width)
+    width 615px
+  a
+    &:visited
+      .news-day__title
+        color #676767
+    &:hover
+      .news-day__img
+        opacity 0.9
+      .news-day__title
+        color #315EFB
+
+  &__img
+    position relative
+    width 100%
+    height 245px
+    background-size cover
+    background-position 50%
+    padding 30px
+    box-sizing border-box
+    display flex
+    flex-direction column
+    transition transAll
+    @media(max-width: max-width)
+      margin-bottom space
+      height 325px
+
+
+    .news-day__title,
+    .news-common__data,
+    .news-day__cover
+      display none
+      @media(max-width: max-width)
+        display block
+
+    .news-day__title,
+    .news-common__data
+      z-index 2
+
+    .news-day__cover
+      position absolute
+      top 0
+      right 0
+      bottom 0
+      left 0
+      background-image linear-gradient(to bottom, rgba(0, 0, 0, 0.0), #000000)
+
+    .news-day__title
+      margin-top auto
+      margin-bottom 20px
+      font-family Georgia
+      font-size 30px
+      line-height 1.33
+
+    .news-common__data
+      margin-top 0
+
+  &__content
+      display flex
+      flex-direction column
+      box-sizing border-box
+      padding 15px 25px
+      width 100%
+      height 160px
+      background rgba(238, 242, 244, 0.5)
+      margin-bottom space
+      @media(max-width: max-width)
+        display none
+
+  &__title
+    transition transAll
+    font-size 22px
+    line-height 1.5
+    color #262626
+    font-family CorsicaRamblerLX-Regular
+    font-weight 500
+    textEllipsisNumberLines(3, 95px)

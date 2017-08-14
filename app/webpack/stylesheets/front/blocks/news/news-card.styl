@@ -1,0 +1,252 @@
+.news-card
+
+
+  &__title
+    margin-bottom 10px
+
+    h1
+      margin 0 0 6px
+      width 1080px
+      font-family CorsicaRamblerLX-Regular
+      font-weight 500
+      font-size 30px
+      color #262626
+      line-height 40px
+      @media(max-width: max-width)
+        width 930px
+      @media(max-width: min-width)
+        width 615px
+
+    &-data
+      font-size: 12px;
+      line-height: 1.25;
+      font-family: Roboto;
+      color #8d96b2
+      -webkit-font-smoothing antialiased
+      margin 5px 1px 5px 0 !important
+      a
+        font-size 11px
+        line-height: 1.36;
+        color #315efb
+        margin-right 4px
+        textTransUp()
+
+  &__title
+    div[id^="sponsored"]
+      width 765px
+    @media(max-width: min-width)
+      div[id^="sponsored"]
+        width 615px
+
+  &__content
+    width 765px
+    @media(max-width: max-width)
+      width 615px
+
+  &__sidebar
+    width 300px
+
+
+  &__description
+    display flex
+    width 765px
+    align-items flex-start
+    @media(max-width: max-width)
+      width 615px
+      flex-direction column
+
+    &-img
+      width 615px
+      margin-bottom 10px
+
+      &-title
+        margin 0 15px
+        @media(max-width: max-width)
+          margin 0
+          margin-bottom 10px
+
+      &-title a
+        &:hover
+          color #315efb
+
+      &-title,
+      &-title a
+        transition transAll
+        font-family Roboto
+        font-size 12px
+        line-height 1.25
+        letter-spacing 0.3px
+        color #8d96b2
+
+
+
+
+    &-social
+      margin-bottom 20px
+
+
+    &-text
+      font-family Georgia
+      font-size 20px
+      font-style italic
+      line-height 1.5
+      color #262626
+
+
+  &__article
+    img
+      display block
+
+    p, h2
+      padding-right 95px
+      @media(max-width: max-width)
+        padding 0
+
+    p
+      font-family Georgia
+      font-size 18px
+      color #262626
+      line-height 28px
+    h2
+      font-size 30px
+      font-weight 500
+      line-height 1.33
+      color #262626
+    &-native
+      float right
+      margin-left space
+
+  .mini-questions
+    width 375px
+    height 275px
+
+    &__content
+      height 214px
+
+    &__hash
+      width 296px
+
+
+  .present-question
+    width 375px
+    height 275px
+    margin-bottom space
+    float left
+    @media(max-width: max-width)
+      width 300px
+      height 325px
+
+    &-svg
+      height 200px
+      @media(max-width: max-width)
+        height 255px
+    &__input
+      &:focus
+        height 110px
+
+
+  .tag
+    &__theme
+      width 375px
+      margin-right space
+      float left
+      &:nth-last-child(1)
+        margin-bottom 0
+      &:nth-last-child(2)
+        margin-bottom space
+      &:nth-child(4)
+        display none
+      @media(max-width: max-width)
+        width 300px
+        &:nth-child(6)
+          display none
+        &:nth-child(4)
+          display inline-block
+
+    &__footer__box-counter
+      width 135px
+
+
+  .popular-themes
+    &__theme
+      width 375px
+      @media(max-width: max-width)
+        width 300px
+    &__box-counter
+      width 135px
+
+  .mini-shared-questions
+    width 375px
+    height 275px
+    &:nth-last-child(2)
+      margin-bottom 0
+    @media(max-width: max-width)
+      width 300px
+      height 325px
+
+    &__content
+      height 215px
+      @media(max-width: max-width)
+        height 265px
+
+  .main-shared
+    width 780px
+
+  .news-common__title
+    width 765px
+    @media(max-width: max-width)
+      width 615px
+
+  .rambler-share
+    div[data-rambler-share='vkontakte']
+      margin 5px 1px 5px 0 !important
+      span
+        border-color rgba(255, 255, 255, 0.2) !important
+        font-family Roboto !important
+        box-sizing border-box !important
+        height 15px !important
+        vertical-align middle !important
+        line-height 1.36 !important
+
+    div[data-rambler-share='facebook']
+      margin 5px 1px 5px 0 !important
+      span
+        border-color rgba(255, 255, 255, 0.2) !important
+        font-family Roboto !important
+        box-sizing border-box !important
+        height 15px !important
+        vertical-align middle !important
+        line-height 1.36 !important
+
+
+    div[data-rambler-share='livejournal']
+      margin 5px 1px 5px 0 !important
+      span
+        border-color rgba(255, 255, 255, 0.2) !important
+        font-family Roboto !important
+        box-sizing border-box !important
+        height 15px !important
+        vertical-align middle !important
+        line-height 1.36 !important
+
+
+    div[data-rambler-share='odnoklassniki']
+      margin 5px 1px 5px 0 !important
+      span
+        border-color rgba(255, 255, 255, 0.2) !important
+        font-family Roboto !important
+        box-sizing border-box !important
+        height 15px !important
+        vertical-align middle !important
+        line-height 1.36 !important
+
+
+    div[data-rambler-share='twitter']
+      margin 5px 1px 5px 0 !important
+      span
+        border-color rgba(255, 255, 255, 0.2) !important
+        font-family Roboto !important
+        box-sizing border-box !important
+        height 15px !important
+        vertical-align middle !important
+        line-height 1.36 !important

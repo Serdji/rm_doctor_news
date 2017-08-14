@@ -1,0 +1,27 @@
+- cache_desktop [:most_discussing_tags], expires_in: 1.minute do
+  - tags = application_facade.most_discussing_tags(11, size_force: true)
+  .news-common.js-question-ask-tag
+    .news-common__title._theme-border-color Популярные темы
+    .news-common__grid
+
+      .main-shared._main-page
+        = render partial: 'front/tags/tag', collection: tags[0..2], as: :tag
+
+        ._themes-size-question
+          = render 'front/questions/question_ask'
+
+        = render partial: 'front/tags/tag', collection: tags[3..4], as: :tag
+
+        .main-shared__small-tags
+          = render partial: 'front/tags/discussing_tag', collection: tags[5..8], as: :tag
+
+        = render partial: 'front/tags/tag', collection: tags[9..10], as: :tag
+
+
+      .news-common__column._advertisement._media-mobile-column
+        #ban_240x400_2nd
+
+    a.news-common__button._button-dark-blue href=temy_path
+      | Больше тем
+      ._button-dark-blue-icon
+        = svg name: 'combined-shape-copy-9', klass: "_button-dark-blue-icon-svg"

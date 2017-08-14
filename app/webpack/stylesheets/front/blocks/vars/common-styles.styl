@@ -1,0 +1,168 @@
+body
+  font-family CorsicaRamblerLX-Medium
+  -webkit-font-smoothing antialiased !important
+  -webkit-backface-visibility hidden
+  -moz-backface-visibility    hidden
+  -ms-backface-visibility     hidden
+  &._off-scroll
+    overflow hidden
+
+ul,
+ol
+  margin 0
+  padding 0
+
+ol
+  list-style inside decimal
+
+a
+  text-decoration none
+
+header
+  height 120px
+  background blockBack
+  padding-top 25px !important
+  box-sizing border-box
+  border-bottom 1px solid rgba(141,150,178,.2)
+
+.wrapper
+  width 1275px
+  position relative
+  margin 0 auto
+  box-sizing border-box
+  padding 0 15px
+  @media(max-width: max-width)
+    width 1000px
+    padding 0 35px
+  @media(max-width: min-width)
+    width 782px
+    padding 0 76px
+  &._adaptive_none_tablet
+    @media(max-width: min-width)
+      width 1000px
+      padding 0 35px
+      &._billboard
+        padding 0 15px
+  &._billboard
+    @media(max-width: max-width) and (min-width: min-width)
+      padding 0 15px
+  &._header
+    padding 0
+    width 1245px
+    @media(max-width: max-width)
+      width 965px
+    @media(max-width: min-width)
+      width 706px
+      &._adaptive_none_tablet
+        width 965px
+
+
+.column-block-header
+  centerBlock()
+  margin-bottom 20px
+  font-family CorsicaRamblerLX-Medium
+  border-bottom varsBorder
+  padding 0 25px
+  font-size 15px
+  height 44px
+  color #262626
+
+  &._pad-l-none
+    padding-left 0
+
+main
+  padding-top 15px !important
+  padding-bottom 15px !important
+  background #ffffff
+
+footer
+  background #1f2431
+
+.main
+
+  &__left-sidebar
+    float left
+    width 300px
+    @media(max-width: max-width)
+      display none
+
+
+  &__sidebar
+    float right
+    width 300px
+
+  &__content
+    width 615px
+    margin 0 auto
+    @media(max-width: max-width)
+      margin-left 0
+
+
+.clear
+  clear both
+
+._off-scroll
+  overflow hidden
+  width 100%
+
+.absorption
+  margin-bottom -40px
+
+._editor-focus
+  border 1px solid #315efb !important
+  transition transAll
+
+._editor-error
+  border 1px solid #ff6058 !important
+  transition transAll
+
+._editor-ok
+  border 1px solid #44c654 !important
+  transition transAll
+
+.mce-container
+  .mce-formitem:not(.mce-first):not(.mce-last)
+    display none
+
+.mce-in
+  input:nth-child(1)
+    display none
+    pointer-events none
+
+.mce-combobox
+  width 250px
+  white-space nowrap
+  overflow hidden
+  text-overflow ellipsis
+
+  .mce-btn,
+  ._ok,
+  ._error
+    vertical-align middle
+
+  .mce-btn
+    border 1px solid #c5c5c5 !important
+
+  ._ok,
+  ._error
+    vertical-align middle
+    margin-left 10px
+    font-size 11px
+
+  ._ok
+    color #2fc505
+
+  ._error
+    color red
+
+.mce-tinymce
+  overflow hidden
+
+
+div.mce-edit-area
+  padding-bottom 1px
+
+.topline-wrapper
+  height 38px
+  background blockBack
+

@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Import mdb file to mysql
+# Usage: mdbconvert path/to/mdb database_name
+
+database=$2
+mdbfile=$1
+
+date_format='%Y-%m-%d %H:%M:%S'
+
+mdb_tables=$(which mdb-tables)
+mdb_schema=$(which mdb-schema)
+mdb_export=$(which mdb-export)
+
+error_log='mdbconvert.error.log'
+sql_name='vidal.sql'
+
+if [[ -z $mdb_tables || -z $mdb_schema || -z $mdb_export ]]; then
+    echo "Error: mdbtools are required"
+    exit 1
+fi
+
+mysql=$(which mysql)
+
+if [[ -z $mysql ]]; then
+    echo "Error: mysql is required"
+    exit 1
+fi
+
+if [[ -z $database || -z $mdbfile ]]; then
+    echo "Error: Database name and mdbfile must present"
+    echo "Usage: ./mdbconvert.sh mdbfile databasename"
+    exit 1
+fi
+
+tables=$($mdb_tables -1 $mdbfile)
+
+for table in $tables; do
+    echo "Drop table ${table}"
+    $mysql $database -e "DROP TABLE IF EXISTS ${table}" 2>> $error_log
+done
+
+$mdb_schema $mdbfile mysql | $mysql $database
+
+for table in $tables; do
+    echo "Create table ${table}"
+    $mdb_export -D "${date_format}" -I mysql $mdbfile $table | $mysql $database 2>> $error_log
+done

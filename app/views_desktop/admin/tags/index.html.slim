@@ -1,0 +1,35 @@
+= content_for :head_buttons do
+  = link_to t("label.create"), new_admin_tag_path, class: 'btn btn-primary'
+
+= render 'csv'
+= render 'admin/shared/head', title: t('activemodel.models.tag')
+
+.nav.navbar.navbar-default
+  = form_for [:admin, @search], url: admin_tags_path, method: :get, html: { class: 'navbar-form navbar-left unvisible' } do |f|
+    .form-group
+      = f.label :name
+      = f.text_field :name, class: 'form-control'
+
+    = f.submit t('label.search'), class: 'btn btn-default'
+
+table.table.table-hover
+  thead.text-center
+    tr
+      th = qa_sort_link(:id)
+      th = qa_sort_link(:name)
+      th.nowrap = qa_sort_link(:updated_at)
+      th.nowrap = qa_sort_link(:created_at)
+
+  tbody.middle-vertical-align
+    - tags.each do |tag|
+      tr
+        td.ids.text-center = tag.id
+        - if can? controller_name, 'edit'
+          td = link_to tag.name, edit_admin_tag_path(tag)
+        - else
+          td = tag.name
+        td.nowrap.date.text-center = tag.human_updated_at
+        td.nowrap.date.text-center = tag.human_created_at
+
+.text-center
+  = will_paginate(@tags, renderer: BootstrapPagination::Rails, param_name: 'page[number]')

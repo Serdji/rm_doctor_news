@@ -1,0 +1,115 @@
+.footer
+  &._top
+    border-bottom 1px solid rgba(223, 228, 236, 0.13)
+  ul
+    li
+      display inline-block
+      list-style-type none
+      a
+        color #ffffff
+
+  &__rambler,
+  &__class
+    position absolute
+    top 50%
+    height 22px
+    margin-top -11px
+
+  &__rambler
+    left 0
+    width 52%
+
+  &__class
+    right 0
+    width 47%
+
+  &__box,
+  &__logo
+  &__social,
+  &__copyright,
+  &__copyright-age-limit
+    centerBlock()
+    &._top
+      height 76px
+    &._bottom
+      height 79px
+      font-family Roboto
+
+  &__logo
+    position relative
+    width 120px
+    height 19px
+    margin-right 60px
+
+    &-svg
+      width 120px
+      height 20px
+
+  &__menu
+    &._top-menu,
+    &._bottom-menu
+      li
+        margin-right 28px
+        a
+          font-size 14px
+          color #dfe4ec
+          &._activ
+            font-weight bold
+
+    &._bottom-menu
+      li
+        a
+          font-size 11px
+
+  &__social
+    margin-left auto
+    height 100%
+
+    &-inst
+      padding 6px
+
+  &__social
+    &-vk,
+    &-fb,
+    &-ok,
+    &-tw,
+    &-lj,
+    &-inst
+      box-sizing border-box
+      transition transAll
+      background #343b4c
+      border-radius 50%
+      position relative
+      width 35px
+      height 35px
+      margin-left 10px
+      &:hover
+        background #DFE4EC
+        .footer__social-svg
+          fill #343b4c
+
+    &-svg
+      fill #DFE4EC
+      width 35px
+      height 35px
+      opacity 1
+      transition transAll
+
+  &__copyright
+
+    &-title,
+    &-age-limit
+      a,
+      span
+        color #dfe4ec
+        font-size 11px
+
+    &-title
+      margin-right 20px
+
+    &-age-limit
+      justify-content center
+      width 40px
+      height 23px
+      border solid 1px #dfe4ec
+      margin-left auto

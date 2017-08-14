@@ -1,0 +1,34 @@
+hoverBurgers()
+  cursor pointer
+  transition transAll
+  fill #5d6270
+  &:hover
+    fill #315efb
+  &:active
+    fill #274bc8
+
+.burger
+
+  &__projects
+    width 20px
+    height 25px
+    float left
+    margin-top 3px
+    margin-right 25px
+    display none
+    hoverBurgers()
+    @media(max-width: max-width)
+      display block
+      &-svg
+        width @width
+        height @height
+
+  &__close
+    width 25px
+    height @width
+    margin-bottom 15px
+    hoverBurgers()
+
+    &-svg
+      width @width
+      height @height

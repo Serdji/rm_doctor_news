@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>Combined Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Шарьё-2" transform="translate(-83.000000, -7.000000)" fill="#315EFB">
+            <g id="Шарьё" transform="translate(10.000000, 0.000000)">
+                <g id="+" transform="translate(66.000000, 0.000000)">
+                    <path d="M15,13 L15,7.49826741 C15,7.21990657 14.7740451,7 14.4953156,7 L13.5046844,7 C13.214035,7 13,7.22308192 13,7.49826741 L13,13 L7.49826741,13 C7.21990657,13 7,13.2259549 7,13.5046844 L7,14.4953156 C7,14.785965 7.22308192,15 7.49826741,15 L13,15 L13,20.5017326 C13,20.7800934 13.2259549,21 13.5046844,21 L14.4953156,21 C14.785965,21 15,20.7769181 15,20.5017326 L15,15 L20.5017326,15 C20.7800934,15 21,14.7740451 21,14.4953156 L21,13.5046844 C21,13.214035 20.7769181,13 20.5017326,13 L15,13 Z" id="Combined-Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,14 @@
+development:
+test:
+staging:
+  admin: staging.admin.doctor
+  front: staging.doctor
+staging2:
+  admin: staging2.admin.doctor
+  front: staging2.doctor
+preprod:
+  admin: preprod.admin.doctor
+  front: preprod.doctor
+production:
+  admin: admin.doctor
+  front: doctor

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Make mysql dump and convert it to psql format
+# Usage: mysqltopsql vidal.mysql vidal.psql
+
+dbname=${DBNAME:-vidal}
+
+mysql_dump=${1:-"vidal.mysql"}
+psql_dump=${2:-"vidal.psql"}
+
+python=$(which python)
+curl=$(which curl)
+
+converter_url="https://raw.githubusercontent.com/lanyrd/mysql-postgresql-converter/master/db_converter.py"
+
+if [[ -z $python ]]; then
+    echo "Error: python is required"
+    exit 1
+fi
+
+if [[ -z $curl ]]; then
+    echo "Error: curl is required"
+    exit 1
+fi
+
+echo "Dumping mysql to ${mysql_dump}"
+mysqldump --compatible=postgresql --default-character-set=utf8 -r $mysql_dump $dbname
+
+python -c "$(curl -fsSL $converter_url)" vidal.mysql vidal.psql

@@ -1,0 +1,123 @@
+- content_for(:title, item.seo_title)
+- content_for(:head_title, item.seo_title)
+- content_for(:og_image, item.detail_image_url)
+- content_for(:description, item.seo_description)
+
+.news-card.js-news-card-page.js-news-card-ads data-cluster-id=item.external_id
+  .news-common.js-float-wrapper
+    .news-common__grid
+      .news-common__column._media-desktop-column
+        = render './front/news/news_sidebar_menu', klass: 'js-float-first-column-child'
+
+      .news-common__column
+        .news-card__title
+          .js-sponsored-ads
+          h1
+            = item.long_title
+          .news-card__title-data
+            span> = item.news_source_link(item.resource&.title || 'Рамблер/Доктор')
+            span.js-data-published data-published-date=item.published_date.to_i
+
+        .news-card__main
+          .news-common__grid
+            .news-common__column._media-size-column
+              .news-card__content
+                .news-card__description
+                  - if item.image
+                    img.news-card__description-img src="#{item.detail_image_url}"
+                    - if item.image_source_link?
+                      .news-card__description-img-title
+                        ' Фото:
+                        = item.image_source_link
+                .news-card__description-social.rambler-share.js-open-share.js-description-social
+                /.news-card__description-text=item.annotation
+
+                .news-card__article.js-news-article
+                  p == item.safe_text
+                  .js-sponsored-ads
+                  .news-card__description-social.rambler-share.js-open-share.js-article-social
+
+                #superFooter
+                #nativeFooter
+                #content2
+
+              .news-common.js-question-ask-question
+                .news-common__title Популярные вопросы
+                .news-common__grid
+                  .main-shared
+                    - cache_desktop [:most_discussing_questions, :shared], expires_in: 1.minute do
+                      - questions = application_facade.most_discussing_questions(6, size_force: true)
+
+                      = render partial: 'front/questions/main_shared_question', collection: questions[0..2], as: :question
+                      = render 'front/questions/question_ask'
+
+                      = render partial: 'front/questions/main_shared_question', collection: questions[3..4], as: :question
+
+                a.news-common__button._button-dark-blue._ques-size href=voprosy_path
+                  | Больше вопросов
+                  ._button-dark-blue-icon
+                    = svg name: 'combined-shape-copy-9', klass: "_button-dark-blue-icon-svg"
+              .js-news-card-ads
+
+              #content3
+
+              - cache_desktop [:most_discussing_tags], expires_in: 1.minute do
+                - tags = application_facade.most_discussing_tags(7, size_force: true)
+                .news-common._none-space.js-question-ask-tag
+                  .news-common__title._theme-border-color Популярные темы
+                  .news-common__grid
+                    .main-shared
+                      = render partial: 'front/tags/tag', collection: tags[0..1], as: :tag
+
+                      ._themes-size-question
+                        = render 'front/questions/question_ask'
+
+                      = render 'front/tags/tag', tag: tags[2]
+
+                      .main-shared__small-tags
+                        = render partial: 'front/tags/discussing_tag', collection: tags[3..7], as: :tag
+
+                      = render 'front/tags/tag', tag: tags[2]
+
+
+                      = render partial: 'front/tags/tag', collection: tags[8..9], as: :tag
+
+
+
+                  a.news-common__button._button-dark-blue._themes-size href=temy_path
+                    | Больше тем
+                    ._button-dark-blue-icon
+                      = svg name: 'combined-shape-copy-9', klass: "_button-dark-blue-icon-svg"
+
+            script type="text/template" id="teaser-container-template"
+              - url = '<%= url %>'.html_safe
+              - title = '<%= title %>'.html_safe
+              - src = '<%= src %>'.html_safe
+
+              .teaser-container
+                .teaser-image-container
+                  a.teaser-image-anchor target="_blank" href=url
+                    <% if (src) { %>
+                      .teaser-image style="background-image: url(#{src})"
+                    <% } else { %>
+                      .teaser-image._with-stub-image: img src='/icon-no-image-40x30.png'
+                    <% } %>
+                .teaser-title-container
+                  div
+                    a.main-anchor href=url target="_blank"
+                      h2.teaser-title = title
+
+            .news-common__column._media-mobile-column
+              .news-card__sidebar
+                #ban_240x400
+                .news-partners
+                  .news-partners__header Новости партнеров
+                  .news-partners__content#news-partners__item-top
+                  #nativeContext
+                  .news-partners__same-source._hidden
+
+                .js-float-last-column-child
+                  #ban_240x400_2nd
+                  .news-partners._none-space
+                    .news-partners__header Новости партнеров
+                    .news-partners__content#news-partners__item-bottom

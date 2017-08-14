@@ -1,0 +1,80 @@
+._media-mobile-size
+  .most-read
+    width 615px
+    height 665px
+    display none
+    margin-top space
+    @media(max-width: min-width)
+      display block
+      &__text
+        textEllipsis()
+        width 100%
+        margin-left 20px
+
+    &__news
+      &:nth-child(10)
+        .most-read__text
+          margin-left 10px
+      &:nth-child(11)
+        .most-read__text
+          margin-left 14px
+
+.most-read
+  borderBlock()
+  width 300px
+  box-sizing border-box
+  height 665px
+  overflow hidden
+  @media(max-width: max-width)
+    height 1005px
+
+  &__title
+    centerBlock()
+    padding-left 25px
+    height 45px
+    border-bottom 1px solid rgba(141,150,178,0.20)
+    font-size 16px
+    font-weight 500
+    color #262626
+
+  &__content
+    padding 15px 25px 0
+    box-sizing border-box
+
+  &__news
+    display flex
+    flex-direction row
+    flex-wrap nowrap
+    align-items flex-start
+    margin-bottom space
+    cursor pointer
+    min-height 40px
+    &:nth-last-child(1)
+      margin-bottom 0
+
+  &__place
+    margin-top 5px
+    line-height 0.6
+    opacity 0.6
+    font-family Georgia
+    font-size 20px
+    text-align center
+    color #8d96b2
+
+  &__text
+    width 220px
+    word-wrap break-word
+    font-family CorsicaRamblerLX-Regular
+    font-size 14px
+    color #262626
+    line-height 19px
+    margin-left auto
+    &:nth-last-child(1)
+      margin-bottom 0
+
+  &__button
+    width 140px
+    height 35px
+    margin-top 30px
+    padding 0 !important
+    font-family Roboto-Medium

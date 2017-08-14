@@ -1,0 +1,11 @@
+- if questions
+  .most-read
+    .most-read__title Лучшие вопросы
+    .most-read__content
+
+      - questions.each_with_index do |question, i|
+        .most-read__news
+          .most-read__place = i + 1
+          a.most-read__text._hover-reference-blue href=question.path
+            = question.title.truncate(local_assigns.fetch(:title_lenght, 45))
+

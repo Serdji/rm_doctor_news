@@ -1,0 +1,36 @@
+.main-shared
+  width 945px
+  &._main-page
+    .tag__theme
+      float left
+      margin-right space
+      &:nth-child(3)
+        display none
+      @media(max-width: max-width)
+        &:nth-child(5),
+        &:nth-child(6),
+        &:nth-child(8),
+        &:nth-child(9)
+          display none
+        &:nth-child(3)
+          display block
+  @media(max-width: max-width)
+    width 630px
+
+
+  &__small-tags
+    float right
+    margin-right space
+    .popular-themes
+      &__theme
+        &:nth-child(odd)
+          margin-bottom 10px
+    @media(max-width: max-width)
+      width 630px
+      float left
+      .popular-themes__theme
+        display inline-block
+        vertical-align top
+        margin-right space
+        &:nth-last-child(2)
+          margin-bottom 0

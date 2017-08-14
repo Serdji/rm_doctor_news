@@ -1,0 +1,233 @@
+.question-common
+
+  &__up-title
+    textTransUp()
+    font-size 12px
+    letter-spacing 0.8px
+    color #262626
+    margin 25px 0 14px 0
+    font-family Roboto-Medium
+    span
+      &:nth-child(2)
+        opacity 0.6
+        font-size 12px
+        color #4a4a4a
+
+    &._hidden
+      display none
+
+  &__header
+    margin-bottom 15px
+    padding 20px 20px 0 20px
+
+    &._question
+      align-content flex-start
+      flex-wrap wrap
+      .ellipsis
+        align-self flex-start
+
+
+  &__content,
+  &__footer
+    padding 0 20px
+
+  &__content
+    img
+      margin 15px 0
+
+  &__header,
+  &__user,
+  &__data,
+  &__footer,
+  &__answer
+    centerBlock()
+
+  &__avatar
+    overflow hidden
+    width 25px
+    height 25px
+    border-radius 50%
+    margin-right 8px
+    background-size cover
+    background-position 50%
+
+  &__name,
+  &__title,
+  &__data
+    color #262626
+
+  &__name
+    font-size 12px
+    font-family CorsicaRamblerLX-Regular
+    min-width 50px
+
+  &__is-sentry
+    font-size 13px
+    padding-left 4px
+    color #bbb
+
+  &__title
+    font-size 17px
+    color #000000
+    margin-bottom 5px
+    font-family CorsicaRamblerLX-Medium
+    font-weight 500
+    word-wrap break-word
+    &._ques-title
+      font-size 22px
+
+  &__text
+    font-family Georgia
+    word-wrap break-word
+    p
+      font-size 15px
+      color #000000
+      line-height 1.47
+    img
+      max-width 100%
+      height 100%
+    a
+      textTransUp()
+      cursor pointer
+      transition transAll
+      color #315efb
+      font-family CorsicaRamblerLX-Medium
+      font-size 11px
+      border-bottom 1px solid rgba(255,255,255,0)
+      font-weight 500
+      margin-top 10px
+      display inline-block
+      &:hover
+        color #274bc8
+      span
+        font-size 9px
+        letter-spacing 2px
+
+
+  &__data
+    color #8d96b2
+    font-size 12px
+    margin-left 5px
+    font-family CorsicaRamblerLX-Regular
+
+    &-icon
+      display inline-block
+      width 13px
+      height 13px
+      margin-right 6px
+
+      &-svg
+        width 100%
+        height 100%
+
+  &__hash
+    margin-bottom 18px
+    font-size 1px
+    width 460px
+    &._ques-hash
+      margin-bottom 20px
+
+    &._hide
+      height 26px
+      overflow hidden
+
+  &__point
+    opacity 0.6
+    border-radius 100px
+    border solid 1px #8d96b2
+    display inline-block
+    padding 5px 15px
+    height 25px
+    box-sizing border-box
+    margin-right 8px
+    margin-bottom 10px
+    transition transAll
+    cursor pointer
+    font-family Roboto
+    span
+      transition transAll
+      font-size 11px
+      line-height 1.36
+      letter-spacing 0.3px
+      color #8d96b2
+    &:hover
+      opacity 1
+      border solid 1px #315efb
+      span
+        color #315efb
+
+    &._button-tag
+      position absolute
+
+  &__footer
+    background #ffffff
+    height 50px
+    border-top varsBorder
+
+  &__answer
+    position relative
+    font-size 12px
+    color #262626
+    font-family Roboto
+
+    &:hover
+      .question-common__answer-icon-svg
+        fill #315efb
+
+
+
+    &-icon
+      margin-right 5px
+      width 14px
+      height 14px
+
+      &-svg
+        transition transAll
+        fill #8D96B2
+        width 100%
+        height 100%
+
+
+  &__social
+    position relative
+    margin-left auto
+    overflow hidden
+    width 80px
+    height 36px
+    transition transAll
+
+    div[data-rambler-share='vkontakte']
+      margin: 5px 5px 5px 0 !important
+
+
+    div[data-rambler-share='facebook']
+      margin: 5px 5px 5px 0 !important
+
+
+    div[data-rambler-share='livejournal']
+      margin: 5px 5px 5px 0 !important
+
+
+    div[data-rambler-share='odnoklassniki']
+      margin: 5px 5px 5px 0 !important
+
+
+    div[data-rambler-share='twitter']
+      margin: 5px 5px 5px 0 !important
+
+
+    &-icon
+      position absolute
+      top 10px
+      right 0
+      width 14px
+      height 14px
+      display inline-block
+      cursor pointer
+
+      &-svg
+        width 100%
+        height 100%
+
+    &._activ
+      width 155px

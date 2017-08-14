@@ -1,0 +1,72 @@
+.mini-shared-questions
+  width 300px
+  height 325px
+  margin-bottom space
+  margin-right space
+  overflow hidden
+  float left
+  borderBlock()
+  &:nth-last-child(1)
+    margin-bottom 0
+  .question-common__header
+    padding 20px 25px 0
+  @media(max-width: max-width)
+    &:nth-last-child(2)
+      margin-bottom 0
+
+  .question-common__hash
+    width 225px
+    margin 14px 0
+
+  .question-common__point
+    max-width 153px
+    textEllipsis()
+
+  &__content
+    display flex
+    flex-direction column
+    flex-wrap flex-start
+    padding 0 25px 30px
+    height 265px
+    box-sizing border-box
+
+  &__title
+    font-family: CorsicaRamblerLX-Regular
+    word-wrap break-word
+    a
+      font-size 16px
+      font-weight 500
+      line-height 1.5
+      color #262626
+
+  &__counter
+    font-size 11px
+    color #315efb
+    font-weight 100
+    font-family Roboto
+
+  &__wrapper
+    position relative
+    top 3px
+    display inline-block
+
+  &__box
+    centerBlock()
+    margin-top -6px
+
+  &__icon
+    margin 0 4px
+    display inline-block
+    width 14px
+    height 16px
+
+    &-svg
+      width 100%
+      height 100%
+
+  &__footer
+    margin-top auto
+
+  &__button
+    width 160px
+    height 35px

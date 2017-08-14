@@ -1,0 +1,112 @@
+.news-common
+  font-family CorsicaRamblerLX-Medium
+  margin-bottom 20px
+  &._none-space
+    margin-bottom 0
+  .question-common__name
+    font-family CorsicaRamblerLX-Medium
+    font-weight 500
+    color #262626
+
+  &__title
+    centerBlock()
+    height 55px
+    border-top 3px solid #315efb
+    border-bottom varsBorder
+    font-size 22px
+    font-weight 500
+    line-height 1.36
+    color #262626
+    box-sizing border-box
+    margin-bottom space
+    &._theme-border-color
+      border-top 3px solid #00bcd4
+
+  &__grid
+    display flex
+    flex-direction row
+    flex-wrap nowrap
+    justify-content space-between
+    &._media-mobile-grid
+      @media(max-width: min-width)
+        width 630px
+
+
+  &__column
+    display flex
+    flex-direction column
+    flex-wrap flex-start
+    &._advertisement
+      width 300px
+    &._row
+      flex-direction row
+      flex-wrap wrap
+      justify-content space-between
+      align-content flex-start
+    &._width-column
+      width 615px
+    .big-theme
+      height 210px
+      &__content
+       margin-top 15px
+
+
+    .mini-questions__counter,
+    .question-common__point
+      font-family Roboto, sans-serif
+
+    &._media-desktop-column
+      @media(max-width: max-width)
+        display none
+    &._media-mobile-column
+      @media(max-width: min-width)
+        display none
+
+    &._media-size-column
+      div[id^="context"]
+        width 765px
+      @media(max-width: max-width)
+        width 630px
+        div[id^="context"]
+          width 615px
+
+  &__data
+    font-family Roboto
+    font-size 12px
+    line-height 1.25
+    letter-spacing 0.3px
+    color #8d96b2
+    margin-top 7px
+
+  &__button,
+  &__button-text
+    font-family Roboto
+    font-size 11px
+    font-weight 500
+    line-height 11px
+    letter-spacing 1.3px
+    box-sizing border-box
+
+  &__button-text
+    centerBlock()
+
+  &__button
+    width 180px
+    height 35px
+    margin 20px auto 0
+    &._themes-size
+      width 198px
+    &._ques-size
+      width 192px
+    &._earlier-size
+      width 244px
+
+
+    &._loading-active
+      .news-common__button-loading
+        display block
+      .news-common__button-text
+        display none
+
+    &-loading
+      display none

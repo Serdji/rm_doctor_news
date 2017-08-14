@@ -1,0 +1,20 @@
+User-agent: Yandex
+Disallow: /tmp
+Disallow: /uploads
+Disallow: /licenses.001.txt
+Allow: /assets
+Host: https://doctor.rambler.ru/
+
+User-agent: Googlebot
+Disallow: /tmp
+Disallow: /uploads
+Disallow: /licenses.001.txt
+Allow: /assets
+
+User-agent: *
+Disallow: /tmp
+Disallow: /uploads
+Disallow: /licenses.001.txt
+Allow: /assets
+
+Sitemap: https://doctor.rambler.ru/sitemap.xml.gz

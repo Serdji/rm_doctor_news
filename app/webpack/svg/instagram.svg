@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+  <title>instagram</title>
+  <desc>Created with Sketch.</desc>
+  <defs></defs>
+  <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+    <g id="SM-hovers" transform="translate(-40.000000, 0.000000)">
+      <g id="instagram" transform="translate(40.000000, 0.000000)">
+        <path d="M4 2h-1c-.6 0-1 .4-1 1v14c0 .6.4 1 1 1h14c.6 0 1-.4 1-1v-14c0-.6-.4-1-1-1h-13zm6 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm6 8h-12v-6h2c0 2.2 1.8 4 4 4s4-1.8 4-4h2v6zm0-9h-3v-3h3v3z"></path>
+      </g>
+    </g>
+  </g>
+</svg>
+

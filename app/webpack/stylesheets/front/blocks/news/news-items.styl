@@ -1,0 +1,48 @@
+.news-items
+  margin-bottom space
+  width 375px
+  height 90px
+  display flex
+  flex-direction row
+  flex-wrap nowrap
+  float left
+  margin-right 15px
+  &:nth-last-child(1)
+    margin-bottom 0
+  @media(max-width: max-width)
+    width: 300px
+  @media(max-width: min-width)
+    &:nth-child(odd)
+      margin-right 0
+  &:visited
+    .news-items__title
+      color #676767
+  &:hover
+    .news-items__img
+      opacity 0.8
+    .news-items__title
+      color #315EFB
+
+
+  &__img
+    width 135px
+    transition transAll
+
+  &__content
+    width 225px
+    height 100%
+    margin-left 15px
+    padding-bottom 10px
+    box-sizing border-box
+
+  &__title
+    font-size 14px
+    line-height 19px
+    color #262626
+    overflow hidden
+    font-family CorsicaRamblerLX-Regular
+    font-weight 500
+    transition transAll
+    textEllipsisNumberLines(3, 57px)
+    @media(max-width: max-width)
+      line-height 1.4

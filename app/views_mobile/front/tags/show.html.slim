@@ -1,0 +1,38 @@
+.js-two-ads
+- content_for :head_title, tags_facade.tag.seo_title
+- content_for :og_image, tags_facade.tag.image_url
+- content_for :relation_links, relation_links(tags_facade.tag_questions)
+
+= render 'common/seo_attributes', object: tags_facade.tag
+
+- cache_mobile tags_facade.tag do
+  = render 'front/tags/tag', tag: tags_facade.tag, head: true
+
+- if tags_facade.tag_questions.any?
+  .title
+    span> Все вопросы
+    span.title__counter = "#{tags_facade.tag.questions_counter}"
+  - options = { collection: tags_facade.tag_questions, as: :question, cached: mobile_collection_proc }
+  = render partial: 'front/questions/question', **options
+
+.pagination-wrapper.js-pag-tag-ads = pagination(tags_facade.tag_questions.object, mobile: true)
+
+- cache_mobile [tags_facade.tag, :similar_tags], expires_in: 1.minute do
+  - if tags_facade.similar_tags.any?
+    .title Похожие темы
+    - options = { collection: tags_facade.similar_tags, cached: mobile_collection_proc }
+    = render partial: 'front/tags/tag', **options
+
+.js-similar-tag-ads
+
+- if application_facade.seo_links.any?
+  .title Часто ищут
+  .seo-block
+    .seo-block__icon
+      = svg name: 'mobile-seo', klass: 'seo-block__icon-svg'
+    .seo-block__reference
+      - application_facade.seo_links.each do |seo_link|
+        a href=seo_link.url = seo_link.title
+
+  .ban_footer
+    #ban-footer

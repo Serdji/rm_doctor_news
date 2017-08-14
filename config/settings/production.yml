@@ -1,0 +1,5 @@
+webdav: true
+async:  true
+host: 'https://doctor.rambler.ru'
+webdav_host: 'https://doctor.rambler.ru'
+search: true

@@ -1,0 +1,4 @@
+webdav: true
+async:  true
+host: 'https://preprod.doctor.rambler.ru'
+webdav_host: 'https://preprod.doctor.rambler.ru'

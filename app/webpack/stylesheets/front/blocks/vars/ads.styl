@@ -1,0 +1,116 @@
+#billboard,
+#fullscreen,
+#Native2
+  div[id^="AdFox_banner"],
+  div[id^="begun_block"],
+  iframe[id^="AdFox_iframe"],
+  div[id^="begun_block"] > iframe
+    margin-bottom 0
+    margin-top 0
+
+
+#superFooter,
+#native2,
+div[id^="context"]
+  width 100%
+
+#billboard
+.xhtml_banner
+  margin 10px 0
+
+.baner
+  width 100%
+  box-sizing border-box
+  &._topic-ads
+    margin-bottom -10px
+  &._native
+    padding 30px
+    margin-bottom 20px
+  &._hidden
+    margin-bottom 0 !important
+    padding 0 !important
+    height 0 !important
+  &._base-layer_240x400,
+  &._base-layer_240x400_2nd,
+  &._base-layer_240x200
+    margin-bottom space
+    display table
+    div
+      margin auto
+
+  &._base-layer_240x200
+    height 255px
+
+
+#ban_240x400_2nd,
+#ban_240x400,
+#ban_240x200,
+#Context_240x200
+  display table-cell
+  text-align center
+  vertical-align middle
+
+
+
+div[id^="begun_block"],
+iframe[id^="AdFox_iframe"],
+div[id^="begun_block"] > iframe
+  display block
+  margin 0 auto
+  margin-bottom 20px
+
+.xhtml_banner
+  borderBlock()
+
+.js-context-ads
+  position absolute
+
+.news-card
+
+  #ban_240x400
+    div[id^="begun_block"]
+      margin-bottom space !important
+
+.news-common__column
+
+  div[id^="sponsored"],
+  #ban_240x400,
+  #newsBlock_1
+    div[id^="begun_block"]
+      margin-bottom 0
+      .xhtml_banner
+        margin-bottom space
+
+
+
+// Для примера, потом убрать
+  #native1
+    div[id^="begun_block"]
+      margin-bottom 0
+      .xhtml_banner
+        margin-bottom space
+        height 195px
+
+  #native2
+    &._native2-news
+      float left
+      width 300px
+      margin-right space
+      div[id^="begun_block"]
+        margin-bottom 0
+        .xhtml_banner
+          width 300px
+          height 325px
+          margin-right space
+          margin-bottom space
+          @media(max-width: max-width)
+            margin-bottom 0
+
+  #newsBlock_1
+    float left
+    div[id^="begun_block"]
+      .xhtml_banner
+        height 90px
+        width 375px
+        @media(max-width: max-width)
+          width 300px

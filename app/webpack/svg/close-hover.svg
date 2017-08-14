@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>Close</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="EXPORT" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="05-Задать-вопрос" transform="translate(-928.000000, -101.000000)">
+            <g id="01" transform="translate(310.000000, 80.000000)">
+                <g id="Close" transform="translate(608.000000, 12.000000)">
+                    <rect id="@grid" opacity="0.400000006" x="0" y="0" width="40" height="40"></rect>
+                    <g id="Х" transform="translate(20.000000, 19.000000) rotate(45.000000) translate(-20.000000, -19.000000) translate(8.000000, 7.000000)" fill="#315EFB">
+                        <rect id="Rectangle" x="11" y="3.87245791e-13" width="2" height="24"></rect>
+                        <rect id="Rectangle" x="3.87245791e-13" y="11" width="24" height="2"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

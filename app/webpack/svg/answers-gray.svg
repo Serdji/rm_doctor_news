@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>ico-answers-blue</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="News" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-915.000000, -690.000000)">
+            <g id="answ-count" transform="translate(915.000000, 690.000000)">
+                <g id="icon_com">
+                    <g id="ico-answers-blue">
+                        <g id="O" transform="translate(0.700000, 0.700000)" fill-rule="nonzero">
+                            <path d="M10.1326736,1.29953581 C9.07086516,0.484475625 7.74201025,-8.85513884e-13 6.3,-8.85513884e-13 C2.82060608,-8.85513884e-13 4.52970994e-14,2.82060608 4.52970994e-14,6.3 C4.52970994e-14,9.77939392 2.82060608,12.6 6.3,12.6 C9.77939392,12.6 12.6,9.77939392 12.6,6.3 C12.6,5.8269706 12.5478671,5.36611749 12.4490336,4.92287281 L11.5302676,5.84163883 C11.5433318,5.99268697 11.55,6.14556476 11.55,6.3 C11.55,9.19949494 9.19949494,11.55 6.3,11.55 C3.40050506,11.55 1.05,9.19949494 1.05,6.3 C1.05,3.40050506 3.40050506,1.05 6.3,1.05 C7.45175468,1.05 8.5168851,1.4208826 9.38247645,2.04973301 L10.1326736,1.29953581 Z" id="Combined-Shape"></path>
+                        </g>
+                        <g id="L" transform="translate(8.727260, 4.857538) rotate(45.000000) translate(-8.727260, -4.857538) translate(6.627260, 0.307538)">
+                            <path d="M3.15,8.05 L-3.44613227e-13,8.05 L-3.44613227e-13,9.1 L3.325,9.1 L4.2,9.1 L4.2,1.77635684e-14 L3.15,1.77635684e-14 L3.15,8.05 Z" id="Combined-Shape"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

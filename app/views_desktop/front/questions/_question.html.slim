@@ -1,0 +1,29 @@
+.questions__block.js-questions-share.js-questions-ads data-complainable="true" data-complainable-id=question.id data-complainable-type="Question"
+  .question-common__header
+    .question-common__user
+      .question-common__avatar style=question.user_avatar_style
+      .question-common__name = question.user.full_name
+    .question-common__data
+      span.js-data-published data-published-at=question.iso8601
+    = render 'front/questions/ellipsis'
+
+  .question-common__content.js-biog
+    a.question-common__title._hover-reference-blue.js-questions-share-title data-title=question.seo_title href=question.path
+      = question.title
+    .question-common__text.js-question-share-text.js-questions-share-text
+      p == question.safe_body(length: 135, link: true, strip_tags: true)
+
+    .question-common__hash._hide.js-hash-tags
+      - question.tags.each do |tag|
+        a.question-common__point.js-point-tags href=tag_path(slug: tag.slug)
+          span = tag.name
+
+  .question-common__footer
+    a.question-common__answer._hover-reference-blue href=question.path(question.anchor)
+      .question-common__answer-icon
+        = svg name: 'answers-gray', klass: 'question-common__answer-icon-svg'
+      - if question.answers_counter > 0
+        = question.human_answers_counter
+      - else
+        | Ответить
+    = render 'front/questions/question_social'

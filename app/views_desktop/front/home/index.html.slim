@@ -1,0 +1,13 @@
+= render 'common/seo_attributes', object: application_facade.main_page_metapage
+- content_for :head_title, application_facade.main_page_metapage.seo_title
+h1._hidden
+  = application_facade.main_page_metapage.title || 'Рамблер/доктор'
+.js-news-main-page
+= render 'front/news/news_main'
+#superFooter
+#listing1
+= render 'front/questions/main_shared'
+#parallax
+#listing2
+= render 'front/tags/main_shared'
+#context

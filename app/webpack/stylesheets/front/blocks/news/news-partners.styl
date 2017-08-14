@@ -1,0 +1,80 @@
+.news-partners
+  borderBlock()
+  width 300px
+  margin-bottom space
+  &._none-space
+    margin-bottom 0
+
+  &__header
+    centerBlock()
+    height 44px
+    padding-left 25px
+    border-bottom 1px solid rgba(141, 150, 178, 0.2)
+
+  &__content
+    padding 20px 25px
+
+  &__same-source
+    padding 0 25px 20px 25px
+
+    &._hidden
+      display none
+
+    .teaser-image
+      width 70px
+      height 70px
+      background-size cover
+      background-position 50%
+
+      &._with-stub-image
+        position relative
+        background-color #f7f9fa
+
+        img
+          width 40px !important
+          height 30px !important
+          position absolute
+          left 0
+          right 0
+          top 0
+          bottom 0
+          margin auto
+
+  .teaser
+    &-container
+      width 255px
+      height 70px
+      display flex
+      flex-direction row
+      flex-wrap nowrap
+      font-size 1px
+      margin-bottom 20px
+      &:nth-last-child(1)
+        margin-bottom 0
+      .separator
+        margin 0
+
+    &-image-container,
+    &-title-container
+      display inline-block
+
+    &-image-container
+      img
+        width 70px !important
+        height 70px !important
+      a
+        margin 0 !important
+
+    &-title-container
+      display flex !important
+      align-items flex-start !important
+      width 185px
+      height 100%
+      padding 0 15px
+      h2
+        font-size 13px !important
+        font-weight 500 !important
+        line-height 1.54 !important
+        color #262626 !important
+        box-sizing border-box !important
+        font-family CorsicaRamblerLX-Medium !important
