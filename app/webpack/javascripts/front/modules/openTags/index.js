@@ -1,9 +1,8 @@
-const { qs, qsa } = require('utils');
+import { qs, qsa } from 'utils';
+import buttonOpenTags from './buttonOpenTags'
+import openTags from './openTags'
 
 if (qs('.js-hash-tags')) {
-  let nodes = {
-    hashTags: qsa('.js-hash-tags')
-  };
-  require('./buttonOpenTags')(nodes);
-  require('./openTags');
+  buttonOpenTags();
+  openTags();
 }

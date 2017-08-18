@@ -1,6 +1,6 @@
-const fetchCurrentUser = require('./fetchCurrentUser');
+import fetchCurrentUser from './fetchCurrentUser';
 
-module.exports = () => {
+export default () => {
   // Колбек срабатывате после входа через рамблер id
   ramblerIdHelper.registerOnPossibleLoginCallback(fetchCurrentUser);
 };

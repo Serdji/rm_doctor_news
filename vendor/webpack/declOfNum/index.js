@@ -1,4 +1,4 @@
-module.exports = () => {
+export function declOfNum() {
   let cases = [2, 0, 1, 1, 1, 2];
   let declOfNumSubFunction = function(titles, number) {
     number = Math.abs(number);
@@ -13,4 +13,4 @@ module.exports = () => {
       return declOfNumSubFunction.apply(null, arguments);
     }
   };
-}
+};

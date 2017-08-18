@@ -1,7 +1,7 @@
-const configDesktopAds = require('./configDesktopAds');
-const {qs} = require('utils');
+import configDesktopAds from './configDesktopAds';
+import {qs} from 'utils';
 
-module.exports = (el, index) => {
+export default  (el, index) => {
   let html = `<div id="context_${index}"></div>`;
   el.insertAdjacentHTML('afterEnd', html);
   if (qs('.js-news-card-page')) Adf.banner.sspScroll(`context_${index}`, configDesktopAds[`contextDC${index}`].p, configDesktopAds[`contextDC${index}`].id);

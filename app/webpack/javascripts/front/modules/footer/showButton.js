@@ -1,5 +1,6 @@
-const { qsa } = require('utils');
-module.exports = () => {
+import { qsa } from 'utils';
+
+export default () => {
   // Бежим по всем боксам где лежат ссылки на меню
   for ( let box of qsa('.js-box-points') ) {
     let pointsWrapper       = box.querySelector('.js-footer-points');

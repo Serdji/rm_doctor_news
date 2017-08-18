@@ -1,5 +1,4 @@
-let qsa = document.querySelectorAll.bind(document);
-let qs  = document.querySelector.bind(document);
+import { qs, qsa } from 'utils';
 
 function throttle(func, time, context) {
   let running = false;

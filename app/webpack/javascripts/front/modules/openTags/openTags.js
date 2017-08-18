@@ -1,4 +1,4 @@
-module.exports = (() => {
+export default () => {
   // Дилегиуем событие на созданый таб
   document.body.addEventListener('click', openTags, true);
   function openTags(e) {
@@ -16,4 +16,4 @@ module.exports = (() => {
     target.closest('.js-hash-tags').classList.remove('_hide');
     target.closest('.js-open-tags').remove();
   }
-})();
+};

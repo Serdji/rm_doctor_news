@@ -1,4 +1,4 @@
-module.exports = function(elem, dir) {
+export default function(elem, dir) {
   if (!elem) return false;
   let sibling = elem;
   this.nextSibling = [];

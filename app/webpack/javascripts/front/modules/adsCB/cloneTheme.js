@@ -1,4 +1,6 @@
-module.exports = (nodes) => {
+import {miniTheme, lastBigTheme} from './nodes';
+
+export default () => {
   let native = document.getElementById('native1');
   if (native) {
     let theme = native.nextElementSibling;
@@ -14,12 +16,12 @@ module.exports = (nodes) => {
         clearInterval(intId);
 
         // Кланируем маленький блок при нечетном колличестве
-        if (nodes.miniTheme.length % 2 !== 0) {
-          nodes.miniTheme[nodes.miniTheme.length - 1].insertAdjacentHTML('afterEnd',
+        if (miniTheme.length % 2 !== 0) {
+          miniTheme[miniTheme.length - 1].insertAdjacentHTML('afterEnd',
             `<div class="tag__theme js-tag-share js-tag-ads js-mini-theme"> ${cloneTheme}</div>`
           );
         } else {
-          nodes.lastBigTheme.classList.remove('_hidden');
+          lastBigTheme.classList.remove('_hidden');
         }
       }
     }, 500);

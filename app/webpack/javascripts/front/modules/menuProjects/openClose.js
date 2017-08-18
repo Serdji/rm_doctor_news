@@ -1,9 +1,10 @@
-const SweetScroll = require('sweet-scroll');
+import {menuProjects, openMenuProjects, closeMenuProjects, pointsMenuProjects} from './nodes';
+import SweetScroll from 'sweet-scroll';
 
 
-module.exports = (nodes) => {
-  nodes.openMenuProjects.addEventListener('click', open);
-  nodes.closeMenuProjects.addEventListener('click', close);
+export default () => {
+  openMenuProjects.addEventListener('click', open);
+  closeMenuProjects.addEventListener('click', close);
   const sweetScroll = new SweetScroll();
 
   function open() {
@@ -12,18 +13,18 @@ module.exports = (nodes) => {
     document.body.classList.add('_off-scroll'); // Отключаем скрол у body
     sweetScroll.to(`header`);
 
-    nodes.menuProjects.classList.add('_active');
+    menuProjects.classList.add('_active');
     setTimeout(()=>{
-      nodes.pointsMenuProjects.classList.add('_active');
+      pointsMenuProjects.classList.add('_active');
     }, 150);
   }
 
   function close() {
     document.body.removeAttribute('style');
     document.body.classList.remove('_off-scroll');
-    nodes.pointsMenuProjects.classList.remove('_active');
+    pointsMenuProjects.classList.remove('_active');
     setTimeout(()=>{
-      nodes.menuProjects.classList.remove('_active');
+      menuProjects.classList.remove('_active');
     }, 150);
   }
 

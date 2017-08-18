@@ -1,6 +1,6 @@
 const { qs } = require('utils');
 
-module.exports = class SuggestSearch {
+export default class SuggestSearch {
   static get enterButton()   { return 13 }
   static get waitTime()      { return 200 }
   static get endpoint()      { return '/search/suggest' }

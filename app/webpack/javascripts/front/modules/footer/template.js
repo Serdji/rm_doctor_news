@@ -1,4 +1,4 @@
-module.exports = (points) => {
+export default (points) => {
   // Диструктуризируем полученый объект
   let { title, url, items } = points;
   // Мапим массив с пунктами меню

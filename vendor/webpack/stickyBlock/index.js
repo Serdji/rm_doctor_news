@@ -1,6 +1,6 @@
-require('./style.css');
+import './style.css';
 
-module.exports = (sidebar, content, fixTop = false, spaceTop = 0) => {
+export default (sidebar, content, fixTop = false, spaceTop = 0) => {
 
   let a = document.querySelector(sidebar);
   let b = null;

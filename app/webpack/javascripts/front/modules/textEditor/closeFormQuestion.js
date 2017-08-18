@@ -1,4 +1,4 @@
-module.exports = (nodes, ed) => {
+export default (nodes, ed) => {
   let input  = nodes.questionForm.querySelector('#question_title');
   let select = nodes.questionForm.querySelector('#question_tag_ids');
 

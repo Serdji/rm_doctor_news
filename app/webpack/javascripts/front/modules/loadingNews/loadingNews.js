@@ -1,12 +1,13 @@
-const dataPublished = require('dataPublished');
-const { qs, qsa }   = require('utils');
+import {loadingNewsButton, loadingNewsColumn, loadingNewsWrapperColumn } from './nodes';
+import dataPublished from 'dataPublished';
+import { qs, qsa }   from 'utils';
 
-module.exports = (nodes) => {
+export default () => {
 
   let limit     = 14;
   let firstLoad = true;
 
-  nodes.loadingNewsButton.addEventListener('click', loading );
+  loadingNewsButton.addEventListener('click', loading );
 
   dataPublished(qsa('.js-data-published-news'));
 
@@ -45,10 +46,10 @@ module.exports = (nodes) => {
         // Если новй url не пришел, дезейблим кнопку
         if (!more) this.setAttribute('disabled', 'disabled');
         // Добавляем в конец левого и правого столбца отфильтрованые массивы с новостями
-        nodes.loadingNewsColumn.insertAdjacentHTML('beforeEnd', data.join(' '));
+        loadingNewsColumn.insertAdjacentHTML('beforeEnd', data.join(' '));
         // Открыть колонку на высоту обертки
-        let wrapperHeight = nodes.loadingNewsColumn.offsetHeight;
-        nodes.loadingNewsWrapperColumn.style.cssText = `height: ${wrapperHeight}px`;
+        let wrapperHeight = loadingNewsColumn.offsetHeight;
+        loadingNewsWrapperColumn.style.cssText = `height: ${wrapperHeight}px`;
         // Убираем троиточие
         this.classList.remove('_loading-active');
         dataPublished(qsa('.js-data-published-news'));

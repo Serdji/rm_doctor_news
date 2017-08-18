@@ -1,4 +1,4 @@
-const { qs } = require('utils');
+import { qs } from 'utils';
 
 const partnerNews = qs('.news-partners__same-source');
 const newsBlock = qs('.news-card');

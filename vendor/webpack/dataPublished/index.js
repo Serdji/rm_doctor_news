@@ -1,6 +1,7 @@
-const moment = require('moment');
-require('moment/locale/ru');
-const { each } = require('utils');
+import { each } from 'utils';
+import moment from 'moment';
+
+import 'moment/locale/ru';
 
 module.exports = (elem) => {
 

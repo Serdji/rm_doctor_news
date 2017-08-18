@@ -1,8 +1,8 @@
-const { qs, fetchAutToken } = require('utils');
+import { qs, fetchAutToken } from 'utils';
 
 const fileName = 'image-file-upload';
 
-module.exports = (cb, value, meta) => {
+export default (cb, value, meta) => {
   let input = document.getElementsByName(fileName)[0];
 
   if (!input) {

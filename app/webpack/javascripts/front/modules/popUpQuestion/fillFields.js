@@ -1,6 +1,7 @@
-const { qs } = require('utils');
+import {input} from './nodes';
+import { qs } from 'utils';
 
-module.exports = nodes => {
+export default () => {
   let selectTag = qs('.js-select-tag');
 
   // Проверяем стор на наличие данных, если они есть, выводим их в форму
@@ -10,7 +11,7 @@ module.exports = nodes => {
       let { body, title, tags } = formQuestion;
       tinymce.get('ditor-quantity').setContent(body);
       selectTag.selectize.setValue((tags || '').split(','));
-      nodes.input.value = title;
+      input.value = title;
     }, 0);
   }
 };

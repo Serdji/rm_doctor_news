@@ -1,4 +1,4 @@
-module.exports = (() => {
+export default () => {
   let currentCount = 1;
   return {
     getNext() {
@@ -17,4 +17,4 @@ module.exports = (() => {
       currentCount = 1;
     },
   };
-})();
+};

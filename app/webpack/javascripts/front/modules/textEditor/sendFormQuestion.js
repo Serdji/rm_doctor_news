@@ -1,7 +1,7 @@
-const { fetchAutToken, qs } = require('utils');
-const validationForm = require('./validationForm');
+import { fetchAutToken, qs } from 'utils';
+import validationForm from './validationForm';
 
-module.exports = (nodes, ed) => {
+export default (nodes, ed) => {
 // Забераем контент из текстового редактора
   let objValue = {
     title: nodes.inputQuestion.value,

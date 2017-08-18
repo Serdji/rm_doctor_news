@@ -1,7 +1,7 @@
-const {each, qs} = require('utils');
+import {questionSocial, commonSocial, newsCardPage} from './nodes';
 const OG_DEFAULT_PNG = 'https://class.rambler.ru/8f56f794/front/opengraph.png';
 
-module.exports = (nodes) => {
+export default () => {
   // Общий конфиг для шарилок
   let options = {
     'style': {
@@ -41,7 +41,7 @@ module.exports = (nodes) => {
   let init = () => {
 
     // Шарелки на детальной cтранице новостей
-    if (nodes.newsCardPage) {
+    if (newsCardPage) {
       // Добавляем общие стили в конфиг
       Object.assign(options , {
         'style': {
@@ -58,10 +58,10 @@ module.exports = (nodes) => {
 
 
     // При условии что шарелки цветные, выводим шарелки
-    if (nodes.questionSocial)  RamblerShare.init('.js-question-social', options);
+    if (questionSocial)  RamblerShare.init('.js-question-social', options);
 
     // Прозрачные шарелки
-    if (nodes.commonSocial.length > 0) {
+    if (commonSocial.length > 0) {
       // Добавляем общие стили в конфиг
       Object.assign(options, {
         'style': {
@@ -77,7 +77,7 @@ module.exports = (nodes) => {
       });
 
       // Бежим циклом по нужным нам элементам
-      each(nodes.commonSocial, el => {
+      for ( let el of commonSocial ) {
         // Подключаемся к блокам в которых выведены шарелки
         let questionParentIsClass  = el.closest('.js-question-share');
         let answerParentIsClass    = el.closest('.js-answer-share');
@@ -136,7 +136,7 @@ module.exports = (nodes) => {
         if (searchParentIsClass) {
           RamblerShare.init(`[data-social-link='${el.dataset.socialLink}']`, options);
         }
-      });
+      };
     }
   };
   return init;

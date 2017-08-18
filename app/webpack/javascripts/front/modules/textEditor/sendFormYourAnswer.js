@@ -1,7 +1,7 @@
-const { fetchAutToken, qs } = require('utils');
-const socialButton = require('../socialButton')
+import { fetchAutToken, qs } from 'utils';
+import socialButton from '../socialButton';
 
-module.exports = nodes => {
+export default (nodes) => {
   // Забераем контент из текстового редактора
   let editorContent = tinymce.activeEditor.getContent();
   let url           = nodes.form.getAttribute('action');

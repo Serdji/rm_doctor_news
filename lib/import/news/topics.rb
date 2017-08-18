@@ -14,7 +14,7 @@ module Import
       end
 
       def store
-        each { |news| NewsProcessingJob.perform(news) }
+        NewsProcessingJob.perform
       end
 
       def each

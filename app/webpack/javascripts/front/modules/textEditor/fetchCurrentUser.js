@@ -1,6 +1,6 @@
-const { qs, qsa, each, fetchAutToken } = require('utils');
+import { qs, qsa, fetchAutToken } from 'utils';
 
-module.exports = nodes => {
+export default () => {
   const answerUi = qsa('.js-answer-ui');
   const bestAnswerButtonsContainer = qsa('.ellipsis__send');
   const hasBestAnswer = qs('#best-answer');
@@ -26,7 +26,7 @@ module.exports = nodes => {
               is_sentry: isSentry
             } = json;
 
-        each(bestAnswerButtonsContainer, el => {
+        for ( let el of bestAnswerButtonsContainer ) {
           if (isSentry && !hasBestAnswer) {
 
               let button = document.createElement('a');
@@ -43,9 +43,9 @@ module.exports = nodes => {
 
 
           }
-        });
+        };
 
-        each(answerUi, el => {
+        for ( let el of answerUi) {
           // Показываем поле с аватаркой и именем пользователя, добавляем аватарку и имя пользователя полученые с сервера
           el.classList.remove('_disabled-user');
           el.querySelector('.js-answer-ui-avatar').style.cssText = `background-image: url(${avatarUrl})`;
@@ -55,7 +55,7 @@ module.exports = nodes => {
 
 
           if (!isSentry) el.querySelector('.js-answer-ui-sentry').remove();
-        });
+        };
       })
       .catch(error => {
         // console.error(error.message);

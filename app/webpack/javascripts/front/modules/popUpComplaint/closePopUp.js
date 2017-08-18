@@ -1,22 +1,29 @@
-const { qsa, each } = require('utils');
+import {
+  buttonClose,
+  buttonSend,
+  complaintForm,
+  complaintSuccess,
+  popUpComplaint,
+} from './nodes';
+import { qsa } from 'utils';
 
-module.exports = nodes => {
-  nodes.buttonClose.addEventListener('click', close);
+export default () => {
+  buttonClose.addEventListener('click', close);
   function close() {
     // Снимаем выдиление с форм
-    each(qsa('.js-textarea-complaint'), el => el.classList.remove('_editor-error'));
-    each(qsa('.js-email-complaint'), el => el.classList.remove('_editor-error'));
+    for ( let el of qsa('.js-textarea-complaint')) el.classList.remove('_editor-error');
+    for ( let el of qsa('.js-email-complaint')) el.classList.remove('_editor-error');
 
-    nodes.popUpComplaint.classList.remove('_activ');
+    popUpComplaint.classList.remove('_activ');
 
     // Удаляем инлайновые стили
-    nodes.complaintForm.style.display = '';
-    nodes.complaintSuccess.style.display = '';
+    complaintForm.style.display = '';
+    complaintSuccess.style.display = '';
 
     document.body.removeAttribute('style'); // удаляем атрибут style у body
     document.body.classList.remove('_off-scroll'); // Включаем скрол у body
 
-    nodes.complaintForm.reset();
-    nodes.buttonSend.removeAttribute('disabled');
+    complaintForm.reset();
+    buttonSend.removeAttribute('disabled');
   }
 };

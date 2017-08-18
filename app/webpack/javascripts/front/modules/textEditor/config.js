@@ -1,11 +1,11 @@
-const filePickerCallback = require('./filePickerCallback');
-const sendFormYourAnswer = require('./sendFormYourAnswer');
-const sendFormQuestion   = require('./sendFormQuestion');
-const closeFormQuestion  = require('./closeFormQuestion');
-const editorMaxLength    = require('./editorMaxLength');
-const buttonDisabled     = require('./buttonDisabled');
+import filePickerCallback from './filePickerCallback';
+import sendFormYourAnswer from './sendFormYourAnswer';
+import sendFormQuestion   from './sendFormQuestion';
+import closeFormQuestion  from './closeFormQuestion';
+import editorMaxLength    from './editorMaxLength';
+import buttonDisabled     from './buttonDisabled';
 
-module.exports = (editor, nodes) => {
+export default (editor, nodes) => {
   let config = {
     selector: editor,
     resize: false,

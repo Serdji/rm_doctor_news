@@ -1,4 +1,4 @@
-const { qs } = require('utils');
+import { qs } from 'utils';
 
 let config = {
   billboard: {
@@ -265,20 +265,20 @@ let config = {
 };
 
 // Модифицируем кофиг в зависимости от страници
-for ( let key in config ) {
+Object.keys(config).forEach(key => {
   // Главна
-  if (qs('.js-news-main-page')) Object.assign( config[key].p, { puid15 : 'news', puid6: 'DOCTOR_MAIN', puid18: 'DOCTOR_MAIN_0' });
+  if (qs('.js-news-main-page')) Object.assign( config[key].p, { puid6: 'DOCTOR_MAIN', puid18: 'DOCTOR_MAIN_0' });
   // Карточка новости
-  if (qs('.js-news-card-page')) Object.assign( config[key].p, { puid15 : 'card', puid6: 'DOCTOR_NEWS', puid18: 'DOCTOR_NEWS_CARD' });
+  if (qs('.js-news-card-page')) Object.assign( config[key].p, { puid15 : 'news', puid6: 'DOCTOR_NEWS', puid18: 'DOCTOR_NEWS_CARD' });
   // Вопросы
   if(qs('.js-page-root')) Object.assign( config[key].p, { puid6: 'DOCTOR_VOPROSY', puid18: 'DOCTOR_VOPROSY_MAIN' });
   // Карточка вопроса
-  if(qs('.js-page-question-ads')) Object.assign( config[key].p, { puid6: 'DOCTOR_VOPROSY', puid18: 'DOCTOR_VOPROSY_CARD' });
+  if(qs('.js-page-question-ads')) Object.assign( config[key].p, { puid15 : 'card', puid6: 'DOCTOR_VOPROSY', puid18: 'DOCTOR_VOPROSY_CARD' });
   // Темы и карточка темы
   if(qs('.js-page-temys-ads') ||  qs('.js-page-temy-ads')) Object.assign( config[key].p, { puid6: 'DOCTOR_VOPROSY', puid18: 'DOCTOR_VOPROSY_THEME' });
   // Поиск
   if(qs('.js-search-page')) Object.assign( config[key].p, { puid6: 'DOCTOR_SEARCH', puid18: 'DOCTOR_SEARCH_MAIN' });
-}
+});
 //==============================================
 
-module.exports = config;
+export default config;

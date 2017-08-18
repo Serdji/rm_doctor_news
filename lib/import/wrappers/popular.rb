@@ -1,3 +1,5 @@
+require_dependency 'import/wrappers/popular/image'
+
 module Import
   module Wrappers
     class Popular

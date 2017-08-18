@@ -1,4 +1,4 @@
-const { qs, qsa, fetchAutToken } = require('utils');
+import { qs, fetchAutToken } from 'utils';
 
 let allAnswers = qs('.all-answers');
 

@@ -1,20 +1,12 @@
-const { qs, qsa } = require('utils');
+import { qs, qsa } from 'utils';
+import setupCallbacks from './setupCallbacks';
+import openPopUp from './openPopUp';
+import closePopUp from './closePopUp';
+import sendComplaint from './sendComplaint';
 
 if (qs('.js-open-pop-up-complaint')) {
-  let nodes = {
-    buttonClose: qs('.js-close-pop-up-complaint'),
-    buttonOpen: qsa('.js-open-pop-up-complaint'),
-    buttonSend: qs('.js-send-complaint'),
-    complaintForm: qs('.js-complaint-form'),
-    complaintSuccess: qs('.js-complain-success'),
-    popUpComplaint: qs('.js-pop-up-complaint'),
-    textarea: qs('.js-textarea-complaint'),
-    textareaCounter: qs('.js-max-length-counter-complaint'),
-    popUpQuestion:qs ('.js-pop-up-question')
-  };
-
-  require('./setupCallbacks')(nodes);
-  require('./openPopUp')(nodes);
-  require('./closePopUp')(nodes);
-  require('./sendComplaint')(nodes);
+  setupCallbacks();
+  openPopUp();
+  closePopUp();
+  sendComplaint();
 }

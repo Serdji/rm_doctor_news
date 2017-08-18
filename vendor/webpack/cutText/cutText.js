@@ -1,6 +1,6 @@
-const showHideOriginalText = require('./showHideOriginalText');
+import showHideOriginalText from './showHideOriginalText';
 
-module.exports = nodes => {
+export default (nodes) => {
   let originalText = nodes.biogDesc.innerHTML; // Сохраняем оригинальный текс
   let arrText      = originalText.split(' '); // Создаем массив из оригинального текта
   let limitation   = nodes.biogDesc.dataset.limitation; // Ставим лимит слов из data атрибута

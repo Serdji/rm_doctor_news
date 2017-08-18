@@ -1,7 +1,7 @@
 const url = '/authenticity_token';
 const header = 'X-CSRF-Token';
 
-module.exports = (params) => {
+export function fetchAutToken(params) {
   if (!params.headers) params.headers = {};
 
   return fetch(url, { credentials: 'same-origin' }).

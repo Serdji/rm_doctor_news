@@ -1,9 +1,14 @@
-const { qs, fetchAutToken, each } = require('utils');
+import {
+  buttonOpen,
+  complaintForm,
+  popUpComplaint,
+  popUpQuestion
+} from './nodes';
+import { qs, fetchAutToken} from 'utils';
 
-module.exports = nodes => {
-  each(nodes.buttonOpen, el => {
-    el.addEventListener('click', open);
-  });
+export default () => {
+  for( let el of buttonOpen) el.addEventListener('click', open);
+
   //  Функция открытия самого попапа
   function openPopUp(self) {
     // Ищим родителя по css силектору
@@ -12,10 +17,10 @@ module.exports = nodes => {
     let complainableId = complainable.dataset.complainableId;
     let complainableType = complainable.dataset.complainableType;
     // Добавляем данные
-    nodes.complaintForm.elements['complaint[complainable_id]'].value = complainableId;
-    nodes.complaintForm.elements['complaint[complainable_type]'].value = complainableType;
+    complaintForm.elements['complaint[complainable_id]'].value = complainableId;
+    complaintForm.elements['complaint[complainable_type]'].value = complainableType;
 
-    nodes.popUpComplaint.classList.add('_activ');
+    popUpComplaint.classList.add('_activ');
     // Задаем body margin-right на ширину скрола
     document.body.style.marginRight = `${window.innerWidth - document.documentElement.clientWidth}px`;
     document.body.classList.add('_off-scroll'); // Отключаем скрол у body
@@ -45,7 +50,7 @@ module.exports = nodes => {
           // Колбек, после аунтификации открываем форму пожалолваться
           ramblerIdHelper.registerOnPossibleLoginCallback(() => {
             // Проверка на то, открыт ли поп-оп задать вопрос
-            if (!nodes.popUpQuestion.classList.contains('_activ')) openPopUp(this);
+            if (!popUpQuestion.classList.contains('_activ')) openPopUp(this);
           });
         }
       });

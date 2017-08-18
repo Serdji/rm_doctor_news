@@ -1,0 +1,49 @@
+.you-interested
+  margin-bottom space
+  &__title
+    margin-bottom space
+    font-family CorsicaRamblerLX
+    font-size 22px
+    font-weight 500
+    line-height 1.33
+    text-align left
+    color #262626
+
+  &__card
+    font-size 1px
+    margin-bottom 15px
+    margin-right 15px
+    &:nth-last-child(1)
+      margin-bottom 0
+
+    &:visited
+      .you-interested__content
+        color #676767
+    &:hover
+      .you-interested__img
+        opacity 0.8
+      .you-interested__content
+        color #315EFB
+
+  &__img,
+  &__content
+    display inline-block
+    vertical-align top
+    height 90px
+    transition transAll
+
+  &__img
+    width 135px
+
+  &__content
+    padding-left 15px
+    width 240px
+    box-sizing border-box
+    font-family CorsicaRamblerLX
+    font-size 14px
+    font-weight 500
+    line-height 1.36
+    text-align left
+    color #262626
+    span
+      textEllipsisNumberLines(3, 54px)

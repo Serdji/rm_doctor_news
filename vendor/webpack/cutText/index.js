@@ -1,4 +1,5 @@
-const { qsa, qs, each } = require('utils');
+import { qsa, qs, each } from 'utils';
+import redirectLinck from './redirectLinck'
 
 if (qs('.js-biog')) {
   each(qsa('.js-biog'), el => {
@@ -9,6 +10,6 @@ if (qs('.js-biog')) {
     };
 
     // require('./cutText')(nodes);
-    require('./redirectLinck')(nodes);
+    redirectLinck(nodes);
   });
 }

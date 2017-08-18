@@ -1,4 +1,4 @@
-module.exports = () => {
+export default () => {
   document.body.addEventListener('click', showHideText);
 
   function showHideText(e) {

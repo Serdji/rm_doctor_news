@@ -1,20 +1,23 @@
-const { fetchAutToken, each } = require('utils');
+import {
+  buttonSend,
+  complaintForm,
+  complaintSuccess
+} from './nodes';
+import { fetchAutToken } from 'utils';
 
-module.exports = nodes => {
-  nodes.buttonSend.addEventListener('click', send);
+export default () => {
+  buttonSend.addEventListener('click', send);
   function send() {
-    const url = nodes.complaintForm.action;
+    const url = complaintForm.action;
 
 
     let causeIds = [];
-    each(nodes.complaintForm['complaint[cause_ids][]'], checkbox => {
-      if (checkbox.checked) causeIds.push(checkbox.value);
-    });
+    for( let checkbox of complaintForm['complaint[cause_ids][]']) if (checkbox.checked) causeIds.push(checkbox.value);
 
-    let body = nodes.complaintForm['complaint[body]'].value;
-    let email = nodes.complaintForm['complaint[email]'].value;
-    let complainableId = nodes.complaintForm['complaint[complainable_id]'].value;
-    let complainableType = nodes.complaintForm['complaint[complainable_type]'].value;
+    let body = complaintForm['complaint[body]'].value;
+    let email = complaintForm['complaint[email]'].value;
+    let complainableId = complaintForm['complaint[complainable_id]'].value;
+    let complainableType = complaintForm['complaint[complainable_type]'].value;
 
     let params = {
       method: 'POST',
@@ -49,15 +52,15 @@ module.exports = nodes => {
         }
       })
       .then(json => {
-        nodes.complaintForm.style.display = 'none';
-        nodes.complaintForm.reset();
-        nodes.complaintSuccess.style.display = 'table-cell';
+        complaintForm.style.display = 'none';
+        complaintForm.reset();
+        complaintSuccess.style.display = 'table-cell';
       })
       .catch(error => {
         if (error.message === '500') {
           error.errors.forEach((error) => {
             let attribute = error.source.replace(/\/data\/attributes\//, '');
-            nodes.complaintForm[`complaint[${attribute}]`].classList.add('_editor-error');
+            complaintForm[`complaint[${attribute}]`].classList.add('_editor-error');
           });
         }
 

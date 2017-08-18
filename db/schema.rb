@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170801130839) do
+ActiveRecord::Schema.define(version: 20170815124722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -211,10 +211,12 @@ ActiveRecord::Schema.define(version: 20170801130839) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.json "resource", default: {}, null: false
+    t.bigint "ordered_at"
     t.index ["created_date"], name: "index_news_on_created_date"
     t.index ["external_id"], name: "index_news_on_external_id", unique: true
     t.index ["mark_modified_date"], name: "index_news_on_mark_modified_date"
     t.index ["modified_date"], name: "index_news_on_modified_date"
+    t.index ["ordered_at"], name: "index_news_on_ordered_at"
     t.index ["published_date"], name: "index_news_on_published_date"
   end
 

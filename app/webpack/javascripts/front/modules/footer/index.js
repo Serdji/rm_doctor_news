@@ -1,8 +1,4 @@
-const { qs }     = require('utils');
-const footerMenu = require('./footerMenu');
+import { qs }     from 'utils';
+import footerMenu from './footerMenu';
 
-let nodes = {
-  menuProject: qs('.js-menu-project')
-};
-
-footerMenu(nodes);
+footerMenu();

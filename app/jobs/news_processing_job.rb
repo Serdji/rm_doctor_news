@@ -48,7 +48,11 @@ end
 class NewsProcessingJob < ActiveJob::Base
   queue_as :news_processing
 
-  def perform(json)
-    NewsUpdater.new(json).call
+  def perform
+    topics = Import::News::Topics.new
+
+    topics.each do |news|
+      NewsUpdater.new(news).call
+    end
   end
 end

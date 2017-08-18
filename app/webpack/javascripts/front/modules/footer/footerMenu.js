@@ -1,13 +1,15 @@
-const footerLine      = require('./footerLine');
-const showButton      = require('./showButton');
-const openClosePoints = require('./openClosePoints');
-const template        = require('./template');
-module.exports = (nodes) => {
-  if (!nodes.menuProject) return;
+import {menuProject}   from './nodes';
+import footerLine      from './footerLine';
+import showButton      from './showButton';
+import openClosePoints from './openClosePoints';
+import template        from './template';
+
+export default () => {
+  if (!menuProject) return;
   // Бежим по обеъкту с пунктами меню
   for (let points of footerLine) {
     // Добавляем шаблок в футер
-    nodes.menuProject.insertAdjacentHTML('beforeEnd', template(points));
+    menuProject.insertAdjacentHTML('beforeEnd', template(points));
   }
   // Показываем кнопку ещё
   showButton();

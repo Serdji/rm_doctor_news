@@ -1,10 +1,11 @@
-const { qs } = require('utils');
-const SuggestSearch = require('suggestSearch');
+import { qs } from 'utils';
+import SuggestSearch from 'suggestSearch';
+import redirectLink from './redirectLink';
 
 let suggestComponent = qs('.search .search__select');
 
 if (suggestComponent) {
   let suggestSearch = new SuggestSearch(suggestComponent);
   suggestSearch.run();
-  require('./redirectLink')();
+  redirectLink();
 }

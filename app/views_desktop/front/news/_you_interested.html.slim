@@ -1,0 +1,16 @@
+.you-interested
+  .you-interested__title Вас заинтересует
+  .news-common__grid
+    .news-common__column
+      - news_facade.interesting_left.each do |news|
+        a.you-interested__card href=news.local_path
+          .you-interested__img: img src=news.image_url(:small)
+          .you-interested__content
+            span = news.title
+
+    .news-common__column
+      - news_facade.interesting_right.each do |news|
+        a.you-interested__card href=news.local_path
+          .you-interested__img: img src=news.image_url(:small)
+          .you-interested__content
+            span = news.title

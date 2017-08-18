@@ -1,6 +1,6 @@
 'use strict';
 
-class StickyBaner {
+export default class StickyBaner {
   constructor(options) {
     this.floatStartStop = options.floatStartStop;
     this.floatAds       = options.floatAds;
@@ -52,5 +52,4 @@ class StickyBaner {
   }
 }
 
-module.exports = StickyBaner;
 

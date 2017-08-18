@@ -1,12 +1,4 @@
-const { qs, qsa }       = require('utils');
-const loadingNews       = require('./loadingNews');
+import { qs, qsa } from 'utils';
+import loadingNews from './loadingNews';
 
-if (qs('.js-loading-news-button')){
-  let nodes = {
-      loadingNewsButton: qs('.js-loading-news-button'),
-      loadingNewsItems: qsa('.js-loading-news-items'),
-      loadingNewsColumn: qs('.js-loading-news-column'),
-      loadingNewsWrapperColumn: qs('.js-loading-wrapper-column')
-  };
-  loadingNews(nodes);
-}
+if (qs('.js-loading-news-button')) loadingNews();

@@ -1,4 +1,4 @@
-module.exports = elem => {
+export function getCoords(elem){
   let box = elem.getBoundingClientRect();
 
   let body = document.body;

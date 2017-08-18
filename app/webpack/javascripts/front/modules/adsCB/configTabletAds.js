@@ -1,4 +1,4 @@
-module.exports =  {
+export default {
   top_banner: {
     p: {
       'p1': 'bxszl',

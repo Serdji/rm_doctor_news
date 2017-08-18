@@ -1,11 +1,19 @@
-const { fetchAutToken } = require('utils');
+import {
+  buttonClose,
+  popUpQuestion,
+  maxLengthCounter,
+  maxLengthCounterSelect,
+  titleError,
+  tagIdsError
+} from './nodes';
+import { fetchAutToken } from 'utils';
 
-module.exports = nodes => {
-  nodes.buttonClose.addEventListener('click', close);
+export default () => {
+  buttonClose.addEventListener('click', close);
 
   function close() {
     delete localStorage['formQuestion']; // Удаляем из стора сохраненые данные из формы
-    nodes.popUpQuestion.classList.remove('_activ');
+    popUpQuestion.classList.remove('_activ');
     setTimeout(()=>  hideErrors(), 100);
     document.body.removeAttribute('style'); // удаляем атрибут style у body
     document.body.classList.remove('_off-scroll'); // Включаем скрол у body
@@ -25,10 +33,10 @@ module.exports = nodes => {
   }
 
   function hideErrors() {
-    nodes.titleError.classList.add('_hidden');
-    nodes.maxLengthCounter.classList.remove('_hidden');
+    titleError.classList.add('_hidden');
+    maxLengthCounter.classList.remove('_hidden');
 
-    nodes.tagIdsError.classList.add('_hidden');
-    nodes.maxLengthCounterSelect.classList.remove('_hidden');
+    tagIdsError.classList.add('_hidden');
+    maxLengthCounterSelect.classList.remove('_hidden');
   }
 };

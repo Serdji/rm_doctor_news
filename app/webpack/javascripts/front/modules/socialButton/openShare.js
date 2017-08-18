@@ -1,9 +1,10 @@
-const { each } = require('utils');
+import {openShare} from './nodes';
+import { each } from 'utils';
 
-module.exports = nodes => {
-  each(nodes.openShare, el => el.addEventListener('click', openShare));
+export default  ()=> {
+  for ( let el of openShare) el.addEventListener('click', openShareF);
 
-  function openShare() {
+  function openShareF() {
     this.closest('.js-common-social').classList.add('_activ');
     this.remove();
   }

@@ -1,5 +1,5 @@
 
-module.exports = {
+export default {
   root: '.js-news-article',
   nodes: ['p', 'h2'],
   floats: ['.b-box_floated'],

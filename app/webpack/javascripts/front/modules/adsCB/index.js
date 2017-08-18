@@ -1,41 +1,24 @@
-const { qsa, qs, each }    = require('utils');
-const InjectorAds          = require('./InjectorAds');
-const callAds              = require('./callAds');
-const sidebarIsAds         = require('./sidebarIsAds');
-const autoScroll           = require('../socialButton/autoScroll');
-const cloneTheme           = require('./cloneTheme');
-const removeQues           = require('./removeQues');
-const sponsoredAds         = require('./sponsoredAds');
-const contentBanners       = require('rds-content-banners');
-const CONFARTDESK          = require('./articleDesktopAds');
-const CONFARTTABLET        = require('./articleTabletAds');
-const CONFDESK             = require('./configDesktopAds');
-const CONFTABLET           = require('./configTabletAds');
-let height240x400          = false;
+import { qsa, qs, each } from 'utils';
+import InjectorAds       from './InjectorAds';
+import callAds           from './callAds';
+import sidebarIsAds      from './sidebarIsAds';
+import autoScroll        from '../socialButton/autoScroll';
+import cloneTheme        from './cloneTheme';
+import removeQues        from './removeQues';
+import sponsoredAds      from './sponsoredAds';
+import contentBanners    from 'rds-content-banners';
+import CONFARTDESK       from './articleDesktopAds';
+import CONFARTTABLET     from './articleTabletAds';
+import CONFDESK          from './configDesktopAds';
+import CONFTABLET        from './configTabletAds';
 
+let height240x400        = false;
 
-
-let nodes = {
-  banerSideba: qsa('.js-baner-sidebar'),
-  questionsAds: qsa('.js-questions-ads'),
-  searchItemAds: qsa('.js-search-item-ads'),
-  tagAds: qsa('.js-tag-ads'),
-  searchPagAds: qs('.js-search-pag-ads'),
-  temyPagAds: qs('.js-temy-pag-ads'),
-  rootPagAds: qs('.js-root-pag-ads'),
-  similarThemesAds: qs('.js-similar-themes-ads'),
-  rightSidebar: qs('.js-right-sidebar'),
-  lastBigTheme: qs('.js-last-big-theme'),
-  miniTheme: qsa('.js-mini-theme'),
-  collection: qs('.js-tags'),
-  newsItems: qsa('.js-news-items-abs'),
-  newsCardAds: qsa('.js-news-card-ads')
-};
 
 
 if (window.innerWidth > 1024 || qs('.js-page-ques-answers')) { // рекламма на декстопе
   // Если включин AddBlock
-  sidebarIsAds(nodes);
+  sidebarIsAds();
   let test = 1;
   // Колбек отрабатывает после загрузке всей рекламмы
   Begun.Autocontext.Callbacks.register({
@@ -43,7 +26,7 @@ if (window.innerWidth > 1024 || qs('.js-page-ques-answers')) { // рекламм
       draw() {
         // каждые 500ms проверяем банеры
         let intId = setInterval(() => {
-          sidebarIsAds(nodes);
+          sidebarIsAds();
           let ban240x400 = qs('#ban_240x400 div[id^="begun_block"]');
           if (!height240x400 && ban240x400) {
             height240x400 = ban240x400.clientHeight;
@@ -64,13 +47,13 @@ if (window.innerWidth > 1024 || qs('.js-page-ques-answers')) { // рекламм
   });
 
 
-  InjectorAds(nodes);
+  InjectorAds();
   contentBanners(CONFARTDESK);
   callAds(CONFDESK.billboard);
   callAds(CONFDESK.ban_240x400);
   callAds(CONFDESK.ban_240x400_2nd);
   callAds(CONFDESK.superFooter);
-  callAds(CONFDESK.native1).then(() => { cloneTheme(nodes); });
+  callAds(CONFDESK.native1).then(() => { cloneTheme(); });
   callAds(CONFDESK.native2).then(() => { removeQues(); });
   callAds(CONFDESK.nativeFooter);
   callAds(CONFDESK.center);

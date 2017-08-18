@@ -1,27 +1,31 @@
 'use strict';
 
-require('myPolyfill');
-require('babel-polyfill');
-require('copywritingDate');
-require('_stylesheets/front/application');
-require('./modules/stickingBaner')();
-require('./modules/textEditor');
-require('./modules/ellipsisPopUp');
-require('./modules/popUpQuestion');
-require('./modules/popUpComplaint');
-require('./modules/openTags');
-require('./modules/socialButton')();
-require('./modules/suggestSearch');
-require('../../../../vendor/webpack/dataPublished');
-require('./modules/statisticsMetrika');
-require('./modules/bestAnswer');
-require('./modules/transmitEventGa');
-require('./modules/loadingNews');
-require('./modules/ramblerNews');
-require('./modules/footer');
-require('./modules/menuProjects');
-require('./modules/sameSourceNews');
+import 'myPolyfill';
+import 'babel-polyfill';
+import 'copywritingDate';
+import '_stylesheets/front/application';
+import './modules/textEditor';
+import './modules/ellipsisPopUp';
+import './modules/popUpQuestion';
+import './modules/popUpComplaint';
+import './modules/openTags';
+import './modules/suggestSearch';
+import '../../../../vendor/webpack/dataPublished';
+import './modules/statisticsMetrika';
+import './modules/bestAnswer';
+import './modules/transmitEventGa';
+import './modules/loadingNews';
+import './modules/ramblerNews';
+import './modules/footer';
+import './modules/menuProjects';
+import './modules/sameSourceNews';
+import './modules/adsCB';
 
-// Callbacks advertisement
-require('./modules/adsCB');
-require('svg');
+
+import stickingBaner from './modules/stickingBaner';
+import socialButton from './modules/socialButton';
+import svg from 'svg';
+
+svg();
+stickingBaner();
+socialButton();

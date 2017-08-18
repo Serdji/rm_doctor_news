@@ -1,11 +1,16 @@
-const { hasAtLeastChars, declOfNum } = require('utils'); // Склонятор
+import {
+  maxLengthInput,
+  maxLengthCounter,
+  titleError
+} from './nodes';
+import { hasAtLeastChars, declOfNum } from 'utils'; // Склонятор
 const count         = declOfNum()(['cимвол', 'cимвола', 'cимволов']);
 
-module.exports = nodes => {
+export default () => {
   let maxlength = 147;
-  nodes.maxLengthInput.setAttribute('maxlength', maxlength);
-  nodes.maxLengthCounter.innerText = `Можно ввести ${maxlength} ${count(maxlength)}`;
-  nodes.maxLengthInput.addEventListener('keyup', (e) => {
+  maxLengthInput.setAttribute('maxlength', maxlength);
+  maxLengthCounter.innerText = `Можно ввести ${maxlength} ${count(maxlength)}`;
+  maxLengthInput.addEventListener('keyup', (e) => {
     if (e.target.classList.contains('_editor-error')) {
       e.target.classList.remove('_editor-error');
       e.target.classList.add('_editor-ok');
@@ -14,19 +19,19 @@ module.exports = nodes => {
     let lengthSymbols   = e.target.value.length;
     let remainedSymbols = maxlength - lengthSymbols;
 
-    nodes.maxLengthCounter.innerText = `Осталось ${remainedSymbols} ${count(remainedSymbols)}`;
+    maxLengthCounter.innerText = `Осталось ${remainedSymbols} ${count(remainedSymbols)}`;
 
     if (lengthSymbols === 0 || !hasAtLeastChars(e.target.value, 4)) {
       e.target.classList.add('_editor-error');
       e.target.classList.remove('_editor-ok');
 
-      nodes.titleError.classList.remove('_hidden');
-      nodes.maxLengthCounter.classList.add('_hidden');
+      titleError.classList.remove('_hidden');
+      maxLengthCounter.classList.add('_hidden');
 
-      nodes.maxLengthCounter.innerText = `Можно ввести ${maxlength} ${count(maxlength)}`;
+      maxLengthCounter.innerText = `Можно ввести ${maxlength} ${count(maxlength)}`;
     } else {
-      nodes.maxLengthCounter.classList.remove('_hidden');
-      nodes.titleError.classList.add('_hidden');
+      maxLengthCounter.classList.remove('_hidden');
+      titleError.classList.add('_hidden');
     }
   });
 };

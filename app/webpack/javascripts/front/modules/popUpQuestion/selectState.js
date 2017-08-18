@@ -1,14 +1,18 @@
-const selectLengthCounter = require('./selectLengthCounter');
-const { declOfNum, fetchAutToken } = require('utils'); // Склонятор
+import {
+  maxLengthCounterSelect,
+  tagIdsError,
+} from './nodes';
+import selectLengthCounter from './selectLengthCounter';
+import { declOfNum, fetchAutToken } from 'utils'; // Склонятор
 const count = declOfNum()(['тема', 'темы', 'тем']);
 
 // Выбираем нужные плагены из jquery UI
-require('jquery-ui/ui/widgets/draggable');
-require('jquery-ui/ui/widgets/sortable');
+import 'jquery-ui/ui/widgets/draggable';
+import 'jquery-ui/ui/widgets/sortable';
 
-require('selectize');
+import 'selectize';
 
-module.exports = (nodes) => {
+export default () => {
   // Максимальное колличество тегов
   let maxTag     = 10;
   let $selectTag = $('.js-select-tag');
@@ -22,7 +26,7 @@ module.exports = (nodes) => {
     maxItems: maxTag,
     // Событие при добавление тега
     onChange(arrVal) {
-      selectLengthCounter(nodes, arrVal, maxTag);
+      selectLengthCounter(arrVal, maxTag);
       $selectTag.attr('value', arrVal);
 
       let element = $selectTag.next().children('.selectize-input');
@@ -31,14 +35,14 @@ module.exports = (nodes) => {
         if (element.hasClass('_editor-error')) {
           element.removeClass('_editor-error');
           element.addClass('_editor-ok');
-          nodes.tagIdsError.classList.add('_hidden');
-          nodes.maxLengthCounterSelect.classList.remove('_hidden');
+          tagIdsError.classList.add('_hidden');
+          maxLengthCounterSelect.classList.remove('_hidden');
         }
       } else {
         element.removeClass('_editor-ok');
         element.addClass('_editor-error');
-        nodes.tagIdsError.classList.remove('_hidden');
-        nodes.maxLengthCounterSelect.classList.add('_hidden');
+        tagIdsError.classList.remove('_hidden');
+        maxLengthCounterSelect.classList.add('_hidden');
       }
     },
     render: {

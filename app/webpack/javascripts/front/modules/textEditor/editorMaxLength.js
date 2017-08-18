@@ -1,7 +1,7 @@
-const { declOfNum } = require('utils'); // Склонятор
+import { declOfNum } from 'utils'; // Склонятор
 const count         = declOfNum()(['cимвол', 'cимвола', 'cимволов']);
 
-module.exports = (node, ed, maxLength = 4000 ) => {
+export default (node, ed, maxLength = 4000 ) => {
   let editorLengthText = tinymce.trim(tinymce.activeEditor.getBody().textContent).length;
   let remainderLength  = maxLength - editorLengthText;
   ed.editorContainer.classList.remove('_editor-error', '_editor-ok');

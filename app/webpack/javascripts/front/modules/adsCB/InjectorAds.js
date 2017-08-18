@@ -1,9 +1,11 @@
-const { each, qs, qsa }  = require('utils');
-const contextAds         = require('./contextAds');
-const newsBlockAds       = require('./newsBlockAds');
-const sponsoredAds       = require('./sponsoredAds');
+import { newsCardAds, questionsAds, rootPagAds, tagAds, searchItemAds, temyPagAds, searchPagAds  } from './nodes';
+import { each, qs, qsa } from 'utils';
+import contextAds        from './contextAds'
+import newsBlockAds      from './newsBlockAds';
+import sponsoredAds      from './sponsoredAds';
 
-module.exports = (nodes) => {
+
+export default () => {
 
   let superFooter = '<div id="superFooter"></div>';
   let native1     = '<div id="native1"></div>';
@@ -34,7 +36,7 @@ module.exports = (nodes) => {
 
   // Странице детальной новости
   if(qs('.js-news-card-page')){
-    each(nodes.newsCardAds, (el, i) => {
+    each(newsCardAds, (el, i) => {
       let index = i + 1;
       switch (index) {
         case 1 : el.insertAdjacentHTML('afterEnd', context); break;
@@ -59,8 +61,8 @@ module.exports = (nodes) => {
   // Вопросы и ответы
   if(qs('.js-page-root')) {
     // Последний вопрос
-    let lastQues = nodes.questionsAds[nodes.questionsAds.length - 1];
-    each(nodes.questionsAds, (el, i) => {
+    let lastQues = questionsAds[questionsAds.length - 1];
+    each(questionsAds, (el, i) => {
       let index = i + 1;
       switch (index) {
         case 2  : el.insertAdjacentHTML('afterEnd', superFooter); break;
@@ -79,7 +81,7 @@ module.exports = (nodes) => {
     let native2NodeNext     = native2Node ? native2Node.nextElementSibling : true;
 
     // Иньецируем рекламу под пагинацие, тольк если native2 и superFooter пришили не последними
-    if (superFooterNodeNext && native2NodeNext) nodes.rootPagAds.insertAdjacentHTML('afterEnd', context);
+    if (superFooterNodeNext && native2NodeNext) rootPagAds.insertAdjacentHTML('afterEnd', context);
 
     // Иньекчия контекстной рекламой со своим индексом
     each(qsa('.js-context-ads'), (el, i) => {
@@ -93,7 +95,7 @@ module.exports = (nodes) => {
 
   // Страница тем
   if(qs('.js-page-temys-ads')) {
-    each(nodes.tagAds, (el, i) => {
+    each(tagAds, (el, i) => {
       let index = i + 1;
       switch (index) {
         case 1  : el.insertAdjacentHTML('afterEnd', native1);     break;
@@ -113,8 +115,8 @@ module.exports = (nodes) => {
   // Карточка темы
   if(qs('.js-page-temy-ads')) {
     // Последний вопрос
-    let lastQues = nodes.questionsAds[nodes.questionsAds.length - 1];
-    each(nodes.questionsAds, (el, i) => {
+    let lastQues = questionsAds[questionsAds.length - 1];
+    each(questionsAds, (el, i) => {
       let index = i + 1;
       switch (index) {
         case 2  : el.insertAdjacentHTML('afterEnd', superFooter); break;
@@ -133,7 +135,7 @@ module.exports = (nodes) => {
     let native2NodeNext     = native2Node ? native2Node.nextElementSibling : true;
 
     // Иньецируем рекламу под пагинацие, тольк если native2 и superFooter пришили не последними
-    if (superFooterNodeNext && native2NodeNext) nodes.temyPagAds.insertAdjacentHTML('afterEnd', context);
+    if (superFooterNodeNext && native2NodeNext) temyPagAds.insertAdjacentHTML('afterEnd', context);
 
     // Иньекчия контекстной рекламой со своим индексом
     each(qsa('.js-context-ads'), (el, i) => {
@@ -146,10 +148,10 @@ module.exports = (nodes) => {
 
   // Карточка вопроса
   if(qs('.js-page-question-ads')){
-    each(nodes.questionsAds, (el, i) => {
+    each(questionsAds, (el, i) => {
       let index = i + 1;
       switch (index) {
-        case nodes.questionsAds.length : el.insertAdjacentHTML('afterEnd', context); break;
+        case questionsAds.length : el.insertAdjacentHTML('afterEnd', context); break;
       }
     });
     // Иньекчия контекстной рекламой со своим индексом
@@ -165,8 +167,8 @@ module.exports = (nodes) => {
     if(!qs('.js-search-null-result')) { // Страници результатов
       if(qs('.js-search-item-ads')) { // Таб на ответы
         // Последний вопрос в выдачи
-        let lastItem = nodes.searchItemAds[nodes.searchItemAds.length - 1];
-        each(nodes.searchItemAds, (el, i) => {
+        let lastItem = searchItemAds[searchItemAds.length - 1];
+        each(searchItemAds, (el, i) => {
           let index = i + 1;
           switch (index) {
             case 5  : el.insertAdjacentHTML('afterEnd', superFooter); break;
@@ -184,7 +186,7 @@ module.exports = (nodes) => {
         let native2NodeNext     = native2Node ? native2Node.nextElementSibling : true;
 
         // Иньецируем рекламу под пагинацие, тольк если native2 и superFooter пришили не последними
-        if (superFooterNodeNext && native2NodeNext) nodes.searchPagAds.insertAdjacentHTML('afterEnd', context);
+        if (superFooterNodeNext && native2NodeNext) searchPagAds.insertAdjacentHTML('afterEnd', context);
 
         // Иньекчия контекстной рекламой со своим индексом
         each(qsa('.js-context-ads'), (el, i) => {
@@ -194,7 +196,7 @@ module.exports = (nodes) => {
         });
       }
       if(qs('.js-tag-ads')) { // Таб на темы
-        each(nodes.tagAds, (el, i) => {
+        each(tagAds, (el, i) => {
           let index = i + 1;
           switch (index) {
             case 6  : el.insertAdjacentHTML('afterEnd', superFooter); break;
@@ -210,7 +212,7 @@ module.exports = (nodes) => {
       }
     } else { // Страница нулевой выдочи
       if(qs('.js-questions-ads')) { // Таб ответов
-        each(nodes.questionsAds, (el, i) => {
+        each(questionsAds, (el, i) => {
           let index = i + 1;
           switch (index) {
             case 2 : el.insertAdjacentHTML('afterEnd', superFooter); break;
@@ -225,7 +227,7 @@ module.exports = (nodes) => {
         });
       }
       if(qs('.js-tag-ads')) { // Таб на темы
-        each(nodes.tagAds, (el, i) => {
+        each(tagAds, (el, i) => {
           let index = i + 1;
           switch (index) {
             case 3  : el.insertAdjacentHTML('afterEnd', superFooter); break;

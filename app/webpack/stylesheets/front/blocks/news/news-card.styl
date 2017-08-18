@@ -6,16 +6,11 @@
 
     h1
       margin 0 0 6px
-      width 1080px
-      font-family CorsicaRamblerLX-Regular
+      font-family CorsicaRamblerLX
       font-weight 500
       font-size 30px
       color #262626
       line-height 40px
-      @media(max-width: max-width)
-        width 930px
-      @media(max-width: min-width)
-        width 615px
 
     &-data
       font-size: 12px;
@@ -29,14 +24,11 @@
         line-height: 1.36;
         color #315efb
         margin-right 4px
+        transition  transAll
         textTransUp()
+        &:hover
+          color #274BC8
 
-  &__title
-    div[id^="sponsored"]
-      width 765px
-    @media(max-width: min-width)
-      div[id^="sponsored"]
-        width 615px
 
   &__content
     width 765px

@@ -1,1 +1,3 @@
-require('ramblertopline');
+import ramblertopline from 'ramblertopline';
+
+ramblertopline();

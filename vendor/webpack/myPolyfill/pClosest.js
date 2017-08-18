@@ -1,4 +1,4 @@
-module.exports = (function(e) {
+export default function(e) {
   e.closest = e.closest || function(css) {
     var node = this;
 
@@ -8,4 +8,4 @@ module.exports = (function(e) {
     }
     return null;
   };
-})(Element.prototype);
+};

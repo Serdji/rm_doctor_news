@@ -1,6 +1,6 @@
-const { hasAtLeastChars } = require('utils');
+import { hasAtLeastChars } from 'utils';
 
-module.exports = (nodes) => {
+export default (nodes) => {
   let isValid = true;
 
   let titleElement = nodes.questionForm['question[title]'];

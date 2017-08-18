@@ -3,6 +3,8 @@ class Front::NewsDecorator < Draper::Decorator
 
   delegate_all
 
+  decorates_association :interesting, with: Front::NewsDecorator
+
   def main_image_url
     image_url(:main)
   end

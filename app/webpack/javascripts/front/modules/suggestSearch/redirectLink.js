@@ -1,6 +1,6 @@
-const { qs } = require('utils');
+import { qs } from 'utils';
 
-module.exports = () => {
+export default () => {
   // qs('.js-search-linck')
   document.body.addEventListener('click', redirect, true);
 

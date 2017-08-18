@@ -1,20 +1,17 @@
-const {qs, qsa} = require('utils');
-module.exports = () => {
+import {qs, qsa} from 'utils';
+import openShare from './openShare';
+import autoScroll from './autoScroll';
+import ramblerShare from './ramblerShare';
+
+export default () => {
   if (qs('.js-open-share')) {
-    let nodes = {
-      questionSocial: qs('.js-question-social'),
-      commonSocial: qsa('.js-common-social'),
-      openShare: qsa('.js-open-share'),
-      questionText: qs('.js-question-share-text'),
-      newsCardPage: qs('.js-news-card-page')
-    };
     let script = document.createElement('script');
     // Добавляем CDN шарилок с нашим скриптом
-    script.onload = require('./ramblerShare')(nodes);
+    script.onload = ramblerShare();
     script.async  = true;
     script.src    = 'https://developers.rambler.ru/likes/widget.js';
     document.head.appendChild(script);
-    require('./openShare')(nodes);
-    require('./autoScroll')();
+    openShare();
+    autoScroll();
   }
 };

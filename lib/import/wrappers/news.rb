@@ -1,3 +1,5 @@
+require_dependency 'import/wrappers/news/image'
+
 module Import
   module Wrappers
     class News
@@ -6,37 +8,37 @@ module Import
       attribute :id, Integer
 
       attribute :comments_count, Integer
-      attribute :images_count, Integer
-      attribute :items_count, Integer
-      attribute :slides_count, Integer
-      attribute :videos_count, Integer
+      attribute :images_count,   Integer
+      attribute :items_count,    Integer
+      attribute :slides_count,   Integer
+      attribute :videos_count,   Integer
 
       attribute :mark_modified_date, DateTime
-      attribute :created_date, DateTime
-      attribute :modified_date, DateTime
-      attribute :published_date, DateTime
+      attribute :created_date,       DateTime
+      attribute :modified_date,      DateTime
+      attribute :published_date,     DateTime
 
       attribute :breaking_ttl, Integer
 
       attribute :annotation, String
-      attribute :link, String
+      attribute :link,       String
       attribute :long_title, String
-      attribute :path, String
-      attribute :text, String
-      attribute :title, String
-      attribute :type, String
-      attribute :image_url, String
+      attribute :path,       String
+      attribute :text,       String
+      attribute :title,      String
+      attribute :type,       String
+      attribute :image_url,  String
 
-      attribute :is_active, Boolean
-      attribute :no_comments, Boolean
+      attribute :is_active,       Boolean
+      attribute :no_comments,     Boolean
       attribute :breaking_status, Boolean
 
-      attribute :topic, Import::Wrappers::Topic
-      attribute :image, Import::Wrappers::Image
-      attribute :pitem, Import::Wrappers::Pitem
-      attribute :resource, Import::Wrappers::Resource
+      attribute :image,    Import::Wrappers::News::Image
+      attribute :pitem,    Import::Wrappers::News::Pitem
+      attribute :resource, Import::Wrappers::News::Resource
+      attribute :topic,    Import::Wrappers::News::Topic
 
-      attribute :topics, Array[Import::Wrappers::Topic]
+      attribute :topics, Array[Import::Wrappers::News::Topic]
 
       def image=(hash)
         if hash.present?

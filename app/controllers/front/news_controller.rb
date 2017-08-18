@@ -1,6 +1,4 @@
 class Front::NewsController < Front::ApplicationController
-  decorates_assigned :item, with: Front::NewsDecorator
-
   layout 'news'
 
   MORE_LIMIT = 18
@@ -8,13 +6,14 @@ class Front::NewsController < Front::ApplicationController
 
   before_action :check_from, only: :load_more
 
+  helper_method :news_facade
+
   def show
-    @item = ::News.find_by(external_id: params[:id])
-    not_found unless @item
+    not_found unless news_facade.item
   end
 
   def load_more
-    @news = ::News.fresh.with_images.limit(items_limit).published_before(from)
+    @news = ::News.ordered.with_images.limit(items_limit).ordered_after(params[:from])
     @news = Front::NewsDecorator.decorate_collection(@news).to_a
 
     render json: { data: rendered_news, more: more_link }
@@ -32,6 +31,10 @@ class Front::NewsController < Front::ApplicationController
 
   private
 
+  def news_facade
+    @news_facade ||= Front::NewsFacade.new(self)
+  end
+
   def items_limit
     limit = params.fetch(:limit, MORE_LIMIT).to_i
     limit > 100 || limit.negative? ? MORE_LIMIT : limit
@@ -39,10 +42,6 @@ class Front::NewsController < Front::ApplicationController
 
   def check_from
     render json: { data: [], more: nil } if params[:from].blank?
-  end
-
-  def from
-    Time.zone.at(params[:from].to_i)
   end
 
   def rendered_news
@@ -55,9 +54,9 @@ class Front::NewsController < Front::ApplicationController
   end
 
   def more_link
-    is_more = ::News.fresh.with_images.published_before(@news.last.published_date).exists?
+    is_more = ::News.ordered.with_images.ordered_after(@news.last.ordered_at).exists?
     return unless is_more
 
-    news_load_more_path(from: @news.last.published_date.to_i, trailing_slash: false)
+    news_load_more_path(from: @news.last.ordered_at, trailing_slash: false)
   end
 end

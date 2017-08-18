@@ -1,45 +1,47 @@
-- content_for(:title, item.seo_title)
-- content_for(:head_title, item.seo_title)
-- content_for(:og_image, item.detail_image_url)
-- content_for(:description, item.seo_description)
+- content_for(:title, news_facade.item.seo_title)
+- content_for(:head_title, news_facade.item.seo_title)
+- content_for(:og_image, news_facade.item.detail_image_url)
+- content_for(:description, news_facade.item.seo_description)
 
-.news-card.js-news-card-page.js-news-card-ads data-cluster-id=item.external_id
+.news-card.js-news-card-page.js-news-card-ads data-cluster-id=news_facade.item.external_id
   .news-common.js-float-wrapper
     .news-common__grid
       .news-common__column._media-desktop-column
         = render './front/news/news_sidebar_menu', klass: 'js-float-first-column-child'
 
       .news-common__column
-        .news-card__title
-          .js-sponsored-ads
-          h1
-            = item.long_title
-          .news-card__title-data
-            span> = item.news_source_link(item.resource&.title || 'Рамблер/Доктор')
-            span.js-data-published data-published-date=item.published_date.to_i
 
         .news-card__main
           .news-common__grid
             .news-common__column._media-size-column
               .news-card__content
+                .news-card__title
+                  .js-sponsored-ads
+                  h1
+                    = news_facade.item.long_title
+                  .news-card__title-data
+                    span> = news_facade.item.news_source_link(news_facade.item.resource&.title || 'Рамблер/Доктор')
+                    span.js-data-published data-published-date=news_facade.item.published_date.to_i
                 .news-card__description
-                  - if item.image
-                    img.news-card__description-img src="#{item.detail_image_url}"
-                    - if item.image_source_link?
+                  - if news_facade.item.image
+                    img.news-card__description-img src="#{news_facade.item.detail_image_url}"
+                    - if news_facade.item.image_source_link?
                       .news-card__description-img-title
                         ' Фото:
-                        = item.image_source_link
+                        = news_facade.item.image_source_link
                 .news-card__description-social.rambler-share.js-open-share.js-description-social
-                /.news-card__description-text=item.annotation
+                /.news-card__description-text=news_facade.item.annotation
 
                 .news-card__article.js-news-article
-                  p == item.safe_text
+                  p == news_facade.item.safe_text
                   .js-sponsored-ads
                   .news-card__description-social.rambler-share.js-open-share.js-article-social
 
                 #superFooter
                 #nativeFooter
                 #content2
+
+              = render 'front/news/you_interested'
 
               .news-common.js-question-ask-question
                 .news-common__title Популярные вопросы
@@ -88,6 +90,9 @@
                     | Больше тем
                     ._button-dark-blue-icon
                       = svg name: 'combined-shape-copy-9', klass: "_button-dark-blue-icon-svg"
+
+
+
 
             script type="text/template" id="teaser-container-template"
               - url = '<%= url %>'.html_safe

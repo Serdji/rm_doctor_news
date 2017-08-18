@@ -1,5 +1,7 @@
-module.exports = nodes => {
-  nodes.search.addEventListener('click', e => {
+import {search, newsMainPage, newsCardPage, questionAskQuestion, questionAskTag} from './nodes';
+
+export default () => {
+  search.addEventListener('click', e => {
     let target = e.target;
     // Дилегируем событие и в зависимости от класса, оправляем данные в счетчик
     if (target.closest('.js-clear-input')) yaCounter44184924.reachGoal('click_cross');
@@ -11,9 +13,9 @@ module.exports = nodes => {
   });
 
   // События на главной странице
-  if(nodes.newsMainPage){
+  if(newsMainPage){
     // Виджет в блоке с вопросами
-    nodes.questionAskQuestion.addEventListener('click', e => {
+    questionAskQuestion.addEventListener('click', e => {
       let target = e.target;
       if (target.closest('.js-present-question-input')) yaCounter44184924.reachGoal('click_create_issue_text_b');
       if (target.closest('.js-open-pop-up-ques')) {
@@ -25,7 +27,7 @@ module.exports = nodes => {
     });
 
     // Виджет в блоке с темами
-    nodes.questionAskTag.addEventListener('click', e => {
+    questionAskTag.addEventListener('click', e => {
       let target = e.target;
       if (target.closest('.js-present-question-input')) yaCounter44184924.reachGoal('click_create_issue_text_b2');
       if (target.closest('.js-open-pop-up-ques')) {
@@ -38,9 +40,9 @@ module.exports = nodes => {
   }
 
   // События на детальной странице
-  if(nodes.newsCardPage){
+  if(newsCardPage){
     // Виджет в блоке с вопросами
-    nodes.questionAskQuestion.addEventListener('click', e => {
+    questionAskQuestion.addEventListener('click', e => {
       let target = e.target;
       if (target.closest('.js-present-question-input')) yaCounter44184924.reachGoal('click_create_issue_text_b3');
       if (target.closest('.js-open-pop-up-ques')) {
@@ -52,7 +54,7 @@ module.exports = nodes => {
     });
 
     // Виджет в блоке с темами
-    nodes.questionAskTag.addEventListener('click', e => {
+    questionAskTag.addEventListener('click', e => {
       let target = e.target;
       if (target.closest('.js-present-question-input')) yaCounter44184924.reachGoal('click_create_issue_text_b4');
       if (target.closest('.js-open-pop-up-ques')) {

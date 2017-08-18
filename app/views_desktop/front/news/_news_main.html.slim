@@ -10,12 +10,12 @@
             a href=news_facade.main.local_path
               .news-day__img style='background-image: url(#{news_facade.main.main_image_url})'
                 .news-day__title = news_facade.main.title_truncated(80)
-                .news-common__data.js-data-published-news data-published-date=news_facade.main.published_date.to_i
+                .news-common__data.js-data-published-news._hidden data-published-date=news_facade.main.ordered_at
                 .news-day__cover
               .news-day__content
                 .news-day__title
                   span = news_facade.main.title_truncated(80)
-                .news-common__data.js-data-published-news data-published-date=news_facade.main.published_date.to_i
+                .news-common__data.js-data-published-news._hidden data-published-date=news_facade.main.ordered_at
 
             #native1
         = render partial: 'front/news/news_items', collection: news_facade.rest, as: :news

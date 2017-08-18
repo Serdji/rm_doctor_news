@@ -1,18 +1,19 @@
-const { each, getCoords } = require('utils');
+import {hashTags} from './nodes';
+import { getCoords } from 'utils';
 
-module.exports = nodes => {
+export default () => {
   // Проходим по всем нодам где есть теги циклом
-  each(nodes.hashTags, el => {
+  for ( let el of hashTags) {
     // Как эталон координат выделяем первый элемент в массиве
     let standardTop = getCoords(el.childNodes[0]).top;
     let arrNodes    = [];
     // Проходимся циклом по всем дочерним элементам
-    each(el.childNodes, child => {
+    for ( let child of el.childNodes) {
       // Сохраняем все координаты элементов
       let childTop = getCoords(child).top;
       // Добавляем в массив только те эементы, координаты которых привешают этолон
       if (childTop > standardTop+10) arrNodes.push(child);
-    });
+    };
     // Из массива заберам только первый эелемент. Этот элемент и есть первый кто переноситься на новою страку
     let firstTag = arrNodes[0];
     // Сколько спрятано эелементов (тегов)
@@ -41,5 +42,5 @@ module.exports = nodes => {
       // Высчитываем получившиеся значения и расширяем hash с тегами до появления кнопки тега
       hashTags.style.width = `${widthButtonTag + widthHashTags + prButtonTag}px`;
     }
-  });
+  };
 };

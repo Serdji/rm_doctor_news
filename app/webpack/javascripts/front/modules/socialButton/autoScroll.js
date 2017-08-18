@@ -1,6 +1,6 @@
-const SweetScroll = require('sweet-scroll');
+import SweetScroll from 'sweet-scroll';
 
-module.exports = () => {
+export default () => {
   const sweetScroll = new SweetScroll();
   let search = window.location.search;
   // Выризаем хешь из урла

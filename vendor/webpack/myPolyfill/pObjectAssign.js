@@ -1,4 +1,4 @@
-module.exports = (() => {
+export default () => {
   if (!Object.assign) {
     Object.defineProperty(Object, 'assign', {
       enumerable: false,
@@ -30,4 +30,4 @@ module.exports = (() => {
       }
     });
   }
-})();
+};

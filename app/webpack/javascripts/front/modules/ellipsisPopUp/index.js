@@ -1,7 +1,3 @@
-const { qs, qsa } = require('utils');
-if (qs('.js-ellipsis-pop-up')) {
-  let nodes = {
-    ellipsis: qsa('.js-ellipsis-pop-up')
-  };
-  require('./showHidePopUp')(nodes);
-}
+import { qs, qsa } from 'utils';
+import showHidePopUp from './showHidePopUp'
+if (qs('.js-ellipsis-pop-up')) showHidePopUp();

@@ -1,4 +1,4 @@
-module.exports = () => {
+export default () => {
   let nativeContext = document.getElementById('native2');
   if (nativeContext) {
     let ques = nativeContext.nextElementSibling;

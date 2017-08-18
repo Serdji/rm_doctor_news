@@ -1,5 +1,5 @@
-const { qsa } = require('utils');
-module.exports = () => {
+import { qsa } from 'utils';
+export default () => {
   for ( let button of qsa('.js-button-open-points') ) button.addEventListener('click', openClose);
   function openClose() {
     // Бежим по всем боксам где лежат ссылки на меню

@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   {
     title: 'Все новости',
     url: 'https://news.rambler.ru',

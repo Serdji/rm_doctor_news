@@ -1,5 +1,5 @@
-const { qs } = require('utils');
-module.exports = (config) => {
+import { qs } from 'utils';
+export default (config) => {
   // Ищим рекламные слоты для иньекции по id или class атрибутам
 
   let nodesAds = qs(`#${config.p.node}`) || qs(`.${config.p.node}`);
