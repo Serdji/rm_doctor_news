@@ -1,6 +1,4 @@
 class Admin::TagsController < Admin::ApplicationController
-  # include Concerns::Loggable
-
   decorates_assigned :tags, with: Admin::TagDecorator
   before_action :find_tag, only: [:update, :destroy, :edit]
 
@@ -58,10 +56,6 @@ class Admin::TagsController < Admin::ApplicationController
   def report_name(extension = '.csv')
     filename = ['report', params.dig(:report, :year), params.dig(:report, :month)].compact.join('-')
     "#{filename}#{extension}"
-  end
-
-  def get_object
-    @tag || find_tag
   end
 
   def find_tag

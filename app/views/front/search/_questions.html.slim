@@ -1,0 +1,23 @@
+- @search_result.each_with_index do |question, i|
+  - new_answer_url = "#{question.url}#your-new-answer"
+
+  .search-page__item.js-search-item-ads
+    .search-page__item-title
+      a href=question.url == sanitize(question.title)
+
+    - if question.answers_count > 0 && question.answers.count > 0
+      - answer = question.answers.first
+      - has_best_answer = question.answers.find(&:is_best?)
+
+      .search-page__text
+        b> = "#{answer.user.first_name}:"
+        a href="#{question.url}#answers-#{answer.id}" == sanitize(answer.body, tags: %i(p b))
+
+      - anchor = has_best_answer ? "best-answer" : "answers"
+      - answers_url = "#{question.url}##{anchor}"
+
+      - count = question.answers_count
+      a.search-page__quesurl href=new_answer_url Ответить
+      a.search-page__answer href=answers_url = "#{count} #{I18n.t('activemodel.models.qa/answer', count: count)}"
+    - else
+      a.search-page__quesurl href=new_answer_url Ответить

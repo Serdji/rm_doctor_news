@@ -1,0 +1,47 @@
+= render 'admin/shared/head'
+
+= form_for :seo_links, url: collection_admin_seo_links_path do |f|
+  table.table.table-hover
+    thead
+      tr
+        th = sort_link(@q, :id, '#')
+        th = sort_link(@q, :title)
+        th = sort_link(@q, :url)
+        th.text-center = t('label.handlers')
+
+    tbody.middle-vertical-align
+      - seo_links.each do |seo_link|
+        = fields_for 'seo_links[]', seo_link do |p|
+          tr
+            td.ids = p.object.id
+            td
+              .row
+                .col-md-12
+                  = p.text_field :title, class: 'form-control input-sm'
+            td
+              .row
+                .col-md-12
+                  = p.text_field :url, class: 'form-control input-sm'
+            td.handlers.text-center
+              .btn-group
+                = link_to admin_seo_link_path(p.object.id), class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Вы уверены?' } do
+                  span.fa.fa-trash
+
+  div.row
+    div.form-group.col-md-2
+      = f.button t('label.edit'), class: 'btn btn-primary'
+
+= form_for [:admin, @seo_link] do |f|
+  div.row
+    div.form-group.col-md-2
+      = f.label :title, class: 'required'
+      = f.text_field :title, class: 'form-control'
+
+  div.row
+    div.form-group.col-md-2
+      = f.label :url, class: 'required'
+      = f.text_field :url, class: 'form-control'
+
+  div.row
+    div.form-group.col-md-2
+      = f.button t('label.new'), class: 'btn btn-default'

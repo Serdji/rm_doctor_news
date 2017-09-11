@@ -27,6 +27,7 @@ class QuestionFilter < BaseFilter
     result[:is_interesting] = true if only_interesting_questions?
     result[:has_complaints] = true if with_complaints?
 
+    result['with_user'] = true if fake_users? || real_users?
     result['users.is_fake'] = true if fake_users?
     result['users.is_fake'] = false if real_users?
 

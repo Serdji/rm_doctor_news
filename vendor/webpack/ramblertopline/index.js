@@ -1,4 +1,4 @@
-export default function() {
+export default ()=> {
   window.ramblerToplineParams = {
     projectName: 'doctor', // Символьный код проекта, полный список ниже
     logoName: 'head', // Необязательный параметр. Нужен, когда utm-метки и лого должны различаться. Поумолчанию равен projectName. Если задан, то логотип будет отображаться только один - на главную.
@@ -7,8 +7,8 @@ export default function() {
     showUser: true, // Показывать блок пользователя (default: true)
     menuMailCounter: true, // Показывать счетчик писем у пункта 'Почта' в меню проектов (default: true)
     linksTargetBlank: true, // Открывать ссылки меню в новом окне/табе (default: false)
-    fullWidth: false, // Резиновый топлайн, 100% ширины (default: false)
-    fullWidthGap: 20, // Размер отступа резинового топлайна в пикселях, (default: 20)
+    fullWidth: true, // Резиновый топлайн, 100% ширины (default: false)
+    fullWidthGap: 15, // Размер отступа резинового топлайна в пикселях, (default: 20)
     mobileTopline: { // Опции мобильного топлайна
       always: false, // Показывать независимо от брейпоинтов мобильный топлайн
       show: false, // Показывать мобильный топлайн на узких экранах (default: false)
@@ -43,11 +43,11 @@ export default function() {
     enableAdBlock: false, // Включить скипт проверки подписки Rambler AdBlock
     theme: { // Кастомизировать расцветку топлайна
       logoColor: null, // Цвет логотипа, иконки логина, иконки бургера\крестика (default: #315efb)
-      fontColor: null, // Общий цвет текста и ссылок в топлайна (default: #494e59)
-      fontColorHover: null, // Цвет для hover-ссылок (default: #315efb)
-      backgroundColor: null, // Цвет фона топлайна, дропдауна и юзер-дропдауна (default: #fff)
-      borderColor: null, // Цвет бордера топлайна и дропдауна (default: #e8e8e8)
-      iconsColor: null, // Цвет икононки 'еще проекты' (default: #b0b0b0) и фона нотификации 'непрочитанных писем' (default: #315efb)
+      fontColor: '#ffffff', // Общий цвет текста и ссылок в топлайна (default: #494e59)
+      fontColorHover: 'rgba(255, 255, 255, 0.4)', // Цвет для hover-ссылок (default: #315efb)
+      backgroundColor: '#343b4c', // Цвет фона топлайна, дропдауна и юзер-дропдауна (default: #fff)
+      borderColor: '#343b4c', // Цвет бордера топлайна и дропдауна (default: #e8e8e8)
+      iconsColor: '#8d96b2', // Цвет икононки 'еще проекты' (default: #b0b0b0) и фона нотификации 'непрочитанных писем' (default: #315efb)
       dropDownBorderColor: null, // Цвет бордера в юзер-дропдауне (default: #edeef3)
       dropDownFooterColor: null, // Цвет текста и ссылок в юзер-дропдауне (default: rgba(#262626, 0.6))
       dropDownFooterColorHover: null, // Цвет hover-ссылок в юзер-дропдауне (default: rgba(#262626, 1))
@@ -58,8 +58,8 @@ export default function() {
     testing: false, // Активация панели тестирования параметров топлайна (default: false)
     breakpoints: { // брейкпоинты для переключения топлайна с шириной экрана
       viewports: { // ширина экрана (ниже дефолтные значения)
-        large: 1280,
-        medium: 1024,
+        large: 1279,
+        medium: 1023,
         small: 718
       },
       widths: { // ширина .rambler-topline__inner

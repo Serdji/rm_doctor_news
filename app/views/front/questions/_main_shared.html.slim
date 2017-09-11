@@ -1,0 +1,32 @@
+- cache_desktop [:most_discussing_questions, :shared], expires_in: 1.minute do
+  - questions = application_facade.most_discussing_questions(5, size_force: true)
+  - best_questions = questions_facade.best_questions(questions.map(&:id))
+  .news-common.js-question-ask-question
+    .news-common__title Популярные вопросы
+    .news-common__grid._media-mobile-grid
+
+      .mini-questions
+
+        .mini-questions__box
+          = render partial: 'front/questions/main_shared_question', collection: questions[0..1], as: :question
+          = render 'front/questions/question_ask'
+          = render 'front/questions/main_shared_question', question: questions[3]
+
+
+        #native2._native2-news
+        = render 'front/questions/main_shared_question', question: questions[4]
+        = render 'front/questions/main_shared_question', question: questions[2]
+
+      .news-common__column._media-mobile-column
+        = render 'front/questions/most_read', questions: best_questions
+
+    ._button-wrapper
+      a.news-common__button._button-dark-blue href=voprosy_path
+        | Больше вопросов
+        ._button-dark-blue-icon
+          = svg name: 'combined-shape-copy-9', klass: "_button-dark-blue-icon-svg"
+
+    #listing_spec
+
+    ._media-mobile-size
+      = render 'front/questions/most_read', questions: best_questions, title_lenght: 200

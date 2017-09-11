@@ -44,6 +44,7 @@ export default () => {
           this.removeAttribute('disabled');
           return json;
         } else {
+          this.removeAttribute('disabled');
           return json.then(responseError => {
             let error = Error(status);
             error.errors = responseError.errors;

@@ -1,0 +1,7 @@
+.you-interested
+  .you-interested__title Вас заинтересует
+  - news_facade.interesting.each do |news|
+    a.you-interested__card href=news.local_path
+      .you-interested__img style="background-image: url('#{news.image_url(:small)}')"
+      .you-interested__content
+        span == news.title_with_nbsp

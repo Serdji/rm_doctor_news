@@ -29,10 +29,6 @@ class Admin::SeoController < Admin::ApplicationController
     )
   end
 
-  def get_object
-    @seo || find_seo
-  end
-
   def find_seo
     @seo ||= Seo.find(params[:id])
   end

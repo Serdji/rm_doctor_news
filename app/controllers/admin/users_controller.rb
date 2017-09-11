@@ -1,6 +1,4 @@
 class Admin::UsersController < Admin::ApplicationController
-  include Concerns::Loggable
-
   before_action :find_user, only: [:edit, :update]
 
   add_breadcrumb :users, path: proc { admin_users_path }
@@ -39,10 +37,6 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   private
-
-  def get_object
-    @user || find_user
-  end
 
   def user_params
     params = self.params.require(:user)

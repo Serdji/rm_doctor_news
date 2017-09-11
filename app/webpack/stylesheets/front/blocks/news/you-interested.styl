@@ -1,5 +1,10 @@
 .you-interested
-  margin-bottom space
+  margin-top 5px
+  margin-bottom 15px
+  width 780px
+  overflow hidden
+  @media(max-width: max-width)
+    width 615px
   &__title
     margin-bottom space
     font-family CorsicaRamblerLX
@@ -11,10 +16,16 @@
 
   &__card
     font-size 1px
-    margin-bottom 15px
+    margin-bottom space
     margin-right 15px
-    &:nth-last-child(1)
+    display block
+    float left
+    &:nth-last-child(1),
+    &:nth-last-child(2)
       margin-bottom 0
+    @media(max-width: max-width)
+      &:nth-last-child(2)
+        margin-bottom space
 
     &:visited
       .you-interested__content
@@ -31,11 +42,18 @@
     vertical-align top
     height 90px
     transition transAll
+    @media(max-width: max-width)
+      height 125px
 
   &__img
     width 135px
+    background-size cover
+    background-position 50%
+    @media(max-width: max-width)
+      width 190px
 
   &__content
+    padding-top 4px
     padding-left 15px
     width 240px
     box-sizing border-box
@@ -45,5 +63,9 @@
     line-height 1.36
     text-align left
     color #262626
-    span
-      textEllipsisNumberLines(3, 54px)
+    max-height 60px
+    overflow hidden
+    @media(max-width: max-width)
+      max-height 69px
+      font-size 17px
+      width 375px

@@ -58,4 +58,8 @@ class Front::ApplicationController < ApplicationController
   # NOTE: disable paper trail log
   def user_for_paper_trail
   end
+
+  def render_validation_errors(errors)
+    render json: { errors: errors }, status: :unprocessable_entity
+  end
 end

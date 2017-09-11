@@ -31,8 +31,12 @@ class Admin::TagForm
     @weight = value.to_i if value
   end
 
+  def is_published=(value)
+    @is_published = ActiveRecord::Type::Boolean.new.cast(value)
+  end
+
   def linked_tags
-    tags = Qa::Tag.where(id: linked_tag_ids).all
+    tags = Qa::Tag.where(filter: { id: linked_tag_ids }).all
     Qa::Tag.tags_for_select(tags)
   end
 
@@ -58,10 +62,10 @@ class Admin::TagForm
 
   def persist!
     tag_attributes = TAG_ATTRIBUTES.map do |name|
-      [name, send(name)] if send(name).present?
+      [name, send(name)] unless name == 'id'
     end.compact
 
-    tag = Qa::Tag.new
+    tag = persisted? ? Qa::Tag.find(id) : Qa::Tag.new
     tag.assign_attributes(tag_attributes.to_h)
     tag.save
 

@@ -19,6 +19,7 @@ Eye.application 'doctor.rambler.ru' do
     group 'resque' do
       resque_process(:search_index, 1..2)
       resque_process(:news_processing, 3..4)
+      resque_process(:news_opengraph_processing, 5..6)
     end
   else
     group 'web' do

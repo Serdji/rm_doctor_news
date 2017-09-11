@@ -6,6 +6,12 @@ body
   -ms-backface-visibility     hidden
   &._off-scroll
     overflow hidden
+  &._space-top-line
+
+  &._question
+    @media(max-width: max-width)
+      min-width 1000px
+
 
 ul,
 ol
@@ -19,11 +25,13 @@ a
   text-decoration none
 
 header
-  height 120px
   background blockBack
   padding-top 25px !important
   box-sizing border-box
   border-bottom 1px solid rgba(141,150,178,.2)
+
+.menu
+  margin-bottom 1px
 
 .wrapper
   width 1275px
@@ -35,27 +43,30 @@ header
     width 1000px
     padding 0 35px
   @media(max-width: min-width)
-    width 782px
+    width 768px
     padding 0 76px
+  &._header
+    @media(max-width: max-width)
+      width 100%
+      padding 0 25px
   &._adaptive_none_tablet
     @media(max-width: min-width)
       width 1000px
       padding 0 35px
       &._billboard
         padding 0 15px
+
   &._billboard
     @media(max-width: max-width) and (min-width: min-width)
       padding 0 15px
-  &._header
-    padding 0
-    width 1245px
     @media(max-width: max-width)
       width 965px
     @media(max-width: min-width)
-      width 706px
+      width 100%
       &._adaptive_none_tablet
         width 965px
-
+  &._billboard
+    padding 0
 
 .column-block-header
   centerBlock()
@@ -71,7 +82,7 @@ header
     padding-left 0
 
 main
-  padding-top 18px !important
+  padding-top 15px !important
   padding-bottom 15px !important
   background #ffffff
 
@@ -162,7 +173,4 @@ footer
 div.mce-edit-area
   padding-bottom 1px
 
-.topline-wrapper
-  height 38px
-  background blockBack
 

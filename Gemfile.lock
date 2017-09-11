@@ -246,7 +246,7 @@ GEM
       activesupport (>= 4.1.0)
     hashdiff (0.3.0)
     hashie (3.5.5)
-    her (0.8.2)
+    her (0.8.6)
       activemodel (>= 3.0.0, <= 6.0.0)
       activesupport (>= 3.0.0, <= 6.0.0)
       faraday (>= 0.8, < 1.0)
@@ -288,6 +288,7 @@ GEM
     nio4r (2.0.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
+    open_uri_redirections (0.2.1)
     orm_adapter (0.5.0)
     parser (2.3.1.2)
       ast (~> 2.2)
@@ -537,10 +538,11 @@ DEPENDENCIES
   faraday_middleware
   flamegraph
   font-awesome-rails
-  her
+  her (~> 0.8.6)
   jquery-rails
   momentjs-rails (>= 2.9.0)
   newrelic_rpm
+  open_uri_redirections
   pg (~> 0.18)
   prometheus-client
   pry-byebug
@@ -551,6 +553,7 @@ DEPENDENCIES
   ransack (~> 1.8.0)
   redis-rails
   redis-session-store
+  request_store
   resque
   rid!
   rmagick

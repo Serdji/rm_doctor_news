@@ -1,6 +1,4 @@
 class Admin::QuestionsController < Admin::ApplicationController
-  include Concerns::Loggable
-
   decorates_assigned :questions, with: Admin::QuestionDecorator
 
   before_action :find_question, only: [:update, :edit, :complaints]
@@ -30,12 +28,8 @@ class Admin::QuestionsController < Admin::ApplicationController
 
   private
 
-  def get_object
-    @question || find_question
-  end
-
   def find_question
-    @question ||= Qa::Question.find(params[:id], include: 'user,tags,complaints')
+    @question ||= Qa::Question.find(params[:id], include: 'user,tags,complaints', filter: { is_interesting: true })
     raise Admin::NotFoundError unless @question
     @question
   end

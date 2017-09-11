@@ -7,7 +7,7 @@ module Import
         VERSIONS = {
           main: [375, 245],
           small: [135, 90],
-          detail: [765, 425]
+          detail: [615, 400]
         }.freeze
 
         attribute :description, String

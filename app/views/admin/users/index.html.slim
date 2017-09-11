@@ -1,0 +1,62 @@
+- if current_employee.has_role?(:superuser)
+  - content_for(:head_buttons) do
+    = form_tag upload_csv_admin_users_path, multipart: true, class: 'form-inline' do
+      .form-group>
+        = file_field_tag :csv, class: 'form-control hidden'
+        = label_tag :csv, class: 'btn btn-default' do
+          i> class="fa fa-upload" aria-hidden="true"
+          span Выберите файл
+
+      .form-group
+        = submit_tag 'Загрузить', class: 'btn btn-primary'
+
+= render 'admin/shared/head'
+
+.nav.navbar.navbar-default
+  = form_for [:admin, @search], url: admin_users_path, method: :get, html: { class: 'navbar-form navbar-left' } do |f|
+    .form-group
+      = f.label :first_name
+      = f.text_field :first_name, class: 'form-control'
+
+    .form-group
+      = f.label :last_name
+      = f.text_field :last_name, class: 'form-control'
+
+    .form-group
+      - attributes = { class: 'form-control', data: { placeholder: 'Выберите статус' } }
+      = f.select :user_type, UserFilter.user_types, { include_blank: true }, attributes
+
+    - if current_employee.has_role?(:superuser)
+      .form-group
+        = f.label :email
+        = f.text_field :email, class: 'form-control'
+
+    = f.submit t('label.search'), class: 'btn btn-default'
+
+table.table.table-hover
+  thead
+    tr
+      th = qa_sort_link(:id)
+      th ФИО
+      th = qa_sort_link(:questions_count)
+      th = qa_sort_link(:answers_count)
+      th = qa_sort_link(:is_sentry)
+
+  tbody.middle-vertical-align
+    - @users.each do |user|
+      tr
+        td = user.id
+        - if can? controller_name, 'edit'
+          td = link_to user.full_name, edit_admin_user_path(user)
+        - else
+          td = user.full_name
+        td class=('color-light-grey' if user.questions_count.zero?) = user.questions_count
+        td class=('color-light-grey' if user.answers_count.zero?) = user.answers_count
+        td
+          - if user.is_sentry?
+            i.color-green class="fa fa-check" aria-hidden="true"
+          - else
+            i.color-red class="fa fa-times" aria-hidden="true"
+
+.text-center
+  = will_paginate(@users, renderer: BootstrapPagination::Rails, param_name: 'page[number]')

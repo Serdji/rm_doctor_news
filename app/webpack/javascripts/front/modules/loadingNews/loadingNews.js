@@ -9,12 +9,19 @@ export default () => {
 
   loadingNewsButton.addEventListener('click', loading );
 
-  dataPublished(qsa('.js-data-published-news'));
+  dataPublished(qsa('.js-data-published-news[data-published-date]'));
 
   function loading() {
-    // Забераем у последний новости дату публикации
-    let publishedDates = qsa('.js-data-published-news');
-    let date           = publishedDates[publishedDates.length - 1].dataset.publishedDate;
+    let from, url;
+
+    let freshNews = qsa('.js-data-published-news[data-fresh]')
+    let restNews = qsa('.js-data-published-news[data-published-date]');
+
+    if (restNews.length > 0) {
+      from = restNews[restNews.length - 1].dataset.publishedDate;
+    } else {
+      from = freshNews.length;
+    }
 
     //если есть реклама то загружаем 17 новостей, иначе 18
     if (firstLoad && document.body.offsetWidth > 1024) {
@@ -27,7 +34,11 @@ export default () => {
     // Вешаем троиточия загрузки
     this.classList.add('_loading-active');
     // Забераем у кнопми url
-    let url = `/news/load_more.json?from=${date}&limit=${limit}`;
+    if (restNews.length > 0) {
+      url = `/news/load_more.json?from=${from}&limit=${limit}`;
+    } else {
+      url = `/news/load_more_fresh.json?from=${from}&limit=${limit}`;
+    }
     // Шлем запрос на сервер
     fetch(url, { method: 'GET' })
       .then((response) => {
@@ -49,7 +60,8 @@ export default () => {
         loadingNewsColumn.insertAdjacentHTML('beforeEnd', data.join(' '));
         // Открыть колонку на высоту обертки
         let wrapperHeight = loadingNewsColumn.offsetHeight;
-        loadingNewsWrapperColumn.style.cssText = `height: ${wrapperHeight}px`;
+        let spaceBottomNewsCard = 14;
+        loadingNewsWrapperColumn.style.cssText = `height: ${wrapperHeight - spaceBottomNewsCard}px`;
         // Убираем троиточие
         this.classList.remove('_loading-active');
         dataPublished(qsa('.js-data-published-news'));

@@ -1,7 +1,10 @@
 class Qa::Complaint < Qa::Base
   belongs_to :user, class_name: 'Qa::User'
 
-  validates :comment, presence: true
+  validates :comment, presence: true, on: :admin
+  validates :body, presence: true, on: :front
+
+  loggable :update
 
   def answer?
     complainable_type == 'Answer'
@@ -13,8 +16,8 @@ class Qa::Complaint < Qa::Base
 
   def answer
     return unless answer?
-    @answer ||= if complainable_attrs
-                  Qa::Answer.new(complainable_attrs)
+    @answer ||= if has_complainable?
+                  Qa::Answer.new(complainable)
                 else
                   Qa::Answer.find(complainable_id)
                 end
@@ -22,8 +25,8 @@ class Qa::Complaint < Qa::Base
 
   def question
     return unless question?
-    @question ||= if complainable_attrs
-                    Qa::Question.new(complainable_attrs)
+    @question ||= if has_complainable?
+                    Qa::Question.new(complainable)
                   else
                     Qa::Question.find(complainable_id)
                   end
@@ -31,7 +34,7 @@ class Qa::Complaint < Qa::Base
 
   private
 
-  def complainable_attrs
-    complainable['attributes'].merge(id: complainable['id']) if @attributes.key? :complainable
+  def has_complainable?
+    @attributes.key? :complainable
   end
 end

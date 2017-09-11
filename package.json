@@ -7,17 +7,11 @@
     "test": "test"
   },
   "scripts": {
-    "dev:front": "NODE_ENV=developmentFront webpack-dev-server --progress --inline --port 8090 --host 0.0.0.0",
-    "dev:f": "npm run dev:front",
-    "build:front": "NODE_ENV=productionFront webpack -p --colors",
-    "build:f": "npm run build:front",
-    "dev:mobile": "NODE_ENV=developmentMobile webpack-dev-server --progress --inline --port 8090 --host 0.0.0.0",
-    "dev:m": "npm run dev:mobile",
-    "build:mobile": "NODE_ENV=productionMobile webpack -p --colors",
-    "build:m": "npm run build:mobile",
+    "dev": "NODE_ENV=developmentFront webpack-dev-server --progress --inline --port 8090 --host 0.0.0.0",
     "clean": "rm -rf public/assets",
     "clean_all": "npm run clean && rm -rf node_modules",
-    "build": "npm run build:m && npm run build:f"
+    "build": "NODE_ENV=productionFront webpack -p --colors",
+    "dev:svg": "npm run clean && npm run build && npm run dev"
   },
   "author": "Rambler Digital Solutions",
   "license": "ISC",

@@ -35,10 +35,6 @@ class Admin::EmployeesController < Admin::ApplicationController
 
   private
 
-  def get_object
-    @employee || find_employee
-  end
-
   def find_employee
     @employee ||= Employee.find(params[:id])
   end

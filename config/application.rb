@@ -9,6 +9,9 @@ Bundler.require(*Rails.groups)
 middlewares = File.expand_path('../../app/middlewares/**/*.rb', __FILE__)
 Dir[middlewares].map { |path| require path }
 
+# NOTE: config must be loaded after dotenv
+require 'config'
+
 module Education
   class Application < Rails::Application
     config.rambler_id.avatar_token = 'df41b4ea0d00bf894d9d4ef377ced0da'
@@ -34,7 +37,8 @@ module Education
     config.action_view.sanitized_allowed_tags = %w(strong a b em i u sub sup img br)
     config.action_view.sanitized_allowed_attributes = %w(src alt rel href height width)
 
-    Rails.application.config.cache_store = :redis_store, RedisFactory.get_config_for(:cache)
+    config.redis_store = RedisFactory.build_connection_for(:cache)
+    config.cache_store = :redis_store, RedisFactory.get_config_for(:cache)
 
     config.middleware.use Prometheus::Client::Rack::Exporter
     config.middleware.use Prometheus::ExceptionsCollector

@@ -61,16 +61,8 @@ class Front::QuestionDecorator < Draper::Decorator
     end
   end
 
-  # TODO: move this from decorator!!!
   def answers
-    @answers ||= begin
-      options = {
-        page: { size: 500 }, include: 'user', sort: 'answers.created_at',
-        filter: { state: Qa::Answer::PUBLIC_STATES }
-      }
-      collection = View::Qa::Answer.get("questions/#{object.id}/answers", options)
-      Front::AnswerDecorator.decorate_collection(collection)
-    end
+    @answers ||= Front::AnswerDecorator.decorate_collection(object.answers)
   end
 
   def hide_more_answers?

@@ -1,0 +1,22 @@
+.tag__theme.js-tag-share.js-tag-ads.js-mini-theme
+  .tag__short-stripe: img src=tag.image_short_stripe_url
+  .tag__content
+    .tag__cover
+      a href=tag_path(slug: tag.slug)
+        img src=tag.image_thumb_with_shadow_url
+    = render 'front/questions/question_social'
+    .tag__title
+      a._hover-reference-blue.js-tag-share-title.js-tag-share-img data-title=tag.seo_title data-image=tag.image_url href=tag_path(slug: tag.slug)
+        = tag.name.truncate(35)
+
+  .tag__footer
+    .tag__footer__box-counter
+      .tag__icon
+        = svg name: 'question-blue', klass: 'tag__icon-svg'
+      span.tag__counter._question>
+        = tag.human_questions_counter
+    .tag__footer__box-counter
+      .tag__icon
+        = svg name: 'answers-blue', klass: 'tag__icon-svg'
+      span.tag__counter>
+        = tag.human_answers_counter

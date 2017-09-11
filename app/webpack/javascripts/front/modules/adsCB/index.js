@@ -12,6 +12,7 @@ import CONFARTTABLET     from './articleTabletAds';
 import CONFDESK          from './configDesktopAds';
 import CONFTABLET        from './configTabletAds';
 
+
 let height240x400        = false;
 
 

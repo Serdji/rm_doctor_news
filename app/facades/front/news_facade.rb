@@ -19,20 +19,9 @@ class Front::NewsFacade
     @interesting ||= item.interesting
   end
 
-  def interesting_left
-    @interesting_left ||= interesting[0..(interesting.size / 2 - 1)]
-  end
-
-  def interesting_right
-    @interesting_right ||= begin
-      size = interesting.size - interesting_left.size
-      interesting[-size..-1]
-    end
-  end
-
   def item
     @item ||= begin
-      item = ::News.find_by(external_id: params[:id])
+      item = ::News.with_images.find_by(external_id: params[:id])
       Front::NewsDecorator.decorate(item) if item
     end
   end
@@ -40,9 +29,10 @@ class Front::NewsFacade
   private
 
   def news
-    @news ||= begin
-      items = ::News.ordered.with_images.limit(NEWS_LIMIT).to_a
-      Front::NewsDecorator.decorate_collection(items)
-    end
+    @news ||= redis.zrangebyscore('news:fresh', 0, NEWS_LIMIT - 1)
+  end
+
+  def redis
+    @redis ||= Rails.application.config.redis_store
   end
 end

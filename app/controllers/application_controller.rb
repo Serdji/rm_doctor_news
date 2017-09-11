@@ -1,10 +1,4 @@
 class ApplicationController < ActionController::Base
-  include Concerns::Mobile
-
-  before_action do
-    response.headers['Vary'] = 'User-Agent' if mobile_version?
-  end
-
   # TODO: move this to AuthController
   def authenticity_token
     render json: { token: form_authenticity_token }

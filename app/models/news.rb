@@ -1,19 +1,17 @@
 class News < ActiveRecord::Base
   self.inheritance_column = nil
 
-  scope :ordered, -> { where.not(ordered_at: nil).order(ordered_at: :asc) }
+  scope :fresh, -> { order(published_date: :desc) }
+  scope :old, -> { order(published_date: :asc) }
+
   scope :with_images, -> { where.not(image_url: nil) }
-  scope :ordered_after, ->(date) { where('ordered_at > ?', date) }
 
-  scope :published_after, ->(date) {
-    order(published_date: :asc).where('published_date > ?', date)
-  }
+  scope :published_after, ->(date) { old.where('published_date > ?', date) }
+  scope :published_before, ->(date) { fresh.where('published_date < ?', date) }
 
-  scope :published_before, ->(date) {
-    order(published_date: :asc).where('published_date < ?', date)
-  }
-
-  before_create :setup_ordered_at
+  after_create_commit do
+    NewsOpengraphProcessingJob.perform(id)
+  end
 
   class << self
     def from_same_source(cluster_id:, limit:)
@@ -42,6 +40,10 @@ class News < ActiveRecord::Base
     Hashie::Mash.new(self[:resource])
   end
 
+  def opengraph
+    Hashie::Mash.new(self[:opengraph])
+  end
+
   def interesting
     @interesting ||= News::InterestingNewsBuilder.new(self).call
   end
@@ -54,10 +56,8 @@ class News < ActiveRecord::Base
     self.class.published_after(published_date)
   end
 
-  private
-
-  def setup_ordered_at
-    self.ordered_at = (Time.now.to_f * 1e7).to_i
+  def with_image?
+    image_url.present?
   end
 end
 

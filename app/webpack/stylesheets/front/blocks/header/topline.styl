@@ -1,0 +1,28 @@
+toplineHeight = 38px
+
+.topline
+  position relative
+  top toplineHeight * -1
+  transition all .5s ease-in-out
+  &._active
+    position fixed
+    top -35px
+    left 0
+    right 0
+    z-index 5
+    .menu-transformer__wrapper
+      top 0
+    .topline-wrapper
+      top 0
+    &:hover
+      top 0
+
+  .widget-sidebar
+    display none
+
+  &-wrapper
+    position relative
+    top toplineHeight
+    z-index 6
+    height toplineHeight
+    background blockBack

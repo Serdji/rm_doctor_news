@@ -12,4 +12,4 @@ export const titleError = qs('.pop-up-question__title-error');
 export const tagIdsError = qs('.pop-up-question__tag-ids-error');
 export const questionForm = qs('.js-question-form');
 export const selectQuestion = qs('#question_tag_ids');
-export const titleLength = qs('.js-max-length-counter');
+export const titleCounter = qs('.js-max-length-counter');

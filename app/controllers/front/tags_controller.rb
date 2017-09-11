@@ -7,8 +7,6 @@ class Front::TagsController < Front::ApplicationController
 
   def show
     @hide_ban_footer = true
-
-    return if mobile_version?
     @discussing_questions = tags_facade.discussing_questions
   end
 

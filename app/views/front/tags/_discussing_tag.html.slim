@@ -1,0 +1,16 @@
+.popular-themes__theme
+  .popular-themes__short-stripe: img src=tag.image_short_stripe_url
+  .popular-themes__content
+    a.popular-themes__title._hover-reference-blue data-title=tag.seo_title data-image=tag.image_url href=tag_path(slug: tag.slug)
+      = tag.name.truncate(50)
+    .popular-themes__question
+      .popular-themes__box-counter
+        .popular-themes__icon
+          = svg name: 'question-blue', klass: 'popular-themes__icon-svg'
+        span.popular-themes__counter._question>
+          = tag.human_questions_counter
+      .popular-themes__box-counter
+        .popular-themes__icon
+          = svg name: 'answers-blue', klass: 'popular-themes__icon-svg'
+        span.popular-themes__counter>
+          = tag.human_answers_counter

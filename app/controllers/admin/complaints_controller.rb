@@ -1,6 +1,4 @@
 class Admin::ComplaintsController < Admin::ApplicationController
-  include Concerns::Loggable
-
   decorates_assigned :complaints, :complaint, with: Admin::ComplaintDecorator
   before_action :find_object, only: [:update, :edit]
 
@@ -25,10 +23,6 @@ class Admin::ComplaintsController < Admin::ApplicationController
 
   private
 
-  def get_object
-    @complaint || find_object
-  end
-
   def find_object
     @complaint ||= Qa::Complaint.find(params[:id], include: 'user,complainable')
     raise Admin::NotFoundError unless @complaint
@@ -43,7 +37,7 @@ class Admin::ComplaintsController < Admin::ApplicationController
     @complaint.assign_attributes(complaint_params.to_h)
 
     respond_to do |format|
-      if @complaint.valid? && @complaint.save
+      if @complaint.valid?(:admin) && @complaint.save
         back_link = edit_admin_complaint_path(@complaint)
         success_save format, back_link, human_notice('success')
       else

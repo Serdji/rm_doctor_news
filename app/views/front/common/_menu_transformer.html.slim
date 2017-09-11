@@ -1,0 +1,20 @@
+.menu-transformer.js-menu-transformer
+  .menu-transformer__wrapper
+    .wrapper
+      .menu-transformer__transform.js-transform
+        span
+        .news-card__description-social.rambler-share.js-open-share.js-transform-social
+      .menu-transformer__transform.js-transform
+        h2 2
+      .menu-transformer__transform.js-transform
+        h2 3
+      .menu-transformer__content
+        .menu-transformer__logo
+          a.menu__rambler data-cerber-logo="logo_rambler" href="https://www.rambler.ru?utm_source=doctor&utm_content=head&utm_medium=logo&utm_campaign=self_promo"
+          a.menu__class href=(DomainFactory.url + '/') data-cerber-logo='logo_doctor'
+          = svg name: 'logo', klass: 'menu__logo-svg'
+        .menu-transformer__point
+          = render 'front/common/question_menu'
+        .menu-transformer__icon.js-menu-transformer-search
+          = svg name: 'search-hover', klass: 'menu-transformer__icon-svg';
+        input.menu-transformer__search.js-menu-transformer-search

@@ -2,16 +2,24 @@ class Front::ComplaintsController < Front::ApplicationController
   before_action :authenticate_user!, only: :create
 
   def create
-    complaint = Qa::Complaint.create(complaint_params.to_h)
+    @complaint = Qa::Complaint.new(complaint_params.to_h)
 
-    if complaint.response_errors.any?
-      render json: { errors: complaint.response_errors }, status: :unprocessable_entity
+    if @complaint.valid?(:front)
+      save
     else
-      render json: { status: :ok }, status: :created
+      render_validation_errors @complaint.errors.messages
     end
   end
 
   private
+
+  def save
+    if @complaint.save
+      render json: { status: :ok }, status: :created
+    else
+      render_validation_errors @complaint.response_errors
+    end
+  end
 
   def complaint_params
     params.require(:complaint).permit(

@@ -3,10 +3,7 @@
   margin-bottom 20px
   &._none-space
     margin-bottom 0
-  .question-common__name
-    font-family CorsicaRamblerLX
-    font-weight 500
-    color #262626
+
 
   &__title
     centerBlock()
@@ -51,9 +48,6 @@
        margin-top 15px
 
 
-    .mini-questions__counter,
-    .question-common__point
-      font-family Roboto, sans-serif
 
     &._media-desktop-column
       @media(max-width: max-width)
@@ -91,20 +85,16 @@
     centerBlock()
 
   &__button
-    width 180px
     height 35px
     margin 20px auto 0
-    &._themes-size
-      width 198px
-    &._ques-size
-      width 192px
-    &._earlier-size
-      width 244px
 
+    &-wrapper
+      display flex
 
     &._loading-active
       .news-common__button-loading
         display block
+        width 138px
       .news-common__button-text
         display none
 

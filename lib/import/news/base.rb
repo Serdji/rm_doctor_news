@@ -1,6 +1,8 @@
 module Import
   module News
     class Base
+      include Enumerable
+
       ENDPOINT = URI(
         'http://coolstream.rambler.ru/v1'
       )
@@ -38,6 +40,20 @@ module Import
       def call(options = {})
         path = self.class.const_get(:PATH)
         connection.get(path, params.merge(options)).body
+      end
+
+      def each
+        current_page = 1
+
+        loop do
+          result = call(page: current_page)
+          news = result.news
+
+          news.each { |n| yield n } if news.any?
+
+          break unless result.next_page
+          current_page += 1
+        end
       end
     end
   end

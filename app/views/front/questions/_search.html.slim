@@ -1,0 +1,51 @@
+script type="text/template" class="js-search-suggest-template"
+  <% if (questions.length > 0) { %>
+    .search-result__box
+      .search-result__title._box-title в вопросах
+      <% questions.forEach(function(question) { %>
+        - url = "<%= question.url %>".html_safe
+        a.search-result__item.js-search-question data-search-suggest="doctor::search::element_question" href=url
+          span <%= question.title %>
+      <% }) %>
+  <% } %>
+
+  <% if (tags.length > 0) { %>
+    .search-result__box
+      .search-result__title._box-title в темах
+      <% tags.forEach(function(tag) { %>
+        - url = "<%= tag.url %>".html_safe
+        - image_url = "<%= tag.image_url %>".html_safe
+        a.search-result__item.js-search-theme data-search-suggest="doctor::search::element_theme" href=url
+          img.search-result__icon src=image_url
+          span <%= tag.name %>
+      <% }) %>
+  <% } %>
+
+
+  .search-result-global
+    a.search-result__title.search-result-global__linck.js-search-linck data-href=search_serp_path(query: '', :_openstat => 'cl9kb2N0b3I7Ozs')
+      .search-result-global__icon
+        = svg name: 'search', klass: 'search-result-global__icon-svg'
+        = svg name: 'search-hover', klass: 'search-result-global__icon-svg _activ'
+      .search-result-global__all-result.js-search-result data-search-suggest="doctor::search::all_results"
+      .search-result-global__search-query <%= inputText %>
+    .search-result-global__in-internet
+      - url = "<%= novaGlobalUrl %>".html_safe
+      a._hover-reference-blue.js-search-search data-search-suggest="doctor::search::global_search" target="_blank" href=url в интернете
+
+.search.js-search
+  .search__select
+    .input-select
+      input.js-search-input data-search-suggest="doctor::search::search_enter" placeholder="Искать вопросы и темы"
+        .clear-input.js-clear-input._hidden data-search-suggest="doctor::search::cross_button"
+          = svg name: 'close', klass: "clear-input-svg"
+
+    .search-result.search-result_hidden
+
+  .search__botton._button-dark-blue.js-open-pop-up-ques.js-clear-button data-search-suggest="doctor::search::create_issue_button"
+    | Задать вопрос
+    ._button-dark-blue-icon
+      = svg name: 'combined-shape-copy-9', klass: "_button-dark-blue-icon-svg"
+  = render 'front/questions/pop_up_question'
+  = render 'front/questions/pop_up_complaint'
+

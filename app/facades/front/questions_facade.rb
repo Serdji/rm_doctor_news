@@ -39,7 +39,7 @@ class Front::QuestionsFacade
   def metapage
     @metapage ||= begin
       metapage = Metapage.qa.find_by(label: 'Вопросы')
-      Front::MetapageDecorator.decorate(metapage)
+      Front::MetapageDecorator.decorate(metapage) if metapage
     end
   end
 
@@ -66,7 +66,7 @@ class Front::QuestionsFacade
 
   def question
     @question ||= begin
-      options = { include: 'tags,user' }
+      options = { include: 'tags,answers,user' }
       question = View::Qa::Question.get("questions/#{params[:id]}", options)
       Front::QuestionDecorator.decorate(question) if question
     end

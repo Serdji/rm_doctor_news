@@ -5,6 +5,7 @@ git_source(:gitlab) { |repo| "https://gitlab.rambler.ru/#{repo}.git" }
 gem 'carrierwave', '~> 1.0.0'
 gem 'carrierwave-webdav', gitlab: 'a.pokhozhaev/carrierwave-webdav', branch: 'add-host-header'
 gem 'rmagick'
+gem 'open_uri_redirections'
 
 gem 'pg',          '~> 0.18'
 gem 'rails',       '~> 5.1.0.rc1'
@@ -57,16 +58,17 @@ gem 'will_paginate', gitlab: 'a.pokhozhaev/will_paginate', branch: 'gap'
 gem 'will_paginate-bootstrap'
 
 gem 'awesome_nested_set', '~> 3.1'
-gem 'config'
+gem 'config', require: false
 gem 'dotenv-rails'
 gem 'faker'
 gem 'sitemap_generator'
 gem 'sprockets-es6'
 gem 'whenever', require: false
-gem 'her'
+gem 'her', '~> 0.8.6'
 gem 'faraday-http-cache'
 gem 'faraday_middleware'
 gem 'virtus'
+gem 'request_store'
 
 group :development, :test do
   gem 'ruby-prof'

@@ -2,10 +2,10 @@
 
 
   &__title
-    margin-bottom 10px
+    margin-bottom 19px
 
     h1
-      margin 0 0 6px
+      margin 12px 0 8px 0
       font-family CorsicaRamblerLX
       font-weight 500
       font-size 30px
@@ -18,10 +18,9 @@
       font-family: Roboto;
       color #8d96b2
       -webkit-font-smoothing antialiased
-      margin 5px 1px 5px 0 !important
       a
         font-size 11px
-        line-height: 1.36;
+        line-height 1.36;
         color #315efb
         margin-right 4px
         transition  transAll
@@ -37,25 +36,30 @@
 
   &__sidebar
     width 300px
+    display flex
+    flex-direction column
 
 
   &__description
     display flex
     width 765px
     align-items flex-start
+    margin-bottom 15px
     @media(max-width: max-width)
       width 615px
       flex-direction column
+      margin-bottom 0
 
     &-img
       width 615px
-      margin-bottom 10px
+      @media(max-width: max-width)
+        margin-bottom 11px
 
       &-title
         margin 0 15px
         @media(max-width: max-width)
           margin 0
-          margin-bottom 10px
+          margin-bottom 5px
 
       &-title a
         &:hover
@@ -74,7 +78,7 @@
 
 
     &-social
-      margin-bottom 20px
+      margin-bottom 14px
 
 
     &-text
@@ -86,6 +90,7 @@
 
 
   &__article
+    margin-bottom 18px
     img
       display block
 
@@ -99,6 +104,14 @@
       font-size 18px
       color #262626
       line-height 28px
+      &:nth-child(1)
+        margin 0
+      &:nth-child(2)
+        margin-top 0
+      &:nth-last-child(5)
+        margin-bottom 25px
+      &:nth-last-child(4)
+        margin 0
     h2
       font-size 30px
       font-weight 500
@@ -189,56 +202,4 @@
     @media(max-width: max-width)
       width 615px
 
-  .rambler-share
-    div[data-rambler-share='vkontakte']
-      margin 5px 1px 5px 0 !important
-      span
-        border-color rgba(255, 255, 255, 0.2) !important
-        font-family Roboto !important
-        box-sizing border-box !important
-        height 15px !important
-        vertical-align middle !important
-        line-height 1.36 !important
-
-    div[data-rambler-share='facebook']
-      margin 5px 1px 5px 0 !important
-      span
-        border-color rgba(255, 255, 255, 0.2) !important
-        font-family Roboto !important
-        box-sizing border-box !important
-        height 15px !important
-        vertical-align middle !important
-        line-height 1.36 !important
-
-
-    div[data-rambler-share='livejournal']
-      margin 5px 1px 5px 0 !important
-      span
-        border-color rgba(255, 255, 255, 0.2) !important
-        font-family Roboto !important
-        box-sizing border-box !important
-        height 15px !important
-        vertical-align middle !important
-        line-height 1.36 !important
-
-
-    div[data-rambler-share='odnoklassniki']
-      margin 5px 1px 5px 0 !important
-      span
-        border-color rgba(255, 255, 255, 0.2) !important
-        font-family Roboto !important
-        box-sizing border-box !important
-        height 15px !important
-        vertical-align middle !important
-        line-height 1.36 !important
-
-
-    div[data-rambler-share='twitter']
-      margin 5px 1px 5px 0 !important
-      span
-        border-color rgba(255, 255, 255, 0.2) !important
-        font-family Roboto !important
-        box-sizing border-box !important
-        height 15px !important
-        vertical-align middle !important
-        line-height 1.36 !important
+  newsCardShare()

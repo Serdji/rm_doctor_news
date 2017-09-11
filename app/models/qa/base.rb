@@ -1,6 +1,7 @@
 class Qa::Base
-  include Her::JsonApi::Model
+  include Her::Model
   include Qa::Errorable
+  include Loggable
 
   class << self
     delegate :limit, to: :scoped

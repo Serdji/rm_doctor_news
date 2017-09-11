@@ -3,3 +3,4 @@ async:  true
 host: 'https://doctor.rambler.ru'
 webdav_host: 'https://doctor.rambler.ru'
 search: true
+image_resizer_token: <%= ENV['IMAGE_RESIZER_TOKEN'] %>

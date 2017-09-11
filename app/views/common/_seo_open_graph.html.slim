@@ -5,12 +5,11 @@
   meta property="og:type" content="article" /
   meta property="og:title" content=content_for(:title) /
   meta property="og:description" content=content_for(:description) /
-  - if content_for?(:og_image)
-    meta property="og:image" content=content_for(:og_image) /
-    meta property="twitter:image" content=content_for(:og_image) /
-  - else
-    meta property="og:image" content=front_default_opengraph /
-    meta property="twitter:image" content=front_default_opengraph /
+
+  - image = content_for?(:og_image) ? content_for(:og_image) : front_default_opengraph
+  meta property="og:image" content=image /
+  - twitter = content_for?(:og_twitter_image) ? content_for(:og_twitter_image) : image
+  meta property="twitter:image" content=twitter /
 
   meta property="twitter:description" content=content_for(:description) /
   meta name="twitter:card" content="summary" /

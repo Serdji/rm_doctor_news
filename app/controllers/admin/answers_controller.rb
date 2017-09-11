@@ -1,6 +1,4 @@
 class Admin::AnswersController < Admin::ApplicationController
-  include Concerns::Loggable
-
   before_action :find_answer, only: [:update, :edit, :complaints]
 
   decorates_assigned :answers, :answer, with: Admin::AnswerDecorator
@@ -27,10 +25,6 @@ class Admin::AnswersController < Admin::ApplicationController
   def complaints; end
 
   private
-
-  def get_object
-    @answer || find_answer
-  end
 
   def find_answer
     @answer ||= Qa::Answer.find(params[:id], include: 'complaints')

@@ -108,18 +108,6 @@ ru:
     question:
       <<: *shared
 
-    textbook:
-      draft:              Черновик
-      published:          Опубликовано
-      part_published:     Опубликовано частично
-      unpublished:        Снято с публикации
-      published_not_good: Опубликовано, но требует доработки
-    paragraph:
-      draft:              Черновик
-      published:          Опубликовано
-      unpublished:        Снято с публикации
-      published_not_good: Опубликовано, но требует доработки
-
   label:
     change_password:   Изменение пароля
     choose_blocks:     Выберите блоки
@@ -212,13 +200,13 @@ ru:
         <<: *defaults
         name:                Название
         weight:              Сортировка
-        linked_tag_ids:      Связанные темы
+        linked_tag_ids:      Дочерние темы
         is_published:        При снятии флажка, вопросы, которые привязаны только к этой теме снимутся с публикации
       admin/tag_form:
         <<: *defaults
         name:                Название
         weight:              Сортировка
-        linked_tag_ids:      Связанные темы
+        linked_tag_ids:      Дочерние темы
         is_published:        При снятии флажка, вопросы, которые привязаны только к этой теме снимутся с публикации
       qa/answer:
         <<: *defaults
@@ -295,7 +283,6 @@ ru:
       dashboard:   Главная
       employee:    Сотрудники
       metapage:    SEO-информация
-      page:        Страницы
       role:        Роли
       seo:         SEO
       redirect:    Редирект
@@ -326,17 +313,6 @@ ru:
         seo:
           keywords:   Ключевые слова
 
-      author:
-        <<: *defaults
-        full_name:     ФИО
-        description:   Описание
-        slug:          Чпу
-        is_published:  При снятии флажка, все связанные учебники и решения снимутся с публикации
-
-      author/photo:
-        photo: Фото
-        _destroy: Удалить
-
       employee:
         <<: *defaults
         password:              Пароль
@@ -349,9 +325,6 @@ ru:
         title:       Заголовок страницы
         description: Описание
         metapages_type_id: Раздел сайта
-
-      page:
-        <<: *defaults
 
       seo_link:
         <<: *defaults

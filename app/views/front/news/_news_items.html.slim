@@ -1,0 +1,8 @@
+a.news-items.js-news-items-abs.js-loading-news-items href=news.local_path
+  img.news-items__img src="#{news.small_image_url}"
+  .news-items__content
+    .news-items__title == news.title_with_nbsp
+    - if local_assigns.key?(:fresh)
+      .news-common__data.js-data-published-news._hidden data-fresh="true"
+    - else
+      .news-common__data.js-data-published-news._hidden data-published-date=news.published_date.to_i

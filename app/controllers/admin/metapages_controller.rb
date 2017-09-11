@@ -1,6 +1,4 @@
 class Admin::MetapagesController < Admin::ApplicationController
-  # include Admin::Concerns::Resourcable
-
   decorates_assigned :metapages, with: Admin::MetapageDecorator
   decorates_assigned :metapage, with: Admin::MetapageDecorator
 
@@ -37,10 +35,6 @@ class Admin::MetapagesController < Admin::ApplicationController
       flash.now['danger'] = t("flashes.#{action_name}.danger")
       render @metapage.persisted? ? :edit : :new
     end
-  end
-
-  def get_object
-    @metapage || find_metapage
   end
 
   def find_metapage

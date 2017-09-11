@@ -10,11 +10,16 @@
     &:visited
       .news-day__title
         color #676767
+        @media(max-width: max-width)
+          color #ffffff
     &:hover
       .news-day__img
         opacity 0.9
       .news-day__title
         color #315EFB
+        @media(max-width: max-width)
+          opacity 1
+          color #ffffff
 
   &__img
     position relative
@@ -53,10 +58,11 @@
 
     .news-day__title
       margin-top auto
-      margin-bottom 20px
       font-family Georgia
       font-size 30px
       line-height 1.33
+      @media(max-width: max-width)
+        opacity .8
 
     .news-common__data
       margin-top 0
@@ -80,4 +86,7 @@
     color #262626
     font-family CorsicaRamblerLX
     font-weight 500
-    textEllipsisNumberLines(3, 95px)
+    max-height 120px
+    overflow hidden
+    @media(max-width: max-width)
+      color #ffffff

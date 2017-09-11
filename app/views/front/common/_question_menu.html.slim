@@ -1,0 +1,8 @@
+.question-menu
+    .question-menu__points
+      a.question-menu__point class=(%w(home news).include?(controller_name) ? '_activ' : '') href=root_path
+        span Новости здоровья
+      a.question-menu__point class=(controller_name == 'questions' ? '_activ' : '') href=voprosy_path
+        span Вопросы
+      a.question-menu__point class=(controller_name == 'tags' ? '_activ' : '') href=temy_path
+        span Темы

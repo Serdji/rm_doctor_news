@@ -14,11 +14,11 @@ export default () => {
     },
     'counters': true,
     'buttons': [
-      'vkontakte',
       'facebook',
+      'vkontakte',
       'odnoklassniki',
-      'livejournal',
-      'twitter'
+      'twitter',
+      'livejournal'
     ],
     vkontakte: {
       utm: 'utm_source=vksharing&utm_medium=social'
@@ -45,7 +45,7 @@ export default () => {
       // Добавляем общие стили в конфиг
       Object.assign(options , {
         'style': {
-          'buttonHeight': 36,
+          'buttonHeight': 35,
           'iconSize': 16,
           'borderRadius': 0,
           'counterSize': 11
@@ -53,6 +53,7 @@ export default () => {
       });
       RamblerShare.init('.js-description-social', options);
       RamblerShare.init('.js-article-social', options);
+      RamblerShare.init('.js-transform-social', options);
 
     }
 

@@ -17,10 +17,11 @@ class AnswerFilter < BaseFilter
     result[:has_complaints] = true if with_complaints?
     result[:best_answer] = false if without_best_answer?
 
+    result['with_user'] = true if fake_users? || real_users?
     result['users.is_fake'] = true if fake_users?
     result['users.is_fake'] = false if real_users?
 
-    relation.where(filter: result, include: 'user')
+    relation.where(filter: result)
   end
 
   def normalize_attributes!(attributes)

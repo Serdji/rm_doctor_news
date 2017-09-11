@@ -4,6 +4,16 @@ class Employee < ActiveRecord::Base
 
   belongs_to :role
 
+  class << self
+    def current
+      RequestStore.store[:current_employee]
+    end
+
+    def current=(employee)
+      RequestStore.store[:current_employee] = employee
+    end
+  end
+
   def has_role?(role_slug)
     role.name == role_slug.to_s
   end

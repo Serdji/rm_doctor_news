@@ -1,0 +1,30 @@
+- if question
+  .mini-shared-questions
+    .question-common__header
+      .question-common__user
+        .question-common__avatar style=question.user_avatar_style
+        .question-common__name = question.user&.full_name
+      .question-common__data
+        span.js-data-published data-published-at=question.iso8601
+
+    .mini-shared-questions__content
+      .mini-shared-questions__title
+        a._hover-reference-blue data-title=question.seo_title href=question.path
+          = question.title.truncate(local_assigns.fetch(:title_lenght, 130))
+        .mini-shared-questions__wrapper
+          .mini-shared-questions__box
+            .mini-shared-questions__icon
+              = svg name: 'answers-blue', klass: 'mini-shared-questions__icon-svg'
+            span.mini-shared-questions__counter= question.answers_counter
+
+      .question-common__hash._hide.js-hash-tags
+        - question.tags.each do |tag|
+          a.question-common__point.js-point-tags href=tag_path(slug: tag.slug)
+            span = tag.name
+
+      .mini-shared-questions__footer
+        ._button-wrapper
+          a.mini-shared-questions__button._button-grey href=question.path
+            | Читать дальше
+            ._button-grey-icon
+              = svg name: 'combined-shape-copy-9', klass: "_button-grey-icon-svg"

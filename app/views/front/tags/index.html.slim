@@ -1,0 +1,13 @@
+.js-page-temys-ads
+= render 'common/seo_attributes', object: tags_facade.metapage
+- content_for :head_title, tags_facade.metapage.seo_title
+
+- content_for :relation_links, relation_links(tags_facade.tags)
+
+.tag.js-tags
+  - tags = tags_facade.tags
+  = render partial: 'front/tags/various_tag', collection: tags, as: :tag
+  - if tags.try(:[], 1)
+    = render 'front/tags/big_theme', tag: tags[1], klass: '_hidden js-last-big-theme'
+
+.pagination-wrapper.js-temy-pag-ads = pagination(tags_facade.tags.object)

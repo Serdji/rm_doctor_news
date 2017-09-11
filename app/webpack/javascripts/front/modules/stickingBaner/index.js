@@ -9,8 +9,8 @@ export default () => {
     // Прилипание на странице новостей
     if (firstColumnChild && lastColumnChild){
 
-      stickyBlock('.js-float-first-column-child', '.js-float-wrapper', true, 15);
-      stickyBlock('.js-float-last-column-child', '.js-float-wrapper', true);
+      stickyBlock('.js-float-first-column-child', '.js-float-wrapper', false, 80);
+      // stickyBlock('.js-float-last-column-child', '.js-float-wrapper', true);
     }
 
     // Прилипание на страницах вопросов и тем
@@ -19,8 +19,8 @@ export default () => {
       let leftSidebarH  = leftSidebar.offsetHeight + parseInt(getComputedStyle(leftSidebar).marginBottom, 10);
 
       let rightSidebarH = rightSidebar.offsetHeight + parseInt(getComputedStyle(rightSidebar).marginBottom, 10);
-      if ( wrapperH > leftSidebarH ) stickyBlock('.js-float-left-sidebar', '.js-float-wrapper');
-      if ( wrapperH > rightSidebarH ) stickyBlock('.js-float-right-sidebar', '.js-float-wrapper', true);
+      if ( wrapperH > leftSidebarH ) stickyBlock('.js-float-left-sidebar', '.js-float-wrapper', false, 60);
+      // if ( wrapperH > rightSidebarH ) stickyBlock('.js-float-right-sidebar', '.js-float-wrapper', true);
     }
 
   }

@@ -10,6 +10,7 @@ class Admin::ApplicationController < ApplicationController
   helper_method :can?
 
   before_action :authenticate_employee!
+  before_action :set_current_employee
   before_action :check_controllers_credentials
 
   add_breadcrumb :dashboard, path: proc { admin_root_path }
@@ -35,6 +36,10 @@ class Admin::ApplicationController < ApplicationController
   end
 
   private
+
+  def set_current_employee
+    RequestStore.store[:current_employee] = current_employee
+  end
 
   def redirect_to_success(path)
     redirect_to path, success: t("flashes.#{action_name}.success")

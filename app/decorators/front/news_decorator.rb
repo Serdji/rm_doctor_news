@@ -1,5 +1,6 @@
 class Front::NewsDecorator < Draper::Decorator
   include Iso8601Dates
+  include NbspReplacer
 
   delegate_all
 
@@ -17,12 +18,20 @@ class Front::NewsDecorator < Draper::Decorator
     image_url(:detail)
   end
 
+  def twitter_image_url
+    Pathname.new(AssetHostFactory.domain).join opengraph[:twitter] if opengraph[:twitter]
+  end
+
+  def opengraph_image_url
+    Pathname.new(AssetHostFactory.domain).join opengraph[:default] if opengraph[:default]
+  end
+
   def local_path
     slug = path.split('/').last[/(?<=\d-).+/]
     Education::Url.news_show_path(slug: slug, id: external_id)
   end
 
-  def news_source_link(title = 'Рамблер/Доктор')
+  def news_source_link(title = 'Рамблер/доктор')
     pitem.url.present? ? h.link_to(title, pitem.url, target: '_blank') : title
   end
 
@@ -40,15 +49,19 @@ class Front::NewsDecorator < Draper::Decorator
 
   def seo_title(length = 120, omission: '')
     truncated_title = long_title.truncate(length, omission: omission)
-    "#{truncated_title} — Рамблер/Доктор"
-  end
-
-  def title_truncated(length = 60)
-    title.truncate(length)
+    "#{truncated_title} — Рамблер/доктор"
   end
 
   def seo_description
     annotation
+  end
+
+  def long_title_with_nbsp
+    replace_spaces_with_nbsp(long_title)
+  end
+
+  def title_with_nbsp
+    replace_spaces_with_nbsp(title)
   end
 
   def safe_text

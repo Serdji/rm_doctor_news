@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815124722) do
+ActiveRecord::Schema.define(version: 20170828132007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -199,7 +199,6 @@ ActiveRecord::Schema.define(version: 20170815124722) do
     t.string "image_url"
     t.json "image"
     t.json "pitem"
-    t.json "topics", null: false
     t.datetime "mark_modified_date"
     t.datetime "created_date"
     t.datetime "modified_date"
@@ -207,11 +206,13 @@ ActiveRecord::Schema.define(version: 20170815124722) do
     t.integer "topic_id", null: false
     t.string "topic_alias", null: false
     t.string "topic_name", null: false
+    t.json "topics", null: false
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.json "resource", default: {}, null: false
+    t.json "resource", default: {}
     t.bigint "ordered_at"
+    t.json "opengraph", default: {"default"=>nil, "twitter"=>nil}, null: false
     t.index ["created_date"], name: "index_news_on_created_date"
     t.index ["external_id"], name: "index_news_on_external_id", unique: true
     t.index ["mark_modified_date"], name: "index_news_on_mark_modified_date"

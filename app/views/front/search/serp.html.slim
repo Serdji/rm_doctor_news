@@ -1,0 +1,46 @@
+.js-search-page
+.search-page
+
+  .search-page__item._head-item
+    .search-page__title
+      = "Результаты поиска по запросу «#{params[:query]}»"
+    .search-page__point
+      - active = '_active'
+      a.search-page__subtitle class=(active if questions_active?) href=search_serp_path(type: 'questions', query: params[:query])
+        span.search-page__subtitle-text В Ответах
+        /span.search-page__counter = "#{@search_result.questions_found}"
+
+      a.search-page__subtitle class=(active if tags_active?) href=search_serp_path(type: 'tags', query: params[:query])
+        span.search-page__subtitle-text В Темах
+        /span.search-page__counter = "#{@search_result.tags_found}"
+
+  - if @search_result.empty?
+    .search-page__null-result.js-search-null-result
+      - type_name = tags_active? ? 'В Темах' : 'В Ответах'
+      .search-page__null-result-box
+        .search-page__null-result-title Пока по вашему запросу нет материалов, мы обязательно их добавим в ближайшее время
+        .search-page__null-result-text Попробуйте ввести другой запрос
+
+  - if @search_result.empty?
+    - if questions_active?
+      - cache_desktop [:serp, :fresh_questions], expires_in: 1.minute do
+        - if search_facade.fresh_questions.any?
+          .question-common__up-title
+            span> Новые вопросы
+          .questions
+            - options = { collection: search_facade.fresh_questions, as: :question, cached: desktop_collection_proc }
+            = render partial: 'front/questions/question', **options
+    - else
+      - cache_desktop [:serp, :most_answered_tags], expires_in: 1.minute do
+        .question-common__up-title
+          span> Популярные темы
+        .tag
+          - options = { collection: search_facade.most_answered_tags, as: :tag }
+          = render partial: 'front/search/various_tag', **options
+
+  - if @search_result.any?
+    .search-page__block class=('_hidden' if tags_active?)
+      = render 'questions' if questions_active?
+    = render 'tags' if tags_active?
+
+.pagination-wrapper.js-search-pag-ads = pagination(@search_result)

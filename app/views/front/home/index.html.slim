@@ -1,0 +1,46 @@
+= render 'common/seo_attributes', object: application_facade.main_page_metapage
+- content_for :head_title, application_facade.main_page_metapage.seo_title
+
+h1._hidden
+  = application_facade.main_page_metapage.title || 'Рамблер/доктор'
+
+.js-news-main-page
+
+.news-common.js-float-wrapper
+  .news-common__grid
+    .news-common__column._media-desktop-column
+      = render './front/news/news_sidebar_menu', klass: 'js-float-first-column-child'
+
+    .news-main__wrapper-columns.js-loading-wrapper-column
+      .news-main__column.js-loading-news-column
+        == news_facade.main if news_facade.main
+        == news_facade.rest.join if news_facade.rest
+
+    .news-common__column._advertisement._media-mobile-column
+      .js-float-last-column-child
+        #ban_240x400
+
+  ._button-wrapper
+    .news-common__button._button-dark-blue.js-loading-news-button
+      .news-common__button-loading.lds-css.ng-scope
+        .lds-ellipsis style="width:100%;height:100%"
+          - 5.times do
+            div
+              div
+
+      .news-common__button-text
+        | Больше новостей
+        ._button-dark-blue-icon
+          = svg name: 'combined-shape-copy-9', klass: "_button-dark-blue-icon-svg"
+
+#superFooter
+#listing1
+
+= render 'front/questions/main_shared'
+
+#parallax
+#listing2
+
+= render 'front/tags/main_shared'
+
+#context

@@ -1,0 +1,37 @@
+.footer__box._top
+  .footer__logo
+    a.footer__rambler data-cerber-logo=" logo_footer_rambler" href="https://www.rambler.ru/?utm_source=doctor&utm_content=head&utm_medium=logo_footer&utm_campaign=self_promo"
+    a.footer__class href=(DomainFactory.url + '/') data-cerber-logo='logo_footer_doctor'
+    = svg name: 'logo-footer', klass: 'footer__logo-svg'
+  .footer__menu._top-menu
+    ul
+      li
+        a._hover-reference-gray class=menu_service.library_class href=root_path Новости здоровья
+      li
+        a._hover-reference-gray class=menu_service.library_class href=voprosy_path Вопросы
+      li
+        a._hover-reference-gray class=menu_service.library_class href=temy_path Темы
+
+  .footer__social
+    .footer__social-vk
+      a href='https://vk.com/rambler'
+        = svg name: 'vk', klass: 'footer__social-svg'
+    .footer__social-fb
+      a href='https://www.facebook.com/newsrambler'
+        = svg name: 'fb', klass: 'footer__social-svg'
+    .footer__social-ok
+      a href='https://ok.ru/rambler'
+        = svg name: 'ok', klass: 'footer__social-svg'
+    .footer__social-tw
+      a href='https://twitter.com/ramblerru'
+        = svg name: 'tw', klass: 'footer__social-svg'
+    .footer__social-inst
+      a href='https://www.instagram.com/news.rambler/'
+        = svg name: 'instagram', klass: 'footer__social-svg'
+/ .footer__box._top
+/   .footer__logo
+/     a.footer__rambler data-cerber-logo=" logo_footer_rambler" href="https://www.rambler.ru/?utm_source=doctor&utm_content=head&utm_medium=logo_footer&utm_campaign=self_promo"
+/     = svg name: 'logo_footer', klass: 'footer__logo-svg'
+/   .footer__menu-project.js-menu-project
+/   .footer__copyright-age-limit
+/     span 18+

@@ -1,0 +1,87 @@
+doctype html
+html lang="en"
+  head
+    script src=javascript_path('ramblertopline', app: 'ramblertopline')
+    meta content="text/html; charset=UTF-8" http-equiv="content-type" /
+    meta content="IE=edge" http-equiv="X-UA-Compatible" /
+    meta content="width=768" name="viewport" /
+
+    = render 'common/seo_open_graph'
+
+    = front_include_favicons
+
+    = csrf_meta_tags
+
+    link rel="stylesheet" media="all" href=stylesheet_path('vendors', app: 'front')
+    link rel="stylesheet" media="all" href=stylesheet_path('application', app: 'front')
+
+    link rel="canonical" href=(content_for?(:canonical) ? yield(:canonical) : canonical) /
+
+    = content_for :relation_links
+
+    title = content_for(:head_title) || 'Рамблер/доктор'
+  body
+    = embedded_svg :front
+
+    - cache_desktop [:front, :top_line, controller_name] do
+      .topline.js-topline
+        = render 'front/common/top_line'
+        = render 'front/common/menu_transformer'
+
+      .wrapper._billboard
+        #billboard>
+        #top_banner>
+
+    = render 'front/common/menu_projects'
+
+    header.wrapper._header
+
+      - cache_desktop [:front, :common, :menu] do
+        .burger__projects.js-open-menu-projects
+          = svg name: 'burger-projects', klass: 'burger__projects-svg'
+        = render 'front/common/menu'
+
+      - cache_desktop [:front, :common, :question_menu, controller_name] do
+        = render 'front/common/question_menu'
+
+    main.wrapper
+      = yield
+
+    #banFooter
+
+    #fullscreen>
+
+    #rich
+
+    footer
+      .warning
+        .warning__icon
+          = svg name: 'warning', klass: 'warning__icon-svg'
+        .warning__messenger Информация на сайте предоставляется исключительно в справочных целях. При появлении первых признаков заболевания обязательно обратитесь к врачу.
+      /.warning
+      /  .warning__icon
+      /    = svg name: 'warning', klass: 'warning__icon-svg'
+      /  .warning__messenger Информация на сайте предоставляется исключительно в справочных целях. При появлении первых признаков заболевания обязательно обратитесь к врачу.
+      .footer._top
+        .wrapper
+          - cache_desktop [:front, :footer_menu_top] do
+            = render 'front/common/footer_menu_top'
+
+      .footer
+        .wrapper
+          - cache_desktop [:front, :footer_menu_bottom] do
+            = render 'front/common/footer_menu_bottom'
+
+      script src="//ssp.rambler.ru/lpdid.js"
+      script src="//ssp.rambler.ru/capirs.js"
+      script src=javascript_path('vendors', app: 'front')
+      script src=javascript_path('application', app: 'front')
+
+      - cache_desktop [:front, :ads, :google_tag] do
+        = render 'common/ads/google_tag'
+
+
+
+      - if Rails.env.production?
+        - cache_desktop [:front, :common, :counters, :counters_app] do
+          = render 'common/counters/counters_app'

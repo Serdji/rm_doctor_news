@@ -3,8 +3,9 @@
 ._button-opacity,
 ._button-tab,
 ._button-grey
-  centerBlock()
   textTransUp()
+  centerBlock()
+  padding 0 20px
   transition transAll
   justify-content center
   font-weight 500
@@ -13,10 +14,10 @@
   letter-spacing 1px
   min-width 100px
   height 35px
-  border 1px solid rgba(0, 0, 0, 0);
-  line-height: 11px;
-  box-sizing: border-box;
-  font-family: Roboto;
+  border 1px solid rgba(0, 0, 0, 0)
+  line-height 11px
+  box-sizing border-box
+  font-family Roboto
   -webkit-font-smoothing antialiased
 
   &-icon
@@ -110,3 +111,6 @@
         color #3869fc
     &:active
       background #c1cefd
+
+._button-wrapper
+  display flex

@@ -14,9 +14,15 @@
 div[id^="context"]
   width 100%
 
-#billboard
-.xhtml_banner
-  margin 10px 0
+#billboard,
+#top_banner
+  div[id^="begun_block"]
+    margin-bottom 0
+  .xhtml_banner
+    margin-top 10px
+    border none
+    &:hover
+      border none
 
 .baner
   width 100%
@@ -50,6 +56,12 @@ div[id^="context"]
   text-align center
   vertical-align middle
 
+#ban_240x400_2nd,
+#ban_240x400
+  .xhtml_banner
+    border none
+    &:hover
+      border none
 
 
 div[id^="begun_block"],
@@ -59,11 +71,22 @@ div[id^="begun_block"] > iframe
   margin 0 auto
   margin-bottom 20px
 
-.xhtml_banner
-  borderBlock()
+  .xhtml_banner
+    borderBlock()
+
+div[id^="sponsored"],
+div[id^="context"]
+  .xhtml_banner
+    border varsBorder !important
 
 .js-context-ads
   position absolute
+
+#listing_spec
+  div[id^="begun_block"]
+    .xhtml_banner
+      margin-top 20px
+
 
 .news-card
 
@@ -71,11 +94,29 @@ div[id^="begun_block"] > iframe
     div[id^="begun_block"]
       margin-bottom space !important
 
+  #nativeContext
+    div[id^="begun_block"]
+      .xhtml_banner
+        margin-bottom 20px
+
+.tag
+  #native1
+    div[id^="begun_block"]
+      margin-bottom 0
+      .xhtml_banner
+        margin-bottom space
+        width 300px
+        height 210px
+
 .news-common__column
+
+  #sponsored_1
+    .xhtml_banner
+      margin-bottom 5px
+
 
   div[id^="sponsored"],
   #ban_240x400,
-  #newsBlock_1
     div[id^="begun_block"]
       margin-bottom 0
       .xhtml_banner
@@ -110,7 +151,9 @@ div[id^="begun_block"] > iframe
   #newsBlock_1
     float left
     div[id^="begun_block"]
+      margin-bottom 0
       .xhtml_banner
+        margin-bottom space
         height 90px
         width 375px
         @media(max-width: max-width)

@@ -19,6 +19,7 @@ import './modules/ramblerNews';
 import './modules/footer';
 import './modules/menuProjects';
 import './modules/sameSourceNews';
+import './modules/menuTransformer';
 import './modules/adsCB';
 
 

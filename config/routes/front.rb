@@ -20,12 +20,14 @@ Rails.application.routes.draw do
       end
 
       controller :news do
-        get 'news-:slug-:id.:format', action: :show, as: :news_show, defaults: { format: 'htm' }
+        get 'news/:id-:slug', action: :show, as: :news_show, trailing_slash: false
 
         scope constraints: { format: 'json' } do
           get 'news/load_more.json', action: :load_more, as: :news_load_more
+          get 'news/load_more_fresh.json', action: :load_more_fresh, as: :news_load_more_fresh
           get 'news/from_same_source.json', action: :from_same_source, as: :from_same_source
         end
+        get 'news/', to: redirect('/', status: 301)
       end
 
       get 'tags/search/:search', to: 'tags#search', as: :search
