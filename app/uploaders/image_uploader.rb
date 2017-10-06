@@ -7,7 +7,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   class << self
     def thumb_version(width, height)
-      name = 'thumb_%{w}x%{h}' % { w: width, h: height }
+      name = format('thumb_%{w}x%{h}', w: width, h: height)
 
       version name do
         process resize_to_fill: [width * 2, height * 2]

@@ -1,9 +1,15 @@
 'use strict';
 
+var webpack = require('webpack');
+
 module.exports = function(_path) {
   return {
     context: _path,
-    debug: false,
-    devtool: 'cheap-source-map'
+    devtool: 'cheap-source-map',
+    plugins: [
+      new webpack.LoaderOptionsPlugin({
+        debug: false
+      })
+    ]
   };
 };

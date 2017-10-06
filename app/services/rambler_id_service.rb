@@ -19,7 +19,7 @@ class RamblerIdService
   end
 
   def authenticated?
-    !!profile
+    profile.present?
   end
 
   def current_user

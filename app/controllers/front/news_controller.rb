@@ -12,8 +12,10 @@ class Front::NewsController < Front::ApplicationController
     not_found unless news_facade.item
   end
 
+  # rubocop:disable Metrics/AbcSize
   def load_more_fresh
-    from, to = params[:from], (params[:from].to_i + items_limit - 1)
+    from = params[:from]
+    to = (params[:from].to_i + items_limit - 1)
     news = redis.zrangebyscore('news:fresh', from, to)
 
     is_more = true
@@ -32,10 +34,11 @@ class Front::NewsController < Front::ApplicationController
     self.response_body = { data: news, more: is_more }.to_json
     self.content_type = 'application/json'
   end
+  # rubocop:enable Metrics/AbcSize
 
   def load_more
-    news = ::News.with_images.limit(items_limit).published_before(from).
-      where.not(id: exclude_ids)
+    news = ::News.with_images.limit(items_limit).published_before(from)
+                 .where.not(id: exclude_ids)
 
     self.response_body = { data: rendered_news(news), more: more_link(news) }.to_json
     self.content_type = 'application/json'
@@ -82,8 +85,8 @@ class Front::NewsController < Front::ApplicationController
   end
 
   def more_link(news)
-    is_more = ::News.with_images.published_before(news.last.published_date).
-      where.not(id: exclude_ids).exists?
+    is_more = ::News.with_images.published_before(news.last.published_date)
+                    .where.not(id: exclude_ids).exists?
 
     return unless is_more
     news_load_more_path(from: news.last.published_date.to_i, trailing_slash: false)

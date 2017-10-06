@@ -11,7 +11,7 @@ module Import
       image_uri = URI(image_url)
 
       @url = [image_uri.host, image_uri.path].join
-      @params = 'c%sx%s' % size
+      @params = format('c%sx%s', *size)
     end
 
     def build
@@ -24,7 +24,7 @@ module Import
       token = Settings.image_resizer_token
       return DEFAULT_TOKEN unless token
 
-      Digest::MD5.hexdigest ([params, url].join('/') + token)
+      Digest::MD5.hexdigest([params, url].join('/') + token)
     end
   end
 end

@@ -15,10 +15,12 @@ module Front::ApplicationHelper
     content_tag(:svg, use, class: klass)
   end
 
+  # rubocop:disable Rails/OutputSafety
   def embedded_svg(app_name, _options = {})
     path = Rails.root.join('public/assets', app_name.to_s, 'sprite.svg')
     raw(File.read(path)) if File.exist?(path)
   end
+  # rubocop:enable Rails/OutputSafety
 
   def number_zero(i)
     (i.to_i + 1).to_s[1] == '0' ? '_number-left-zero' : ''

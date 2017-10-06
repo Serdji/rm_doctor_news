@@ -88,7 +88,9 @@ class Front::QuestionDecorator < Draper::Decorator
     id.to_s
   end
 
+  # rubocop:disable Rails/OutputSafety
   def more_link
     h.link_to("Читать дальше #{h.content_tag(:span, '•••')}".html_safe, path)
   end
+  # rubocop:enable Rails/OutputSafety
 end

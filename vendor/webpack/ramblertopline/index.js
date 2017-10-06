@@ -58,8 +58,8 @@ export default ()=> {
     testing: false, // Активация панели тестирования параметров топлайна (default: false)
     breakpoints: { // брейкпоинты для переключения топлайна с шириной экрана
       viewports: { // ширина экрана (ниже дефолтные значения)
-        large: 1279,
-        medium: 1023,
+        large: 1259,
+        medium: 1003,
         small: 718
       },
       widths: { // ширина .rambler-topline__inner

@@ -6,22 +6,31 @@ h1._hidden
 
 .js-news-main-page
 
-.news-common.js-float-wrapper
-  .news-common__grid
+.news-common
+  .news-common__grid.js-float-wrapper
     .news-common__column._media-desktop-column
       = render './front/news/news_sidebar_menu', klass: 'js-float-first-column-child'
 
-    .news-main__wrapper-columns.js-loading-wrapper-column
+    .news-main__wrapper-columns.js-loading-wrapper-column.js-float-content
       .news-main__column.js-loading-news-column
         == news_facade.main if news_facade.main
         == news_facade.rest.join if news_facade.rest
 
-    .news-common__column._advertisement._media-mobile-column
-      .js-float-last-column-child
-        #ban_240x400
+    .news-common__column._advertisement._media-mobile-column.js-float-sidebar
+
+      .js-float-start-stop
+      ._sticky-baner.js-float-ad
+        .baner.js-baner-sidebar._base-layer_240x400
+          #ban_240x400>
+
+
+        .baner.js-baner-sidebar._base-layer_240x200
+          #context_240x200
+
+.js-float-footer
 
   ._button-wrapper
-    .news-common__button._button-dark-blue.js-loading-news-button
+    .news-common__button._button-dark-blue._loading-news-button.js-loading-news-button
       .news-common__button-loading.lds-css.ng-scope
         .lds-ellipsis style="width:100%;height:100%"
           - 5.times do

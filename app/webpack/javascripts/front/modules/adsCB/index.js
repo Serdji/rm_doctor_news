@@ -1,52 +1,26 @@
-import { qsa, qs, each } from 'utils';
-import InjectorAds       from './InjectorAds';
-import callAds           from './callAds';
-import sidebarIsAds      from './sidebarIsAds';
-import autoScroll        from '../socialButton/autoScroll';
-import cloneTheme        from './cloneTheme';
-import removeQues        from './removeQues';
-import sponsoredAds      from './sponsoredAds';
-import contentBanners    from 'rds-content-banners';
-import CONFARTDESK       from './articleDesktopAds';
-import CONFARTTABLET     from './articleTabletAds';
-import CONFDESK          from './configDesktopAds';
-import CONFTABLET        from './configTabletAds';
+import { qs, qsa, each }  from 'utils';
+import InjectorAds    from './InjectorAds';
+import callAds        from './callAds';
+import sidebarIsAds   from './sidebarIsAds';
+import cloneTheme     from './cloneTheme';
+import removeQues     from './removeQues';
+import sponsoredAds   from './sponsoredAds';
+import contentBanners from 'rds-content-banners';
+import CONFARTDESK    from './articleDesktopAds';
+import CONFARTTABLET  from './articleTabletAds';
+import CONFDESK       from './configDesktopAds';
+import CONFTABLET     from './configTabletAds';
+import switch240x200  from './switch240x200';
 
 
-let height240x400        = false;
 
 
 
 if (window.innerWidth > 1024 || qs('.js-page-ques-answers')) { // рекламма на декстопе
   // Если включин AddBlock
   sidebarIsAds();
-  let test = 1;
-  // Колбек отрабатывает после загрузке всей рекламмы
-  Begun.Autocontext.Callbacks.register({
-    block: {
-      draw() {
-        // каждые 500ms проверяем банеры
-        let intId = setInterval(() => {
-          sidebarIsAds();
-          let ban240x400 = qs('#ban_240x400 div[id^="begun_block"]');
-          if (!height240x400 && ban240x400) {
-            height240x400 = ban240x400.clientHeight;
-            if (height240x400 !== 0 && height240x400 <= 400) {
-              callAds(CONFDESK.context_240x200);
-            }
-          }
-        }, 500);
-        // через 10 секунд перестаем проверять
-        setTimeout(() => {
-          clearInterval(intId);
-        }, 10000);
-        setTimeout(() => {
-          autoScroll();
-        }, 500);
-      }
-    },
-  });
-
+  //Рекламма 240х200
+  switch240x200();
 
   InjectorAds();
   contentBanners(CONFARTDESK);

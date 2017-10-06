@@ -24,6 +24,7 @@ class ViewedService
 
       redis.expire(key, EXPIRE.to_i)
     end
+    # rubocop:enable Metrics/AbcSize
 
     def collection_ids
       return [] unless values.present?

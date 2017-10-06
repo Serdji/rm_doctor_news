@@ -1,17 +1,6 @@
 module Front::CacheHelper
-  def mobile_collection_proc
-    -> (object) { [:mobile, object] }
-  end
-
   def desktop_collection_proc
-    -> (object) { [:desktop, object] }
-  end
-
-  def cache_mobile(name = {}, options = {}, &block)
-    name = Array(name)
-    name.unshift :mobile
-
-    cache(name, options, &block)
+    ->(object) { [:desktop, object] }
   end
 
   def cache_desktop(name = {}, options = {}, &block)

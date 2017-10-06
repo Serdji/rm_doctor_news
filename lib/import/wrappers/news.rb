@@ -41,10 +41,9 @@ module Import
       attribute :topics, Array[Import::Wrappers::News::Topic]
 
       def image=(hash)
-        if hash.present?
-          self.image_url = hash.with_indifferent_access.fetch('url')
-          super
-        end
+        return unless hash.present?
+        self.image_url = hash.with_indifferent_access.fetch('url')
+        super
       end
 
       def breaking=(hash)

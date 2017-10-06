@@ -1,0 +1,15 @@
+._sticky-baner {
+  margin-bottom: 20px !important;
+}
+
+._sticky{
+  position: fixed;
+  top: 80px;
+  right: 0;
+  width: 300px;
+}
+
+._sticky-footer{
+  position: absolute;
+  width: 300px;
+}

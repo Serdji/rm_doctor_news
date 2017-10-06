@@ -52,7 +52,7 @@ module FaviconHelper
   private
 
   def build_prefix(prefix)
-    if Rails.env.start_with?('staging') || Rails.env.start_with?('preprod')
+    if Rails.env.start_with?('staging', 'preprod')
       Rails.env
     else
       prefix || 'front'

@@ -5,7 +5,7 @@ class Admin::TagForm
     id name slug weight is_published linked_tag_ids
   ).freeze
 
-  attr_accessor *TAG_ATTRIBUTES
+  attr_accessor(*TAG_ATTRIBUTES)
 
   attr_reader :seo, :image
 
@@ -60,6 +60,7 @@ class Admin::TagForm
     valid? ? persist! : false
   end
 
+  # rubocop:disable Metrics/AbcSize
   def persist!
     tag_attributes = TAG_ATTRIBUTES.map do |name|
       [name, send(name)] unless name == 'id'
@@ -81,6 +82,7 @@ class Admin::TagForm
       true
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   def set_nested_attributes(attributes, klass, ivar)
     id = attributes['id'].presence

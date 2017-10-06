@@ -1,5 +1,5 @@
 module NbspReplacer
-  NBSP = "&nbsp;".freeze
+  NBSP = '&nbsp;'.freeze
 
   private
 
@@ -18,7 +18,7 @@ module NbspReplacer
       end
     end
 
-    result << current_word if current_word.length > 0
+    result << current_word unless current_word.empty?
     result.join
   end
 end

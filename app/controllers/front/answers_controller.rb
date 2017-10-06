@@ -12,29 +12,30 @@ class Front::AnswersController < Front::ApplicationController
     save
   end
 
+  # rubocop:disable Metrics/AbcSize
   def make_best
     question = Qa::Question.find(@answer.question_id, include: 'tags')
     @answer.make_best! if current_user.is_sentry && !question.has_best_answer?
 
-    result = if current_user.is_sentry && !question.has_best_answer?
-               @answer.make_best!
-               path = Front::QuestionDecorator.decorate(question).path
-               { success: true, url: path }
-             else
-               { success: false }
-             end
-
-    render json: result
+    if current_user.is_sentry && !question.has_best_answer?
+      @answer.make_best!
+      path = Front::QuestionDecorator.decorate(question).path
+      render json: { success: true, url: path }
+    else
+      render json: { success: false }
+    end
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 
-  def safe_params
-    params.require(:answer).permit(:body)
+  def safe_params(additional = nil)
+    h = params.require(:answer).permit(:body)
+    additional ? h.merge(user_id: current_user.id) : h
   end
 
   def save
-    attributes = safe_params.merge(user_id: current_user.id)
+    attributes = safe_params(user_id: current_user.id)
     @answer.assign_attributes(attributes.to_h)
 
     if @answer.valid? && @answer.save

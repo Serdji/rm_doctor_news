@@ -2,9 +2,6 @@
   margin-bottom space
   width 375px
   height 90px
-  display flex
-  flex-direction row
-  flex-wrap nowrap
   float left
   margin-right 15px
   &:nth-last-child(1)
@@ -24,17 +21,25 @@
       color #315EFB
 
 
+  &__img,
+  &__content
+    display inline-block
+
   &__img
     width 135px
+    height 90px
     transition transAll
+    background-size cover
+    background-position 50%
 
   &__content
-    width 225px
+    width 150px
     height 100%
     margin-left 15px
     padding-top 3px
     padding-bottom 10px
     box-sizing border-box
+    vertical-align top
 
 
   &__title

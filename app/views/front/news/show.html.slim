@@ -15,7 +15,7 @@
 
         .news-card__main
           .news-common__grid
-            .news-common__column._media-size-column
+            .news-common__column.js-float-content._media-size-column
               .news-card__content
                 .news-card__title
                   .js-sponsored-ads
@@ -46,7 +46,7 @@
 
               .news-common.js-question-ask-question
                 .news-common__title Популярные вопросы
-                .news-common__grid
+                .news-common__grid._media-mobile-grid
                   .main-shared
                     - cache_desktop [:most_discussing_questions, :shared], expires_in: 1.minute do
                       - questions = application_facade.most_discussing_questions(6, size_force: true)
@@ -69,7 +69,7 @@
                 - tags = application_facade.most_discussing_tags(7, size_force: true)
                 .news-common._none-space.js-question-ask-tag
                   .news-common__title._theme-border-color Популярные темы
-                  .news-common__grid
+                  .news-common__grid._media-mobile-grid
                     .main-shared
                       = render partial: 'front/tags/tag', collection: tags[0..1], as: :tag
 
@@ -114,17 +114,28 @@
                     a.main-anchor href=url target="_blank"
                       h2.teaser-title = title
 
-            .news-common__column._media-mobile-column
+            .news-common__column._media-mobile-column.js-float-sidebar
               .news-card__sidebar
-                #ban_240x400
+                .baner.js-baner-sidebar._base-layer_240x400
+                  #ban_240x400>
+
+
+                .baner.js-baner-sidebar._base-layer_240x200
+                  #context_240x200
+
+
                 .news-partners
                   .news-partners__header Новости партнеров
                   .news-partners__content#news-partners__item-top
                   #nativeContext
                   .news-partners__same-source.js-news-partners._hidden
 
-                .js-float-last-column-child
-                  #ban_240x400_2nd
-                  .news-partners._none-space
-                    .news-partners__header Новости партнеров
-                    .news-partners__content#news-partners__item-bottom
+                .js-float-start-stop
+
+                ._sticky-baner.js-float-ad
+
+                  .js-float-last-column-child
+                    #ban_240x400_2nd
+                    .news-partners._none-space
+                      .news-partners__header Новости партнеров
+                      .news-partners__content#news-partners__item-bottom

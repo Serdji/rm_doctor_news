@@ -8,7 +8,9 @@
 
   .news-card__description-social
     position absolute
+    z-index 2
     right 15px
+    bottom -6px
     background #ffffff
     box-shadow -40px 0px 60px 20px #ffffff
     @media(max-width: max-width)
@@ -30,11 +32,13 @@
     background #ffffff
     height 60px
     z-index 2
+    overflow hidden
     @media(max-width: max-width)
       padding 0 25px
 
-    span
-      width 735px
+    &-title
+      position relative
+      width 75%
       height 30px
       font-family CorsicaRamblerLX
       font-weight 500
@@ -42,9 +46,18 @@
       line-height 1.67
       text-align left
       color #262626
-      textEllipsis()
-      @media(max-width: min-width)
-        width 495px
+      overflow hidden
+      white-space nowrap
+      &:after
+        content ''
+        position absolute
+        z-index 1
+        top 0
+        right 0
+        bottom 0
+        width 150px
+        background-image linear-gradient(90deg,hsla(0,0%,100%,0),#fff 100px)
+        pointer-events none
 
     &._active
       top 0
@@ -53,6 +66,9 @@
     position relative
     background #ffffff
     height 60px
+    .menu-transformer__search
+      @media(max-width: min-width)
+        display none
 
   &__wrapper
     position relative
@@ -96,6 +112,39 @@
       opacity 1
       width 275px
       padding 10px 40px 10px 15px
+
+  &__laptop
+    position absolute
+    transition transAll
+    z-index 5
+    right 25px
+    top 90px
+    background-color #fff
+    box-shadow 0 2px 7px 0 rgba(0,0,0,0.1)
+    padding 10px 15px
+    opacity 0
+    &._active
+      top 104px
+      opacity 1
+      display block
+
+    .menu-transformer__search
+      width 275px
+      opacity 1
+      padding 10px 40px 10px 15px
+      display none
+      @media(max-width: min-width)
+        display block
+
+    &-triangle
+      position absolute
+      top -6px
+      right 5px
+      width 0
+      height 0
+      border-left 5px solid transparent
+      border-right 5px solid transparent
+      border-bottom 6px solid #fff
 
   &__icon
     transition transAll

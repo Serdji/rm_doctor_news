@@ -44,5 +44,4 @@ namespace :deploy do
   before :restart, :load_eye
 
   after :publishing, :restart
-  after :compile_assets, 'npm:install'
 end

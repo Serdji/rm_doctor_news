@@ -39,10 +39,10 @@ module NewsOpengraphService
       text = Draw.new
       text.pointsize = 56
       text.gravity = NorthWestGravity
-      corsica = 'app/webpack/stylesheets/front/blocks/font/CorsicaRamblerLX-SemiBold.ttf'
-      text.font = Rails.root.join(corsica).to_s
+      text.font = corsica_font
 
-      arr = title.scan(/.{1,32}(?=[\b\s])|.{1,32}/).map(&:strip)
+      arr = News::TitleSpliter.new(title).map.to_a
+
       arr.each_with_index do |s, i|
         break if i > 2
         text.annotate(@image, 0, 0, offset_size, 255 + i * 66, s.gsub('%', '\\%')) do
@@ -53,11 +53,9 @@ module NewsOpengraphService
 
     private
 
-    def resize!
-      width, height = image_size
-
-      @image.scale!(width, (width * @image.rows / @image.columns.to_f).to_i)
-      @image.crop!(0, 0, width, height)
+    def corsica_font
+      corsica = 'app/webpack/stylesheets/front/blocks/font/CorsicaRamblerLX-SemiBold.ttf'
+      Rails.root.join(corsica).to_s
     end
 
     def shadow!
@@ -104,5 +102,12 @@ module NewsOpengraphService
     end
 
     alias logo_size icon_size
+
+    def resize!
+      width, height = image_size
+
+      @image.scale!(width, (width * @image.rows / @image.columns.to_f).to_i)
+      @image.crop!(0, 0, width, height)
+    end
   end
 end

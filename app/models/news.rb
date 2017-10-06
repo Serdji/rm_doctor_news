@@ -65,6 +65,7 @@ class InterestingNewsBuilder
   attr_reader :news, :result
 
   LIMIT = 6
+  HALF_LIMIT = LIMIT / 2
 
   def initialize(news)
     @news = news
@@ -79,21 +80,29 @@ class InterestingNewsBuilder
   private
 
   def contained_all?
-    before.size >= LIMIT / 2 && after.size >= LIMIT / 2
+    before.size >= HALF_LIMIT && after.size >= HALF_LIMIT
   end
 
   def full_build
-    result.unshift *before.pop(LIMIT / 2)
-    result.push *after.shift(LIMIT / 2)
+    result.unshift(*before.pop(HALF_LIMIT))
+    result.concat after.shift(HALF_LIMIT)
+  end
+
+  def before_build
+    result.concat before
+    result.concat after.shift(LIMIT - result.size)
+  end
+
+  def after_build
+    result.concat after
+    result.concat before.pop(LIMIT - result.size)
   end
 
   def partial_build
-    if before.size < LIMIT / 2
-      result.push *before
-      result.push *after.shift(LIMIT - result.size)
-    elsif after.size < LIMIT / 2
-      result.push *after
-      result.push *before.pop(LIMIT - result.size)
+    if before.size < HALF_LIMIT
+      before_build
+    elsif after.size < HALF_LIMIT
+      after_build
     end
   end
 

@@ -2,7 +2,7 @@ development:
   host: localhost
   port: 6379
 test:
-  host: localhost
+  host: <%= ENV.fetch('REDIS_HOST', 'localhost') %>
   port: 6379
 staging:
   url: redis://cache01.stage.doctor.rambler.tech:6379

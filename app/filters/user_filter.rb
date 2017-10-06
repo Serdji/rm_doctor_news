@@ -1,5 +1,9 @@
 class UserFilter < BaseFilter
-  attr_accessor :first_name, :last_name, :email, :user_type
+  ACCESSORS = %i(
+    first_name last_name email user_type
+  ).freeze
+
+  attr_accessor(*ACCESSORS)
 
   class << self
     def user_types
@@ -8,14 +12,25 @@ class UserFilter < BaseFilter
   end
 
   def apply(relation)
-    result[:first_name] = first_name if first_name.present?
-    result[:last_name] = last_name if last_name.present?
-    result[:emails] = email.downcase if email.present?
+    ACCESSORS.each { |name| send "apply_#{name}" }
+    relation.where(filter: result)
+  end
 
+  def apply_first_name
+    result[:first_name] = first_name if first_name.present?
+  end
+
+  def apply_last_name
+    result[:last_name] = last_name if last_name.present?
+  end
+
+  def apply_email
+    result[:emails] = email.downcase if email.present?
+  end
+
+  def apply_user_type
     result[:is_fake] = true if fake_users?
     result[:is_fake] = false if real_users?
-
-    relation.where(filter: result)
   end
 
   def fake_users?

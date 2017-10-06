@@ -1,9 +1,15 @@
 'use strict';
 
+var webpack = require('webpack');
+
 module.exports = function(_path) {
   return {
     context: _path,
-    debug: false,
-    devtool: 'eval'
+    devtool: 'eval',
+    plugins: [
+      new webpack.LoaderOptionsPlugin({
+        debug: false
+      })
+    ]
   };
 };

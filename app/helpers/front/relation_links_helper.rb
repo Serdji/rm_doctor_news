@@ -33,4 +33,6 @@ module Front::RelationLinksHelper
 
     safe_join(links)
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
 end

@@ -6,7 +6,6 @@ export default () => {
     // Если всплываем не черз тег, останавливаем скрипт
     if (!target.closest('.js-open-tags')) return;
     // Проверяем, если скрипт работает на странице новостей, перекидывать по урлу
-    console.log(target.closest('.mini-shared-questions__content'));
     if(target.closest('.mini-shared-questions__content')){
       let href = target.closest('.mini-shared-questions__content').querySelector('a').getAttribute('href');
       window.location = href;

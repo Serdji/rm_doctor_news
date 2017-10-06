@@ -1,40 +1,137 @@
-image: registry.art.rambler.ru/ruby/centos-base-ruby-nodejs-imagemagick:2.3.1-6x
-
-services:
-  - postgres:9.5.3
-
-cache:
-  paths:
-    - vendor/ruby
+variables:
+  PGUSER: postgres
+  REGISTRY: rambler-qa-service-registry.art.rambler.ru
+  SERVICE_NAME: rambler-doctor
+  IMAGE_NAME: $REGISTRY/$SERVICE_NAME
+  TAG_NAME: $REGISTRY/$SERVICE_NAME:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
+  TAG_LATEST: $REGISTRY/$SERVICE_NAME:latest
+  APP_NAME: rambler-doctor
+  APP_EXTERNAL_PORT: '8082'
 
 stages:
   - test
+  - build_artifacts
+  - build_and_push
+  - deploy
 
-before_script:
-  - bundle install -j4 --path vendor/ruby
-
-rubocop:
+.job: &job
+  image: registry.art.rambler.ru/ruby/centos-base-ruby-nodejs-imagemagick:2.3.1-6x
   tags:
     - ci-official
+    - docker
+  services:
+    - redis:latest
+    - postgres:9.5.3
 
-  script:
-    - bundle exec rubocop
+.cache_vars: &cache_vars
+  paths:
+    - vendor/ruby
+    - .bundle
+  key: $CI_PROJECT_ID
+
+.backend: &backend
+  <<: *job
+  stage: test
+  before_script:
+    - bundle install -j4 --path vendor/ruby
+  cache:
+    <<: *cache_vars
 
 rspec:
-  tags:
-    - ci-official
-
-  stage: test
-
-  variables:
-    PGUSER: postgres
-
+  <<: *backend
   script:
     - export DATABASE_URL="postgres://$POSTGRES_PORT_5432_TCP_ADDR:$POSTGRES_PORT_5432_TCP_PORT"
     - export RAILS_ENV=test
+    - export REDIS_HOST=redis
     - echo $DATABASE_URL
     - echo $POSTGRES_PORT_5432_TCP_ADDR
     - echo $POSTGRES_PORT_5432_TCP_PORT
     - bundle exec rake db:create
     - bundle exec rake db:schema:load
     - bundle exec rspec
+
+rubocop:
+  <<: *backend
+  script:
+    - bundle exec rubocop
+
+build_artifacts:
+  <<: *job
+  stage: build_artifacts
+  cache:
+    <<: *cache_vars
+  artifacts:
+    paths:
+      - vendor/ruby
+      - .bundle
+    expire_in: '2 days'
+  script:
+    - bundle config build.nokogiri --use-system-libraries
+    - bundle install --deployment --path vendor/ruby --without=development,test --jobs 4
+
+build_and_push:
+  <<: *job
+  image: dockerhub.art.rambler.ru/docker:17.05.0-ce
+  stage: build_and_push
+  dependencies:
+    - build_artifacts
+  cache:
+    <<: *cache_vars
+  script:
+    - docker login -u $ART_USERNAME -p $ART_TOKEN $REGISTRY
+    - docker build -t $IMAGE_NAME .
+    - docker tag $IMAGE_NAME $TAG_NAME
+    - docker push $TAG_NAME
+    - docker push $TAG_LATEST
+  after_script:
+    - docker logout $REGISTRY
+
+.stage_deploy: &stage_deploy
+  <<: *job
+  image: dockerhub.art.rambler.ru/docker:17.05.0-ce
+  stage: deploy
+  when: manual
+  script:
+    - (for host in $HOSTS;do
+      export DOCKER_HOST="tcp://${host}:2375";
+      docker pull $TAG_NAME;
+      done);
+
+    - (for host in $HOSTS;do
+      export DOCKER_HOST="tcp://${host}:2375";
+      docker stop ${SERVICE_NAME} || true;
+      docker rm ${SERVICE_NAME} || true;
+      docker run -d -p ${APP_EXTERNAL_PORT}:8088
+        -e RAILS_ENV="$RAILS_ENV"
+        -e LOGRAGE_NAME=rambler-doctor
+        --network=${DOCKER_NET_NAME}
+        --name $SERVICE_NAME
+        --restart=unless-stopped
+      $TAG_NAME;
+      done);
+
+    - (for host in $HOSTS;do
+      export DOCKER_HOST="tcp://${host}:2375";
+      (docker images -q | xargs docker rmi) || true;
+      done);
+    - export DOCKER_HOST="";
+
+deploy_staging:
+  <<: *stage_deploy
+  environment:
+    name: staging
+    url: https://staging.doctor.rambler.ru
+  variables:
+    HOSTS: 'front-app01.stage.doctor.rambler.tech back01.stage.doctor.rambler.tech queue01.stage.doctor.rambler.tech'
+    RAILS_ENV: staging
+    APP_NAME: 'Rambler/doctor (staging)'
+
+deploy_staging2:
+  <<: *stage_deploy
+  environment:
+    name: staging2
+    url: https://staging2.doctor.rambler.ru
+  variables:
+    HOSTS: 'front-app02.stage.doctor.rambler.tech back02.stage.doctor.rambler.tech queue02.stage.doctor.rambler.tech'
+    RAILS_ENV: staging2
+    APP_NAME: 'Rambler/doctor (staging2)'

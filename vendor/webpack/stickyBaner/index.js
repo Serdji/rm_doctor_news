@@ -1,14 +1,17 @@
+import './style.css';
+import { getCoords } from 'utils';
+
 'use strict';
 
 export default class StickyBaner {
   constructor(options) {
-    this.floatStartStop = options.floatStartStop;
-    this.floatAds       = options.floatAds;
-    this.floatSidebar   = options.floatSidebar;
-    this.floatWrapper   = options.floatWrapper;
-    this.floatContent   = options.floatContent;
-    this.footer         = options.footer;
-    this.floatBlockCoor = this.getCoords(this.floatStartStop).top;
+    this.floatStartStop    = options.floatStartStop;
+    this.floatAds          = options.floatAds;
+    this.floatSidebar      = options.floatSidebar;
+    this.floatWrapper      = options.floatWrapper;
+    this.floatContent      = options.floatContent;
+    this.footer            = options.footer;
+    this.spaceBannerbottom = options.spaceBannerbottom || 120;
     this.setEvents();
   }
 
@@ -18,14 +21,17 @@ export default class StickyBaner {
   }
 
   run() {
-    let boundContRect    = this.getCoords(this.floatSidebar);
-    let boundBlockH      = this.floatAds.offsetHeight;
-    let floatSidebarMB   = parseInt(getComputedStyle(this.floatSidebar).marginBottom, 10);
-    let contentPadBot    = parseInt(getComputedStyle(this.floatWrapper).paddingBottom, 10);
-    let footerCoor       = this.footer.getBoundingClientRect().top - floatSidebarMB - contentPadBot - boundBlockH;
-    let warmingUpReading = (window.pageYOffset || document.documentElement.scrollTop);
+    let spaceBannerTop    = 80;
+    let spaceBannerbottom = this.spaceBannerbottom;
+    let floatBlockCoor    = getCoords(this.floatStartStop).top - spaceBannerTop;
+    let boundContRect     = getCoords(this.floatSidebar);
+    let boundBlockH       = this.floatAds.offsetHeight;
+    let floatSidebarMB    = parseInt(getComputedStyle(this.floatSidebar).marginBottom, 10);
+    let contentPadBot     = parseInt(getComputedStyle(this.floatWrapper).paddingBottom, 10);
+    let footerCoor        = this.footer.getBoundingClientRect().top - spaceBannerbottom - floatSidebarMB - contentPadBot - boundBlockH;
+    let warmingUpReading  = (window.pageYOffset || document.documentElement.scrollTop);
     if (this.floatSidebar.offsetHeight > this.floatContent.offsetHeight) return;
-    if (this.floatBlockCoor > warmingUpReading) {
+    if (floatBlockCoor > warmingUpReading) {
       this.floatAds.classList.remove('_sticky');
       this.floatAds.style.cssText = '';
     } else {
@@ -33,22 +39,6 @@ export default class StickyBaner {
       this.floatAds.classList[footerCoor < 0 ? 'remove' : 'add']('_sticky');
       this.floatAds.classList[footerCoor < 0 ? 'add' : 'remove']('_sticky-footer');
     }
-  }
-
-  getCoords(elem) {
-    let box        = elem.getBoundingClientRect();
-    let body       = document.body;
-    let docEl      = document.documentElement;
-    let scrollTop  = window.pageYOffset || docEl.scrollTop || body.scrollTop;
-    let scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
-    let clientTop  = docEl.clientTop || body.clientTop || 0;
-    let clientLeft = docEl.clientLeft || body.clientLeft || 0;
-    let top        = box.top + scrollTop - clientTop;
-    let left       = box.left + scrollLeft - clientLeft;
-    return {
-      top: top,
-      left: left
-    };
   }
 }
 

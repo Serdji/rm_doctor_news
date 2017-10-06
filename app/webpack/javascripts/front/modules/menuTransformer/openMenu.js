@@ -19,7 +19,7 @@ export default () => {
 
       // Елси статья большая по признаку
       if(aticleNews.innerText.length >= maxLengthArticle ){
-        transformTitle.querySelector('span').innerText = cardTitle.innerText; // Вставляем текст с заголовка статьи и первую плашку в меню-трансформер
+        transformTitle.querySelector('.js-transform-title').innerText = cardTitle.innerText; // Вставляем текст с заголовка статьи и первую плашку в меню-трансформер
         // В промежутки между шарилками показываем первую плашку в меню-трансформер
         transformTitle.classList[shareTopCoord.bottom - spaceMenuTransform <= 0 && shareBottomCoord.top - window.innerHeight >= 0 ? 'add' : 'remove']('_active')
       }

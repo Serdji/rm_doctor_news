@@ -44,8 +44,7 @@ html lang="en"
       - cache_desktop [:front, :common, :question_menu, controller_name] do
         = render 'front/common/question_menu'
 
-    main.wrapper._adaptive_none_tablet
-      .js-float-wrapper
+    main.wrapper._adaptive_none_tablet.js-float-wrapper
         .main__left-sidebar.js-left-sidebar
 
           .js-float-left-sidebar
@@ -66,9 +65,10 @@ html lang="en"
                   - options = { collection: application_facade.most_discussing_tags, as: :tag, cached: desktop_collection_proc }
                   = render partial: 'front/tags/discussing_tag', **options
 
-        .main__sidebar.js-right-sidebar
+        .main__sidebar.js-right-sidebar.js-float-sidebar
           .baner.js-baner-sidebar._base-layer_240x400
             #ban_240x400>
+
 
           .baner.js-baner-sidebar._base-layer_240x200
             #context_240x200
@@ -79,7 +79,10 @@ html lang="en"
                 .column-block-header Интересные вопросы
                 - options = { collection: application_facade.interesting_questions, as: :question, cached: desktop_collection_proc }
                 = render partial: 'front/questions/interesting_question', **options
-          .js-float-right-sidebar
+
+          .js-float-start-stop
+
+          ._sticky-baner.js-float-ad
             .baner.js-baner-sidebar._base-layer_240x400_2nd
               #ban_240x400_2nd
             - if application_facade.seo_links.exists?
@@ -112,6 +115,7 @@ html lang="en"
       script src="//ssp.rambler.ru/capirs.js"
       script src=javascript_path('vendors', app: 'front')
       script src=javascript_path('application', app: 'front')
+      /script src="http://adblock.ssp.rambler.ru/js/Anti-AdBlock-Stage.js"
 
       - cache_desktop [:front, :ads, :google_tag] do
         = render 'common/ads/google_tag'

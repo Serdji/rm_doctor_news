@@ -62,3 +62,7 @@ set :webdav_paths_front, [
   'assets/.sprockets-manifest-*',
   '*.*'
 ]
+
+after 'deploy:updating',       'deploy:npm:install'
+after 'deploy:npm:install',    'deploy:assets:archive'
+after 'deploy:assets:archive', 'deploy:assets:upload'

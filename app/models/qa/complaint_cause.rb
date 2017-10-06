@@ -3,6 +3,7 @@ class Qa::ComplaintCause
 
   # rubocop:disable Style/MutableConstant
   CAUSES = []
+  # rubocop:enable Style/MutableConstant
 
   class << self
     def each_cause

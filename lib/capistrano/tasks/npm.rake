@@ -1,16 +1,10 @@
 namespace :deploy do
   namespace :npm do
     task :install do
-      on roles fetch(:npm_roles) do
-        within fetch(:npm_target_path, release_path) do
-          with fetch(:npm_env_variables, {}) do
-            unless ENV['ASSETS'] == 'false'
-              execute :npm, 'install', fetch(:npm_flags)
-              execute :npm, 'run clean'
-              execute :npm, 'run build'
-            end
-          end
-        end
+      run_locally do
+        `npm run clean`
+        `npm install`
+        `npm run build`
       end
     end
   end

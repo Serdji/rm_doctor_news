@@ -31,6 +31,7 @@ class Qa::User < Qa::Base
       response = connection.post('users/update_fakers', csv: file)
       response.body
     end
+    # rubocop:enable Metrics/AbcSize
   end
 
   # TODO: move from this

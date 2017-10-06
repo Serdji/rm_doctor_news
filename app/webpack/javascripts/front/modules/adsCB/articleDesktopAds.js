@@ -28,14 +28,14 @@ export default {
       haveToBeAtLeast: 500,
       method: 'sspScroll',
       className: 'banner',
-      siblingId: 'in_center',
+      siblingId: 'in_read',
       bannerOptions: {
         puid15 : 'card',
         p1: 'bxdqv',
         p2: 'fcvb',
-        pct: 'a',
+        pct: 'a'
       },
-      looped: true,
+      looped: false,
       begunOptions: {
         'begun-auto-pad': 455225850,
         'begun-block-id': 455226255
@@ -57,6 +57,24 @@ export default {
       begunOptions: {
         'begun-auto-pad': 455225850,
         'begun-block-id': 455226261
+      }
+    },
+    {
+      offset: 1800,
+      haveToBeAtLeast: 500,
+      method: 'sspScroll',
+      className: 'banner',
+      siblingId: 'ad_center',
+      bannerOptions: {
+        puid15 : 'card',
+        p1: 'bxdra',
+        p2: 'fomw',
+        pc: 'a'
+      },
+      looped: true,
+      begunOptions: {
+        'begun-auto-pad': 455225850,
+        'begun-block-id': 455226265
       }
     }
   ]

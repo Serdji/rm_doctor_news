@@ -77,6 +77,7 @@ public/javascripts
 public/stylesheets
 public/sitemap.xml
 public/sitemap.xml.gz
+public/assets.tar.gz
 *.xml.gz
 
 .editorconfig

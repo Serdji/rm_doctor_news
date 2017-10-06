@@ -76,6 +76,7 @@ html lang="en"
       script src="//ssp.rambler.ru/capirs.js"
       script src=javascript_path('vendors', app: 'front')
       script src=javascript_path('application', app: 'front')
+      /script src="http://adblock.ssp.rambler.ru/js/Anti-AdBlock-Stage.js"
 
       - cache_desktop [:front, :ads, :google_tag] do
         = render 'common/ads/google_tag'

@@ -72,11 +72,6 @@ class Qa::Client
       }
     }
 
-    cache_config = RedisFactory.get_config_for(:cache)
-    cache_config[:namespace] = 'qa:faraday'
-
-    cache_store = ActiveSupport::Cache::RedisStore.new(cache_config)
-
     @connection = Faraday.new(faraday_options) do |builder|
       # Request
       builder.use Her::Middleware::AcceptJSON

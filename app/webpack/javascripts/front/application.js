@@ -22,7 +22,6 @@ import './modules/sameSourceNews';
 import './modules/menuTransformer';
 import './modules/adsCB';
 
-
 import stickingBaner from './modules/stickingBaner';
 import socialButton from './modules/socialButton';
 import svg from 'svg';

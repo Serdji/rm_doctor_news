@@ -20,9 +20,11 @@ class Front::ApplicationController < ApplicationController
   end
 
   # Monitoring by admins
+  # rubocop:disable Rails/OutputSafety
   def root
     render html: '<!DOCTYPE html><html></html>'.html_safe
   end
+  # rubocop:enable Rails/OutputSafety
 
   private
 

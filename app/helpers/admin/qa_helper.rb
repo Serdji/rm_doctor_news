@@ -29,13 +29,14 @@ class QaSortLinkBuilder
       arrow = ascend? ? ASC_ARROW : DESC_ARROW
       # rubocop:disable Rails/OutputSafety
       "#{translated} #{arrow}".html_safe
+      # rubocop:enable Rails/OutputSafety
     else
       translated
     end
   end
 
   def build_params
-    result = (sort_enabled? && ascend?) ? "-#{attribute}" : attribute
+    result = sort_enabled? && ascend? ? "-#{attribute}" : attribute
     params.merge(sort: result)
   end
 

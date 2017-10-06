@@ -10,12 +10,16 @@ toplineHeight = 38px
     left 0
     right 0
     z-index 5
+    @media(max-width: min-width)
+      top -38px
+      transform translateY(4px);
+
     .menu-transformer__wrapper
       top 0
     .topline-wrapper
       top 0
     &:hover
-      top 0
+      transform translateY(35px);
 
   .widget-sidebar
     display none

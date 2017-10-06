@@ -1,6 +1,7 @@
 import {loadingNewsButton, loadingNewsColumn, loadingNewsWrapperColumn } from './nodes';
 import dataPublished from 'dataPublished';
-import { qs, qsa }   from 'utils';
+import StickyBaner from 'stickyBaner';
+import { qs, qsa }  from 'utils';
 
 export default () => {
 
@@ -30,6 +31,17 @@ export default () => {
         firstLoad = false;
     }
     else limit = 18;
+
+    // Создаем экземпляр класс объекта прилепалки правого банера на главной новостей
+    // let stickyBaner = new StickyBaner({
+    //   floatStartStop: qs('.js-float-start-stop'),
+    //   floatAds: qs('.js-float-ad'),
+    //   floatSidebar: qs('.js-float-sidebar'),
+    //   floatWrapper: qs('.js-float-wrapper'),
+    //   floatContent: qs('.js-float-content'),
+    //   footer: qs('.js-float-footer'),
+    //   spaceBannerbottom: 120
+    // });
 
     // Вешаем троиточия загрузки
     this.classList.add('_loading-active');
@@ -65,6 +77,11 @@ export default () => {
         // Убираем троиточие
         this.classList.remove('_loading-active');
         dataPublished(qsa('.js-data-published-news'));
+
+        // При выгруски новостей запускаем пересчет координат 50мс и через 500 мс вырубает интервал
+        // let intId = setInterval(() => { stickyBaner.run() },10);
+        // setTimeout(() => { clearInterval(intId) }, 500);
+
       })
       .catch(error => {
         // При ошибки, дезейблем кнопку и убераем троеточие

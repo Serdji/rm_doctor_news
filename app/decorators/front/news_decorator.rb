@@ -74,6 +74,6 @@ class Front::NewsDecorator < Draper::Decorator
       par.gsub!(%r{^\s*(<em>)?<(strong|b)>(.*)</(strong|b)>(</em>)?\s*$}, '\\1<h2>\\3</h2>\\5')
       "<p>#{par}</p>"
     end
-    h.sanitize(text_paragraphes.join, tags: %w(p b strong i em h2 img iframe))
+    h.sanitize(text_paragraphes.join, tags: %w(p b strong i em h2 img iframe ul ol li))
   end
 end

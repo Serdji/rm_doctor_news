@@ -6,6 +6,7 @@ class NewsProcessingJob < ActiveJob::Base
       @news = Import::Wrappers::News.new(json)
     end
 
+    # rubocop:disable Metrics/AbcSize
     def call
       stored = News.find_by(external_id: @news.id)
 
@@ -16,7 +17,7 @@ class NewsProcessingJob < ActiveJob::Base
           stored.assign_attributes(build_attributes)
           stored.save
         else
-          Rails.logger.info('News with id %s without changes' % @news.id)
+          Rails.logger.info("News with id #{@news.id} without changes")
         end
 
         stored
@@ -25,9 +26,11 @@ class NewsProcessingJob < ActiveJob::Base
         News.create(build_attributes)
       end
     end
+    # rubocop:enable Metrics/AbcSize
 
     private
 
+    # rubocop:disable Metrics/AbcSize
     def build_attributes
       attributes = @news.attributes
 
@@ -44,10 +47,11 @@ class NewsProcessingJob < ActiveJob::Base
         topic_name: topic.name
       )
 
-      attributes[:topics].map! { |topic| topic.to_h.slice(:name, :alias) }
+      attributes[:topics].map! { |t| t.to_h.slice(:name, :alias) }
 
       attributes
     end
+    # rubocop:enable Metrics/AbcSize
   end
 
   queue_as :news_processing
@@ -55,11 +59,9 @@ class NewsProcessingJob < ActiveJob::Base
   FRESH_KEY = 'news:fresh'.freeze
   FRESH_IDS_KEY = 'news:fresh:ids'.freeze
 
+  # rubocop:disable Metrics/AbcSize
   def perform
-    topics = Import::News::Topics.new
-
-    fresh = topics.map { |news| NewsUpdater.new(news).call }
-    fresh = Front::NewsDecorator.decorate_collection(fresh.select(&:with_image?))
+    fresh = fresh_news
 
     redis_multi do
       redis.del FRESH_KEY
@@ -73,8 +75,15 @@ class NewsProcessingJob < ActiveJob::Base
   ensure
     redis.close
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
+
+  def fresh_news
+    topics = Import::News::Topics.new
+    fresh = topics.map { |news| NewsUpdater.new(news).call }
+    Front::NewsDecorator.decorate_collection(fresh.select(&:with_image?))
+  end
 
   def render_main_news(news)
     object = OpenStruct.new(main: news)
